@@ -42,7 +42,7 @@ class crear_cuenta extends StatelessWidget {
             ),
             Container(
               // crearcuentaptf (6:3489)
-              margin: EdgeInsets.fromLTRB(4*fem, 0*fem, 0*fem, 17*fem),
+              margin: EdgeInsets.fromLTRB(4*fem, 0*fem, 0*fem, 20*fem),
               child: Text(
                 'Crear Cuenta',
                 textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class crear_cuenta extends StatelessWidget {
             ),
             Container(
               // formuv7 (6:3466)
-              margin: EdgeInsets.fromLTRB(7*fem, 0*fem, 7*fem, 80*fem),
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 80*fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -237,7 +237,7 @@ class crear_cuenta extends StatelessWidget {
             ),
             Container(
               // ctabutton66B (6:3955)
-              margin: EdgeInsets.fromLTRB(92*fem, 0*fem, 106*fem, 113*fem),
+              margin: EdgeInsets.fromLTRB(92*fem, 0*fem, 106*fem, 0*fem),
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
