@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/caloriapp.dart';
+import 'package:myapp/page-1/seleccin.dart';
 //ejemplonuevo
 class busqueda extends StatelessWidget {
   @override
@@ -10,19 +12,19 @@ class busqueda extends StatelessWidget {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // busquedaYGX (10:5664)
-        padding: EdgeInsets.fromLTRB(54*fem, 58*fem, 54*fem, 64*fem),
+        padding: EdgeInsets.fromLTRB(9*fem, 18*fem, 9*fem, 618*fem),
         width: double.infinity,
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
-          image: DecorationImage (
+          image: const DecorationImage (
             fit: BoxFit.cover,
             image: AssetImage (
-              'assets/page-1/images/pattern-saf.png',
+              'assets/page-1/images/pattern-k9M.png',
             ),
           ),
         ),
@@ -30,21 +32,54 @@ class busqueda extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // encuentratualimentoPY3 (20:6498)
-              margin: EdgeInsets.fromLTRB(25*fem, 0*fem, 0*fem, 35*fem),
-              constraints: BoxConstraints (
-                maxWidth: 234*fem,
-              ),
-              child: Text(
-                'Encuentra tu alimento',
-                style: SafeGoogleFont (
-                  'ABeeZee',
-                  fontSize: 36*ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.1825*ffem/fem,
-                  letterSpacing: 0.5*fem,
-                  color: Color(0xffffffff),
-                ),
+              // autogroup5u6ftr3 (5HrNqYuoqFYZcf9tcX5u6F)
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 53*fem, 10*fem),
+              width: double.infinity,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    // salidapDu (10:6475)
+                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 31*fem, 0*fem),
+                    child: TextButton(
+                      onPressed: () {
+                        MaterialPageRoute route = 
+                          MaterialPageRoute(builder: (context) => caloriapp());
+                          Navigator.push(context, route);
+                      },
+                      style: TextButton.styleFrom (
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: SizedBox(
+                        width: 45*fem,
+                        height: 45*fem,
+                        child: Image.asset(
+                          'assets/page-1/images/salida.png',
+                          width: 45*fem,
+                          height: 45*fem,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // historialdealimentacinsxs (25:72)
+                    margin: EdgeInsets.fromLTRB(0*fem, 30*fem, 0*fem, 0*fem),
+                    constraints: BoxConstraints (
+                      maxWidth: 228*fem,
+                    ),
+                    child: Text(
+                      'Encuentra tu alimento',
+                      style: SafeGoogleFont (
+                        'ABeeZee',
+                        fontSize: 36*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.1825*ffem/fem,
+                        letterSpacing: 0.5*fem,
+                        color: Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
@@ -100,7 +135,12 @@ class busqueda extends StatelessWidget {
               // ctabutton5xb (30:914)
               margin: EdgeInsets.fromLTRB(53*fem, 0*fem, 53*fem, 0*fem),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => consumo());
+                    Navigator.push(context, route);
+
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -109,7 +149,7 @@ class busqueda extends StatelessWidget {
                   height: 57*fem,
                   decoration: BoxDecoration (
                     borderRadius: BorderRadius.circular(15*fem),
-                    gradient: LinearGradient (
+                    gradient: const LinearGradient (
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],

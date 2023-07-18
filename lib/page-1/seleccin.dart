@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/registroconsumo.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/caloriapp.dart';
+import 'package:myapp/page-1/actualizar-alimento.dart';
 
 class consumo extends StatelessWidget {
   @override
@@ -10,7 +13,7 @@ class consumo extends StatelessWidget {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // seleccinqwd (30:917)
@@ -19,7 +22,7 @@ class consumo extends StatelessWidget {
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
-          image: DecorationImage (
+          image: const DecorationImage (
             fit: BoxFit.cover,
             image: AssetImage (
               'assets/page-1/images/pattern-xzT.png',
@@ -337,7 +340,12 @@ class consumo extends StatelessWidget {
                         width: 45*fem,
                         height: 45*fem,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                           MaterialPageRoute route = 
+                            MaterialPageRoute(builder: (context) => caloriapp());
+                            Navigator.push(context, route);
+
+                          },
                           style: TextButton.styleFrom (
                             padding: EdgeInsets.zero,
                           ),
@@ -365,7 +373,12 @@ class consumo extends StatelessWidget {
                     // ctabuttonmtT (30:1339)
                     margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 40*fem, 0*fem),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                       MaterialPageRoute route = 
+                        MaterialPageRoute(builder: (context) => registro_consumo());
+                        Navigator.push(context, route);
+
+                      },
                       style: TextButton.styleFrom (
                         padding: EdgeInsets.zero,
                       ),
@@ -375,7 +388,7 @@ class consumo extends StatelessWidget {
                         height: double.infinity,
                         decoration: BoxDecoration (
                           borderRadius: BorderRadius.circular(15*fem),
-                          gradient: LinearGradient (
+                          gradient: const LinearGradient (
                             begin: Alignment(-1, -1.123),
                             end: Alignment(1, 1.228),
                             colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
@@ -407,7 +420,12 @@ class consumo extends StatelessWidget {
                   ),
                   TextButton(
                     // ctabuttongtw (30:1342)
-                    onPressed: () {},
+                    onPressed: () {
+                      MaterialPageRoute route = 
+                        MaterialPageRoute(builder: (context) => actualizar_alimento());
+                        Navigator.push(context, route);
+
+                    },
                     style: TextButton.styleFrom (
                       padding: EdgeInsets.zero,
                     ),
@@ -417,7 +435,7 @@ class consumo extends StatelessWidget {
                       height: double.infinity,
                       decoration: BoxDecoration (
                         borderRadius: BorderRadius.circular(15*fem),
-                        gradient: LinearGradient (
+                        gradient: const LinearGradient (
                           begin: Alignment(-1, -1.123),
                           end: Alignment(1, 1.228),
                           colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],

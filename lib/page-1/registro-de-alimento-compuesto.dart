@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/caloriapp.dart';
+import 'package:myapp/page-1/registro-de-alimento.dart';
 
 class registro_alimento_compuesto extends StatelessWidget {
   @override
@@ -19,7 +21,7 @@ class registro_alimento_compuesto extends StatelessWidget {
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
-          image: DecorationImage (
+          image: const DecorationImage (
             fit: BoxFit.cover,
             image: AssetImage (
               'assets/page-1/images/pattern-AAT.png',
@@ -33,7 +35,12 @@ class registro_alimento_compuesto extends StatelessWidget {
               // salidaDTM (27:910)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 21*fem),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => registro_alimento());
+                    Navigator.push(context, route);
+
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -111,7 +118,7 @@ class registro_alimento_compuesto extends StatelessWidget {
                     height: double.infinity,
                     decoration: BoxDecoration (
                       borderRadius: BorderRadius.circular(15*fem),
-                      gradient: LinearGradient (
+                      gradient: const LinearGradient (
                         begin: Alignment(-1, -1.123),
                         end: Alignment(1, 1.228),
                         colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
@@ -154,7 +161,12 @@ class registro_alimento_compuesto extends StatelessWidget {
               // botonaceptarBD9 (30:1816)
               margin: EdgeInsets.fromLTRB(103*fem, 0*fem, 100.86*fem, 0*fem),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                 MaterialPageRoute route = 
+                  MaterialPageRoute(builder: (context) => caloriapp());
+                  Navigator.push(context, route);
+ 
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -163,7 +175,7 @@ class registro_alimento_compuesto extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration (
                     borderRadius: BorderRadius.circular(15*fem),
-                    gradient: LinearGradient (
+                    gradient: const LinearGradient (
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],

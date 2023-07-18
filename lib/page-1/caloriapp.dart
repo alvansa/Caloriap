@@ -3,6 +3,10 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/busqueda.dart';
+import 'package:myapp/page-1/entregahistorial.dart';
+import 'package:myapp/page-1/registro-de-alimento.dart';
+import 'package:myapp/page-1/iniciar_sesion.dart';
 
 class caloriapp extends StatelessWidget {
   @override
@@ -43,7 +47,12 @@ class caloriapp extends StatelessWidget {
               left: 116*fem,
               top: 699*fem,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => iniciar_sesion());
+                  Navigator.push(context, route);
+
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -52,7 +61,7 @@ class caloriapp extends StatelessWidget {
                   height: 57*fem,
                   decoration: BoxDecoration (
                     borderRadius: BorderRadius.circular(15*fem),
-                    gradient: LinearGradient (
+                    gradient: const LinearGradient (
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xffda2525), Color(0xff04ff95)],
@@ -79,7 +88,12 @@ class caloriapp extends StatelessWidget {
               left: 112*fem,
               top: 563*fem,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => registro_alimento());
+                  Navigator.push(context, route);
+
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -89,7 +103,7 @@ class caloriapp extends StatelessWidget {
                   height: 57*fem,
                   decoration: BoxDecoration (
                     borderRadius: BorderRadius.circular(15*fem),
-                    gradient: LinearGradient (
+                    gradient: const LinearGradient (
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
@@ -124,7 +138,12 @@ class caloriapp extends StatelessWidget {
               left: 112*fem,
               top: 441*fem,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => entrega_historial());
+                  Navigator.push(context, route);
+
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -147,7 +166,7 @@ class caloriapp extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration (
                                 borderRadius: BorderRadius.circular(15*fem),
-                                gradient: LinearGradient (
+                                gradient: const LinearGradient (
                                   begin: Alignment(-1, -1.123),
                                   end: Alignment(1, 1.228),
                                   colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
@@ -189,7 +208,12 @@ class caloriapp extends StatelessWidget {
               left: 107*fem,
               top: 320*fem,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => busqueda());
+                  Navigator.push(context, route);
+
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -198,7 +222,7 @@ class caloriapp extends StatelessWidget {
                   height: 57*fem,
                   decoration: BoxDecoration (
                     borderRadius: BorderRadius.circular(15*fem),
-                    gradient: LinearGradient (
+                    gradient: const LinearGradient (
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],

@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/caloriapp.dart'; 
+import 'package:myapp/page-1/seleccin.dart';
 
 class actualizar_alimento extends StatelessWidget {
   @override
@@ -19,7 +21,7 @@ class actualizar_alimento extends StatelessWidget {
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
-          image: DecorationImage (
+          image: const DecorationImage (
             fit: BoxFit.cover,
             image: AssetImage (
               'assets/page-1/images/pattern.png',
@@ -335,7 +337,12 @@ class actualizar_alimento extends StatelessWidget {
               // ctabuttonrRD (30:1783)
               margin: EdgeInsets.fromLTRB(107*fem, 0*fem, 108*fem, 0*fem),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                 MaterialPageRoute route = 
+                    MaterialPageRoute(builder: (context) => caloriapp());
+                    Navigator.push(context, route);
+ 
+                },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
@@ -345,7 +352,7 @@ class actualizar_alimento extends StatelessWidget {
                   height: 57*fem,
                   decoration: BoxDecoration (
                     borderRadius: BorderRadius.circular(15*fem),
-                    gradient: LinearGradient (
+                    gradient: const LinearGradient (
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
