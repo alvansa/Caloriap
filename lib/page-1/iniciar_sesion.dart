@@ -21,6 +21,12 @@ class iniciar_sesion extends StatelessWidget {
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
+          image: const DecorationImage (
+            fit: BoxFit.cover,
+            image: AssetImage (
+              'assets/page-1/images/pattern-k9M.png',
+            ),
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
