@@ -3,12 +3,12 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/busqueda.dart';
-import 'package:myapp/page-1/entregahistorial.dart';
-import 'package:myapp/page-1/registro-de-alimento.dart';
+import 'package:myapp/page-1/Busqueda_de_alimentos.dart';
+import 'package:myapp/page-1/Entrega_de_historial_de_alimentos.dart';
+import 'package:myapp/page-1/Registrar_alimento.dart';
 import 'package:myapp/page-1/iniciar_sesion.dart';
 
-class caloriapp extends StatelessWidget {
+class Caloriapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -49,7 +49,7 @@ class caloriapp extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => iniciar_sesion());
+                    MaterialPageRoute(builder: (context) => Iniciar_sesion());
                   Navigator.push(context, route);
 
                 },
@@ -90,7 +90,7 @@ class caloriapp extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => registro_alimento());
+                    MaterialPageRoute(builder: (context) => Registrar_alimento());
                   Navigator.push(context, route);
 
                 },
@@ -140,7 +140,7 @@ class caloriapp extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => entrega_historial());
+                    MaterialPageRoute(builder: (context) => Entrega_de_historial_de_alimentos());
                   Navigator.push(context, route);
 
                 },
@@ -210,7 +210,7 @@ class caloriapp extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => busqueda());
+                    MaterialPageRoute(builder: (context) => Busqueda_de_alimentos());
                   Navigator.push(context, route);
 
                 },

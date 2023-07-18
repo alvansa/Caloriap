@@ -3,10 +3,10 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/crearcuenta.dart' ;
-import 'package:myapp/page-1/caloriapp.dart'; 
+import 'package:myapp/page-1/Auto_registro.dart' ;
+import 'package:myapp/page-1/Caloriapp.dart'; 
 
-class iniciar_sesion extends StatelessWidget {
+class Iniciar_sesion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -323,7 +323,7 @@ class iniciar_sesion extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => caloriapp());
+                    MaterialPageRoute(builder: (context) => Caloriapp());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom (
@@ -362,7 +362,7 @@ class iniciar_sesion extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => crear_cuenta());
+                    MaterialPageRoute(builder: (context) => Auto_registro());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom (
