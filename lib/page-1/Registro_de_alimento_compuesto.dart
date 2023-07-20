@@ -36,9 +36,7 @@ class Registro_de_alimento_compuesto extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 21*fem),
               child: TextButton(
                 onPressed: () {
-                  MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => Registrar_alimento());
-                    Navigator.push(context, route);
+                  Navigator.pop(context);
 
                 },
                 style: TextButton.styleFrom (

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Caloriapp.dart';
 import 'package:myapp/page-1/Registro_de_alimento_compuesto.dart';
+import 'package:myapp/page-1/Registrar_consumo.dart';
 
 class Registrar_alimento extends StatelessWidget {
   @override
@@ -12,13 +14,13 @@ class Registrar_alimento extends StatelessWidget {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // registrodealimentoALo (6:3986)
-        padding: EdgeInsets.fromLTRB(24*fem, 27*fem, 25*fem, 76*fem),
+        padding: EdgeInsets.fromLTRB(24*fem, 0*fem, 25*fem, 0*fem),
         width: double.infinity,
-        decoration: BoxDecoration (
+        decoration:  BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
           image: const DecorationImage (
@@ -33,7 +35,7 @@ class Registrar_alimento extends StatelessWidget {
           children: [
             Container(
               // autogroupysz716X (5HrPqmjoC1ajMEuSurYsz7)
-              margin: EdgeInsets.fromLTRB(1*fem, 0*fem, 101*fem, 0*fem),
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 101*fem, 0*fem),
               width: double.infinity,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,10 +45,7 @@ class Registrar_alimento extends StatelessWidget {
                     margin: EdgeInsets.fromLTRB(0*fem, 11*fem, 62*fem, 0*fem),
                     child: TextButton(
                       onPressed: () {
-                        MaterialPageRoute route =
-                          MaterialPageRoute(builder: (context) => Caloriapp());
-                          Navigator.push(context, route);
-
+                        Navigator.pop(context);
                       },
                       style: TextButton.styleFrom (
                         padding: EdgeInsets.zero,
@@ -64,7 +63,7 @@ class Registrar_alimento extends StatelessWidget {
                   ),
                   SizedBox(
                     // caloriapplogopequeofinaltalvez (6:4415)
-                    width: 117*fem,
+                    width: 100*fem,
                     height: 107*fem,
                     child: Image.asset(
                       'assets/page-1/images/caloriapplogopequeofinaltalvez-1.png',
@@ -91,7 +90,7 @@ class Registrar_alimento extends StatelessWidget {
             ),
             Container(
               // formRJf (6:4388)
-              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 66*fem),
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 10*fem),
               width: double.infinity,
               decoration: BoxDecoration (
                 borderRadius: BorderRadius.circular(15*fem),
@@ -364,35 +363,55 @@ class Registrar_alimento extends StatelessWidget {
             ),
             Container(
               // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
-              margin: EdgeInsets.fromLTRB(31*fem, 0*fem, 20*fem, 0*fem),
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 10*fem),
               width: double.infinity,
               height: 50*fem,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    // botonaceptarRhH (27:488)
-                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 49.14*fem, 0*fem),
-                    width: 73.86*fem,
-                    height: double.infinity,
-                    decoration: BoxDecoration (
-                      borderRadius: BorderRadius.circular(15*fem),
-                      gradient: const LinearGradient (
-                        begin: Alignment(-1, -1.123),
-                        end: Alignment(1, 1.228),
-                        colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
-                        stops: <double>[0, 1],
-                      ),
+                  TextButton(
+                    // botonaceptarqFD (27:505)
+                    onPressed: () {
+                    MaterialPageRoute route = 
+                      MaterialPageRoute(builder: (context) => Caloriapp());
+                      Navigator.push(context, route);
+                    
+                    },
+                    style: TextButton.styleFrom (
+                      padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
                     ),
-                    child: Center(
-                      child: Text(
-                        'Aceptar',
-                        style: SafeGoogleFont (
-                          'ABeeZee',
-                          fontSize: 16*ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.3102272749*ffem/fem,
-                          color: Color(0xffffffff),
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(1*fem, 4*fem, 1*fem, 4*fem),
+                      width: 157*fem,
+                      height: double.infinity,
+                      decoration: BoxDecoration (
+                        borderRadius: BorderRadius.circular(15*fem),
+                        gradient: const LinearGradient (
+                          begin: Alignment(-1, -1.123),
+                          end: Alignment(1, 1.228),
+                          colors: <Color>[Color.fromRGBO(228, 74, 31, 1),Color.fromRGBO(228, 74, 31, 1)],
+                          stops: <double>[0, 1],
+                        ),
+                      ),
+                      child: Align(
+                        // registraralimentocompuestoW6T (27:508)
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          child: Container(
+                            constraints: BoxConstraints (
+                              maxWidth: 146*fem,
+                            ),
+                            child: Text(
+                              'Aceptar',
+                              style: SafeGoogleFont (
+                                'ABeeZee',
+                                fontSize: 16*ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.3102272749*ffem/fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -401,36 +420,35 @@ class Registrar_alimento extends StatelessWidget {
                     // botonaceptarqFD (27:505)
                     onPressed: () {
                     MaterialPageRoute route = 
-                      MaterialPageRoute(builder: (context) => Registro_de_alimento_compuesto());
+                      MaterialPageRoute(builder: (context) => Registrar_consumo());
                       Navigator.push(context, route);
-
                     },
                     style: TextButton.styleFrom (
-                      padding: EdgeInsets.zero,
+                      padding: EdgeInsets.fromLTRB(10*fem, 0*fem, 0*fem, 0*fem),
                     ),
                     child: Container(
                       padding: EdgeInsets.fromLTRB(1*fem, 4*fem, 1*fem, 4*fem),
-                      width: 152*fem,
+                      width: 155*fem,
                       height: double.infinity,
                       decoration: BoxDecoration (
                         borderRadius: BorderRadius.circular(15*fem),
                         gradient: const LinearGradient (
                           begin: Alignment(-1, -1.123),
                           end: Alignment(1, 1.228),
-                          colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
+                          colors: <Color>[Color.fromRGBO(228, 74, 31, 1),Color.fromRGBO(228, 74, 31, 1)],
                           stops: <double>[0, 1],
                         ),
                       ),
                       child: Align(
                         // registraralimentocompuestoW6T (27:508)
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: SizedBox(
                           child: Container(
                             constraints: BoxConstraints (
                               maxWidth: 146*fem,
                             ),
                             child: Text(
-                              'Registrar alimento compuesto',
+                              'Aceptar y registrar consumo',
                               style: SafeGoogleFont (
                                 'ABeeZee',
                                 fontSize: 16*ffem,
@@ -446,6 +464,58 @@ class Registrar_alimento extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Container(
+              // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 10*fem),
+              width: double.infinity,
+              height: 50*fem,
+              child: TextButton(
+                    // botonaceptarqFD (27:505)
+                    onPressed: () {
+                    MaterialPageRoute route = 
+                      MaterialPageRoute(builder: (context) => Registro_de_alimento_compuesto());
+                      Navigator.push(context, route);
+                    },
+                    style: TextButton.styleFrom (
+                      padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(1*fem, 4*fem, 1*fem, 4*fem),
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: BoxDecoration (
+                        borderRadius: BorderRadius.circular(15*fem),
+                        gradient: const LinearGradient (
+                          begin: Alignment(-1, -1.123),
+                          end: Alignment(1, 1.228),
+                          colors: <Color>[Color.fromRGBO(228, 74, 31, 1),Color.fromRGBO(228, 74, 31, 1)],
+                          stops: <double>[0, 1],
+                        ),
+                      ),
+                      child: Align(
+                        // registraralimentocompuestoW6T (27:508)
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          child: Container(
+                            constraints: BoxConstraints (
+                              maxWidth: 200*fem,
+                            ),
+                            child: Text(
+                              'Ir a registro de alimento compuesto',
+                              style: SafeGoogleFont (
+                                'ABeeZee',
+                                fontSize: 16*ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.3102272749*ffem/fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
             ),
           ],
         ),

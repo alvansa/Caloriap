@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/Iniciar_sesion.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Caloriapp.dart';
 //ejemplo 
@@ -15,8 +16,9 @@ class Auto_registro extends StatelessWidget {
       width: double.infinity,
       child: Container(
         // crearcuentaWDm (6:2658)
-        padding: EdgeInsets.fromLTRB(18*fem, 75*fem, 18*fem, 21*fem),
+        //padding: EdgeInsets.fromLTRB(18*fem, 75*fem, 18*fem, 21*fem),
         width: double.infinity,
+        height: 812*fem,
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
@@ -58,7 +60,7 @@ class Auto_registro extends StatelessWidget {
             Container(
               // formuv7 (6:3466)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 80*fem),
-              width: double.infinity,
+              width: 325*fem,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -114,7 +116,7 @@ class Auto_registro extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 12*fem,
+                    height: 12  *fem,
                   ),
                   Container(
                     // emailform4pw (6:3471)
@@ -140,12 +142,12 @@ class Auto_registro extends StatelessWidget {
                           opacity: 0.5,
                           child: Container(
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 18*fem, 2*fem),
-                            width: 20*fem,
-                            height: 18*fem,
+                            width: 17*fem,
+                            height: 20*fem,
                             child: Image.asset(
                               'assets/page-1/images/iconly-bulk-message.png',
-                              width: 20*fem,
-                              height: 18*fem,
+                              width: 17*fem,
+                              height: 20*fem,
                             ),
                           ),
                         ),
@@ -280,14 +282,14 @@ class Auto_registro extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => Caloriapp());
+                    MaterialPageRoute(builder: (context) => Iniciar_sesion());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom (
                   padding: EdgeInsets.zero,
                 ),
                 child: Text(
-                  '¿Tienes una cuenta creada? pincha aquí',
+                  '¿Tienes una cuenta creada? Inicia sesión',
                   textAlign: TextAlign.center,
                   style: SafeGoogleFont (
                     'ABeeZee',

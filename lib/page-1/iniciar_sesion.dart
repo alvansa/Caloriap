@@ -16,8 +16,9 @@ class Iniciar_sesion extends StatelessWidget {
       width: double.infinity,
       child: Container(
         // iniciarsesinpjh (6:3524)
-        padding: EdgeInsets.fromLTRB(25*fem, 76*fem, 11*fem, 21*fem),
+        //padding: EdgeInsets.fromLTRB(25*fem, 76*fem, 11*fem, 21*fem),
         width: double.infinity,
+        height: 812*fem, 
         decoration: BoxDecoration (
           color: Color(0xff0c0c0c),
           borderRadius: BorderRadius.circular(20*fem),
@@ -45,7 +46,7 @@ class Iniciar_sesion extends StatelessWidget {
               // loginym1 (6:3934)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 14*fem, 19*fem),
               child: Text(
-                'Login',
+                'Iniciar sesión',
                 textAlign: TextAlign.center,
                 style: SafeGoogleFont (
                   'News Cycle',
@@ -343,7 +344,7 @@ class Iniciar_sesion extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'Login',
+                      'Iniciar sesión',
                       style: SafeGoogleFont (
                         'Noto Sans Bengali',
                         fontSize: 16*ffem,
