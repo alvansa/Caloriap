@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import '../model/model_alimento.dart';
 
 class con_actualizar_alimento {

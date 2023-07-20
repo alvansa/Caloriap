@@ -1,4 +1,3 @@
-import 'package:postgres/postgres.dart';
 import 'connection.dart';
 
 //En general falta ver si hacemos un registro predeterminado y otro para el usuario
