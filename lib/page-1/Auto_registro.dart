@@ -8,6 +8,9 @@ import 'package:myapp/page-1/Caloriapp.dart';
 
 //ejemplo
 class Auto_registro extends StatelessWidget {
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -66,6 +69,79 @@ class Auto_registro extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    padding: EdgeInsets.fromLTRB(
+                        24 * fem, 19 * fem, 188 * fem, 17 * fem),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0x19f4f4f4)),
+                      color: Color(0x19ffffff),
+                      borderRadius: BorderRadius.circular(15 * fem),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x115a6cea),
+                          offset: Offset(12 * fem, 26 * fem),
+                          blurRadius: 25 * fem,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Opacity(
+                          opacity: 0.5,
+                          child: Container(
+                            margin: EdgeInsets.fromLTRB(
+                                0 * fem, 0 * fem, 20.01 * fem, 1 * fem),
+                            width: 15.99 * fem,
+                            height: 20 * fem,
+                            child: Image.asset(
+                              'assets/page-1/images/iconly-bulk-profile.png',
+                              width: 15.99 * fem,
+                              height: 20 * fem,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          // Utilizamos el widget Expanded aquí
+                          child: TextField(
+                            style: SafeGoogleFont(
+                              'BentonSans Regular',
+                              fontSize: 14 * ffem,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2575 * ffem / fem,
+                              letterSpacing: 0.5 * fem,
+                              color: Color(0xffffffff),
+                            ),
+                            decoration: InputDecoration(
+                              border: InputBorder
+                                  .none, // Remove the border around the TextField
+                              contentPadding:
+                                  EdgeInsets.zero, // Remove any content padding
+                              isDense:
+                                  true, // Reduce the height of the TextField to match the original design
+                              hintText:
+                                  'Username', // Set the text you want to display (hint text)
+                              hintStyle: SafeGoogleFont(
+                                // Set the style for the hint text
+                                'BentonSans Regular',
+                                fontSize: 14 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.2575 * ffem / fem,
+                                letterSpacing: 0.5 * fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                            controller:
+                                usernameController, // Use this controller to get or set the input value
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12 * fem,
+                  ),
+                  Container(
                     // nameforme71 (6:3467)
                     padding: EdgeInsets.fromLTRB(
                         24 * fem, 19 * fem, 188 * fem, 17 * fem),
@@ -94,84 +170,14 @@ class Auto_registro extends StatelessWidget {
                             width: 15.99 * fem,
                             height: 20 * fem,
                             child: Image.asset(
-                              'assets/page-1/images/iconly-bulk-profile.png',
+                              'assets/page-1/images/iconly-bulk-message.png',
                               width: 15.99 * fem,
                               height: 20 * fem,
                             ),
                           ),
                         ),
-                        Container(
-                          // emailn6j (6:3469)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 3 * fem, 0 * fem, 0 * fem),
+                        Expanded(
                           child: TextField(
-                            style: TextStyle(
-                              fontFamily: 'BentonSans Regular',
-                              fontSize: 14 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.2575 * ffem / fem,
-                              letterSpacing: 0.5 * fem,
-                              color: Color(0xffffffff),
-                            ),
-                            decoration: InputDecoration(
-                              border:
-                                  OutlineInputBorder(), // Customize the border as needed
-                              contentPadding:
-                                  EdgeInsets.zero, // Remove any content padding
-                              isDense:
-                                  true, // Reduce the height of the TextField to match the original design
-                            ),
-                            controller:
-                                TextEditingController(), // Use this controller to get or set the input value
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12 * fem,
-                  ),
-                  Container(
-                    // emailform4pw (6:3471)
-                    padding: EdgeInsets.fromLTRB(
-                        22 * fem, 20 * fem, 229 * fem, 17 * fem),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Opacity(
-                          // iconlybulkmessagevMM (6:3474)
-                          opacity: 0.5,
-                          child: Container(
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 18 * fem, 2 * fem),
-                            width: 17 * fem,
-                            height: 20 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/iconly-bulk-message.png',
-                              width: 17 * fem,
-                              height: 20 * fem,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          // emailRJ7 (6:3473)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 2 * fem, 0 * fem, 0 * fem),
-                          child: Text(
-                            'Email',
                             style: SafeGoogleFont(
                               'BentonSans Regular',
                               fontSize: 14 * ffem,
@@ -180,6 +186,27 @@ class Auto_registro extends StatelessWidget {
                               letterSpacing: 0.5 * fem,
                               color: Color(0xffffffff),
                             ),
+                            decoration: InputDecoration(
+                              border: InputBorder
+                                  .none, // Remove the border around the TextField
+                              contentPadding:
+                                  EdgeInsets.zero, // Remove any content padding
+                              isDense:
+                                  true, // Reduce the height of the TextField to match the original design
+                              hintText:
+                                  'Email', // Set the text you want to display (hint text)
+                              hintStyle: SafeGoogleFont(
+                                // Set the style for the hint text
+                                'BentonSans Regular',
+                                fontSize: 14 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.2575 * ffem / fem,
+                                letterSpacing: 0.5 * fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                            controller:
+                                emailController, // Use this controller to get or set the input value
                           ),
                         ),
                       ],
@@ -223,12 +250,10 @@ class Auto_registro extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          // emailhuq (6:3477)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 3 * fem, 160 * fem, 0 * fem),
-                          child: Text(
-                            'Password',
+                        Expanded(
+                          child: TextField(
+                            obscureText:
+                                true, // This will make the TextField behave like a password input
                             style: SafeGoogleFont(
                               'BentonSans Regular',
                               fontSize: 14 * ffem,
@@ -237,6 +262,27 @@ class Auto_registro extends StatelessWidget {
                               letterSpacing: 0.5 * fem,
                               color: Color(0xffffffff),
                             ),
+                            decoration: InputDecoration(
+                              border: InputBorder
+                                  .none, // Remove the border around the TextField
+                              contentPadding:
+                                  EdgeInsets.zero, // Remove any content padding
+                              isDense:
+                                  true, // Reduce the height of the TextField to match the original design
+                              hintText:
+                                  'Password', // Set the text you want to display (hint text)
+                              hintStyle: SafeGoogleFont(
+                                // Set the style for the hint text
+                                'BentonSans Regular',
+                                fontSize: 14 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.2575 * ffem / fem,
+                                letterSpacing: 0.5 * fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                            controller:
+                                passwordController, // Use this controller to get or set the input value
                           ),
                         ),
                         Container(
@@ -262,11 +308,7 @@ class Auto_registro extends StatelessWidget {
               margin:
                   EdgeInsets.fromLTRB(92 * fem, 0 * fem, 106 * fem, 0 * fem),
               child: TextButton(
-                onPressed: () {
-                  MaterialPageRoute route =
-                      MaterialPageRoute(builder: (context) => Caloriapp());
-                  Navigator.push(context, route);
-                },
+                onPressed: () {},
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                 ),

@@ -26,7 +26,7 @@ class Persona {
   }
 
   //function to login
-  Future<bool> login(String email, String password) async {
+  Future<List<dynamic>> login(String email, String password) async {
     final connection = await conn();
     final result = await connection.query(
         'SELECT * FROM persona WHERE email = @Email AND password = @password',
@@ -34,10 +34,10 @@ class Persona {
     await connection.close();
     if (result.isEmpty) {
       print('User not found');
-      return false;
+      return result;
     } else {
       print('User found');
-      return true;
+      return result;
     }
   }
 }
