@@ -53,12 +53,9 @@ class con_actualizar_alimento {
     return act_alimento;
   }
 
-  List<dynamic> cargar_datos(int id_al) {
+  Future<List<dynamic>> cargar_datos(int id_al) async {
     final alimento = model_alimento();
-    final nombre_alimento = alimento.datos_alimento(id_al);
-    List<dynamic> datos = [];
-    nombre_alimento.then((value) => datos = value!);
-    print(datos);
-    return datos;
+    List<dynamic>? datos = await alimento.datos_alimento(id_al);
+    return datos ?? []; // Si datos es nulo, devuelve una lista vacía.
   }
 }

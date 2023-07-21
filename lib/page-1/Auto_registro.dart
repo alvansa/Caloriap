@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/controller/con_Signin.dart';
 import 'package:myapp/page-1/Iniciar_sesion.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Caloriapp.dart';
@@ -11,6 +12,9 @@ class Auto_registro extends StatelessWidget {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  controllerSingIn registro = controllerSingIn();
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -308,7 +312,11 @@ class Auto_registro extends StatelessWidget {
               margin:
                   EdgeInsets.fromLTRB(92 * fem, 0 * fem, 106 * fem, 0 * fem),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  //llamar a la funcion de auto registro
+                  registro.RegistroUsuario(emailController.text,
+                      usernameController.text, passwordController.text, 1);
+                },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                 ),

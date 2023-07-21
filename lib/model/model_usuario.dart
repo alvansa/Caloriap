@@ -7,11 +7,11 @@ class Usuario extends Persona {
       : super(email, username, password, 1);
 
   //function to insert user into database
-  Future<List<dynamic>> Autoregistro(
+  Future<bool> Autoregistro(
       String Email, String username, String password) async {
     final connection = await conn();
     final result = await connection.query(
-        'INSERT INTO persona (email, username, password, tipo) VALUES (@Email, @username, @password, @tipo)',
+        'INSERT INTO persona (email, username, password, id_persona) VALUES (@Email, @username, @password, @tipo)',
         substitutionValues: {
           'Email': Email,
           'username': username,
@@ -19,11 +19,6 @@ class Usuario extends Persona {
           'tipo': tipo
         });
     await connection.close();
-    return result;
+    return true;
   }
-}
-
-void main() async {
-  final usuario = Usuario('email', 'username', 'password', 1);
-  await usuario.Autoregistro('email', 'username', 'password');
 }

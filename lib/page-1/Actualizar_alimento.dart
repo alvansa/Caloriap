@@ -2,393 +2,386 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/componente/Text_field.dart';
+import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Caloriapp.dart';
-import 'package:myapp/page-1/Seleccion_de_alimento.dart';
+import 'package:myapp/page-1/Registro_de_alimento_compuesto.dart';
+import '../controller/con_actualizar_alimento.dart';
 
-class Actualizar_alimento extends StatelessWidget {
+class Actualizar_alimento extends StatefulWidget {
+  final String alimento_id;
+
+  //constructor
+  Actualizar_alimento({Key? key, required this.alimento_id}) : super(key: key);
+
+  @override
+  _Actualizar_alimentoState createState() => _Actualizar_alimentoState();
+}
+
+class _Actualizar_alimentoState extends State<Actualizar_alimento> {
+  con_actualizar_alimento alimento = con_actualizar_alimento();
+
+  final nombreController = TextEditingController();
+  final caloriasController = TextEditingController();
+  final proteinasController = TextEditingController();
+  final grasasController = TextEditingController();
+  final carbohidratosController = TextEditingController();
+  final azucaresController = TextEditingController();
+  final colesterolController = TextEditingController();
+  final sodioController = TextEditingController();
+  final porcionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    cargarDatos();
+  }
+
+  void cargarDatos() async {
+    List<dynamic>? datos =
+        await alimento.cargar_datos(int.parse(widget.alimento_id));
+    if (datos != null && datos.isNotEmpty) {
+      setState(() {
+        nombreController.text = datos[1].toString();
+        caloriasController.text = datos[2].toString();
+        proteinasController.text = datos[4].toString();
+        grasasController.text = datos[6].toString();
+        carbohidratosController.text = datos[7].toString();
+        azucaresController.text = datos[3].toString();
+        colesterolController.text = datos[8].toString();
+        sodioController.text = datos[5].toString();
+        porcionController.text = datos[9].toString();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
-      width: double.infinity,
-      child: Container(
-        // actualizaralimentohV9 (30:1353)
-        padding: EdgeInsets.fromLTRB(9 * fem, 18 * fem, 9 * fem, 54 * fem),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xff0c0c0c),
-          borderRadius: BorderRadius.circular(20 * fem),
-          image: const DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              'assets/page-1/images/pattern.png',
-            ),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              // autogroupmp7rgVV (5HrM2mb4qyboDHzTG2Mp7R)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 312 * fem, 0 * fem),
-              width: 45 * fem,
-              height: 45 * fem,
-              child: Image.asset(
-                'assets/page-1/images/auto-group-mp7r.png',
-                width: 45 * fem,
-                height: 45 * fem,
-              ),
-            ),
-            Container(
-              // actualizaralimentoNdD (30:1788)
-              margin: EdgeInsets.fromLTRB(20 * fem, 0 * fem, 0 * fem, 52 * fem),
-              constraints: BoxConstraints(
-                maxWidth: 179 * fem,
-              ),
-              child: Text(
-                'Actualizar alimento',
-                style: SafeGoogleFont(
-                  'ABeeZee',
-                  fontSize: 36 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.1825 * ffem / fem,
-                  letterSpacing: 0.5 * fem,
-                  color: Color(0xffffffff),
-                ),
-              ),
-            ),
-            Container(
-              // formCs9 (30:1758)
-              margin:
-                  EdgeInsets.fromLTRB(16 * fem, 0 * fem, 15 * fem, 63 * fem),
+    return Scaffold(
+      body: ListView(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Container(
+              // registrodealimentoALo (6:3986)
+              padding:
+                  EdgeInsets.fromLTRB(24 * fem, 0 * fem, 25 * fem, 0 * fem),
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15 * fem),
+                color: Color(0xff0c0c0c),
+                borderRadius: BorderRadius.circular(20 * fem),
+                image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/page-1/images/pattern-71q.png',
+                  ),
+                ),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    // nombrealimentoi4o (30:1765)
-                    width: 325 * fem,
-                    height: 45 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
+                    // autogroupysz716X (5HrPqmjoC1ajMEuSurYsz7)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 0 * fem, 101 * fem, 0 * fem),
+                    width: double.infinity,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          // groupKd1 (10:6471)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 11 * fem, 62 * fem, 0 * fem),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                            ),
+                            child: SizedBox(
+                              width: 45 * fem,
+                              height: 45 * fem,
+                              child: Image.asset(
+                                'assets/page-1/images/group.png',
+                                width: 45 * fem,
+                                height: 45 * fem,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    child: Center(
-                      child: Text(
-                        'Nombre',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 11 * fem,
                   ),
                   Container(
-                    // caloriasHXD (30:1762)
-                    margin:
-                        EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 0 * fem),
-                    width: 325 * fem,
-                    height: 45 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Calorias',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 11 * fem,
-                  ),
-                  Container(
-                    // proteinasGtw (30:1759)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 0 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        128 * fem, 14 * fem, 127 * fem, 1 * fem),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
+                    // ingresaralimentovco (6:4414)
+                    margin: EdgeInsets.fromLTRB(
+                        9 * fem, 0 * fem, 0 * fem, 16 * fem),
                     child: Text(
-                      'Proteinas',
+                      'Ingresar alimento',
+                      textAlign: TextAlign.center,
                       style: SafeGoogleFont(
                         'News Cycle',
-                        fontSize: 18 * ffem,
+                        fontSize: 25 * ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.645 * ffem / fem,
-                        letterSpacing: 0.5 * fem,
+                        height: 1.3102272034 * ffem / fem,
                         color: Color(0xffffffff),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 11 * fem,
-                  ),
                   Container(
-                    // grasastotalesgBy (30:1771)
-                    width: 325 * fem,
-                    height: 45 * fem,
+                    // formRJf (6:4388)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
                       borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFieldsIngreso(
+                            hintText: 'Nombre',
+                            //ingresar los datos pedidos
+                            controller: TextEditingController(
+                                text: nombreController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Calorias (kcal)',
+                            controller: TextEditingController(
+                                text: caloriasController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Proteinas (g)',
+                            controller: TextEditingController(
+                                text: proteinasController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Grasas totales (kcal)',
+                            controller: TextEditingController(
+                                text: grasasController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'H. de C. disp (g)',
+                            controller: TextEditingController(
+                                text: carbohidratosController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Azucares (g)',
+                            controller: TextEditingController(
+                                text: azucaresController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Colesterol (g)',
+                            controller: TextEditingController(
+                                text: colesterolController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Sodio (g)',
+                            controller: TextEditingController(
+                                text: sodioController.text),
+                            fem: fem),
+                        TextFieldsIngreso(
+                            hintText: 'Porcion (g)',
+                            controller: TextEditingController(
+                                text: porcionController.text),
+                            fem: fem),
+                      ],
+                    ),
+                  ),
+                  //Botones
+                  Container(
+                    // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                    width: double.infinity,
+                    height: 50 * fem,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          // botonaceptarqFD (27:505)
+                          onPressed: () {
+                            alimento.actualizar_alimento(
+                              widget.alimento_id,
+                              nombreController.text,
+                              caloriasController.text,
+                              proteinasController.text,
+                              grasasController.text,
+                              carbohidratosController.text,
+                              azucaresController.text,
+                              colesterolController.text,
+                              sodioController.text,
+                              porcionController.text,
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.fromLTRB(
+                                0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(
+                                1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                            width: 157 * fem,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15 * fem),
+                              gradient: const LinearGradient(
+                                begin: Alignment(-1, -1.123),
+                                end: Alignment(1, 1.228),
+                                colors: <Color>[
+                                  Color.fromRGBO(228, 74, 31, 1),
+                                  Color.fromRGBO(228, 74, 31, 1)
+                                ],
+                                stops: <double>[0, 1],
+                              ),
+                            ),
+                            child: Align(
+                              // registraralimentocompuestoW6T (27:508)
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: 146 * fem,
+                                  ),
+                                  child: Text(
+                                    'Aceptar',
+                                    style: SafeGoogleFont(
+                                      'ABeeZee',
+                                      fontSize: 16 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.3102272749 * ffem / fem,
+                                      color: Color(0xffffffff),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          // botonaceptarqFD (27:505)
+                          onPressed: () {
+                            MaterialPageRoute route = MaterialPageRoute(
+                                builder: (context) => Registrar_consumo());
+                            Navigator.push(context, route);
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.fromLTRB(
+                                10 * fem, 0 * fem, 0 * fem, 0 * fem),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(
+                                1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                            width: 155 * fem,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15 * fem),
+                              gradient: const LinearGradient(
+                                begin: Alignment(-1, -1.123),
+                                end: Alignment(1, 1.228),
+                                colors: <Color>[
+                                  Color.fromRGBO(228, 74, 31, 1),
+                                  Color.fromRGBO(228, 74, 31, 1)
+                                ],
+                                stops: <double>[0, 1],
+                              ),
+                            ),
+                            child: Align(
+                              // registraralimentocompuestoW6T (27:508)
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: 146 * fem,
+                                  ),
+                                  child: Text(
+                                    'Aceptar y registrar consumo',
+                                    style: SafeGoogleFont(
+                                      'ABeeZee',
+                                      fontSize: 16 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.3102272749 * ffem / fem,
+                                      color: Color(0xffffffff),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    child: Center(
-                      child: Text(
-                        'Grasas totales',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 11 * fem,
                   ),
                   Container(
-                    // hdecdispVQK (30:1768)
-                    width: 325 * fem,
-                    height: 45 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'H. de C. disp.',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
+                    // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                    width: double.infinity,
+                    height: 50 * fem,
+                    child: TextButton(
+                      // botonaceptarqFD (27:505)
+                      onPressed: () {
+                        MaterialPageRoute route = MaterialPageRoute(
+                            builder: (context) =>
+                                Registro_de_alimento_compuesto());
+                        Navigator.push(context, route);
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 0 * fem),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 11 * fem,
-                  ),
-                  Container(
-                    // azucares8iB (30:1774)
-                    width: 325 * fem,
-                    height: 45 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Azucares',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 11 * fem,
-                  ),
-                  Container(
-                    // colesterolmFM (30:1777)
-                    width: 325 * fem,
-                    height: 45 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Colesterol',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 11 * fem,
-                  ),
-                  Container(
-                    // sodioR51 (30:1780)
-                    width: 325 * fem,
-                    height: 45 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Sodio',
-                        style: SafeGoogleFont(
-                          'News Cycle',
-                          fontSize: 18 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.645 * ffem / fem,
-                          letterSpacing: 0.5 * fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              // ctabuttonrRD (30:1783)
-              margin:
-                  EdgeInsets.fromLTRB(107 * fem, 0 * fem, 108 * fem, 0 * fem),
-              child: TextButton(
-                onPressed: () {
-                  MaterialPageRoute route =
-                      MaterialPageRoute(builder: (context) => Caloriapp());
-                  Navigator.push(context, route);
-                },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Container(
-                  padding:
-                      EdgeInsets.fromLTRB(31 * fem, 9 * fem, 33 * fem, 6 * fem),
-                  width: double.infinity,
-                  height: 57 * fem,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15 * fem),
-                    gradient: const LinearGradient(
-                      begin: Alignment(-1, -1.123),
-                      end: Alignment(1, 1.228),
-                      colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
-                      stops: <double>[0, 1],
-                    ),
-                  ),
-                  child: Center(
-                    // actualizaralimentoqnw (30:1785)
-                    child: SizedBox(
                       child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 78 * fem,
+                        padding: EdgeInsets.fromLTRB(
+                            1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15 * fem),
+                          gradient: const LinearGradient(
+                            begin: Alignment(-1, -1.123),
+                            end: Alignment(1, 1.228),
+                            colors: <Color>[
+                              Color.fromRGBO(228, 74, 31, 1),
+                              Color.fromRGBO(228, 74, 31, 1)
+                            ],
+                            stops: <double>[0, 1],
+                          ),
                         ),
-                        child: Text(
-                          'Actualizar alimento',
-                          style: SafeGoogleFont(
-                            'ABeeZee',
-                            fontSize: 16 * ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.3102272749 * ffem / fem,
-                            color: Color(0xffffffff),
+                        child: Align(
+                          // registraralimentocompuestoW6T (27:508)
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 200 * fem,
+                              ),
+                              child: Text(
+                                'Ir a registro de alimento compuesto',
+                                style: SafeGoogleFont(
+                                  'ABeeZee',
+                                  fontSize: 16 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.3102272749 * ffem / fem,
+                                  color: Color(0xffffffff),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
+                  // Otros widgets y botones aquí...
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

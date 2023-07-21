@@ -101,14 +101,14 @@ class model_alimento {
   Future<bool> actualizar_alimento(
       int id_al,
       String nombre,
-      int calorias,
-      int azucares,
-      int proteinas,
-      int sodio,
-      int grasa_total,
-      int h_de_c,
-      int colesterol,
-      int porcion) async {
+      double calorias,
+      double azucares,
+      double proteinas,
+      double sodio,
+      double grasa_total,
+      double h_de_c,
+      double colesterol,
+      double porcion) async {
     final connection = await conn();
 
     try {
