@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Registrar_alimento.dart';
 import 'package:myapp/utils.dart';
+<<<<<<< HEAD
 import 'package:myapp/page-1/iniciar_sesion.dart';
 //import 'package:myapp/page-1/crearcuenta.dart';
 import 'package:myapp/page-1/caloriapp.dart';
@@ -34,4 +35,26 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+=======
+import 'package:myapp/page-1/iniciar_sesion.dart'; 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+	return MaterialApp(
+		title: 'Flutter',
+		debugShowCheckedModeBanner: false,
+		scrollBehavior: MyCustomScrollBehavior(),
+		theme: ThemeData(
+		primarySwatch: Colors.blue,
+		),
+		home: Scaffold(
+		body: SingleChildScrollView(
+			child: Iniciar_sesion(),
+		),
+		),
+	);
+	}
+>>>>>>> f7828cec8fcabb5b8236af4bbd2552ad9aa217f5
 }

@@ -9,7 +9,7 @@ class con_reg_alimento {
     return alimento;
   }
 
-  Future<bool> ing_alimento(
+  Future<void> ing_alimento(
       String nombre,
       String calorias,
       String proteinas,
@@ -39,7 +39,7 @@ class con_reg_alimento {
     if (sodio.isNotEmpty) sodio_int = double.parse(sodio);
     if (porcion.isNotEmpty) porcion_int = double.parse(porcion);
 
-    return reg_alimento1.reg_alimento(
+    await reg_alimento1.reg_alimento(
         nombre,
         calorias_int,
         proteinas_int,

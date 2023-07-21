@@ -7,7 +7,7 @@ import 'package:myapp/model/connection.dart';
 
 class model_alimento {
   //aqui falta poner el email de usuario que lo ingreso
-  Future<bool> reg_alimento(
+  Future<void> reg_alimento(
       String nombre,
       double calorias,
       double proteinas,
@@ -26,10 +26,8 @@ class model_alimento {
             values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false)''',
           substitutionValues: {'stringValue': nombre});
       await connection.close();
-      return true;
     } catch (e) {
       print(e);
-      return false;
     }
   }
 

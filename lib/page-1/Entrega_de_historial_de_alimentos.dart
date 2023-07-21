@@ -42,9 +42,7 @@ class Entrega_de_historial_de_alimentos extends StatelessWidget {
                     margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 31*fem, 0*fem),
                     child: TextButton(
                       onPressed: () {
-                        MaterialPageRoute route = 
-                          MaterialPageRoute(builder: (context) => Caloriapp());
-                          Navigator.push(context, route);
+                        Navigator.pop(context);
                       },
                       style: TextButton.styleFrom (
                         padding: EdgeInsets.zero,

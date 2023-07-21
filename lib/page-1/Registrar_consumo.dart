@@ -36,9 +36,7 @@ class Registrar_consumo extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 312*fem, 0*fem),
               child: TextButton(
                 onPressed: () {
-                MaterialPageRoute route = 
-                  MaterialPageRoute(builder: (context) => Seleccion_de_alimento());
-                  Navigator.push(context, route);
+                Navigator.pop(context);
   
                 },
                 style: TextButton.styleFrom (
