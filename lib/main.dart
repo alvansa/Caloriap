@@ -12,6 +12,8 @@ import 'package:myapp/page-1/iniciar_sesion.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  // Iniciar_sesion inicio = new Iniciar_sesion();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,9 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: SingleChildScrollView(
-          child: Iniciar_sesion(),
-        ),
+        body: sesion(),
       ),
     );
   }

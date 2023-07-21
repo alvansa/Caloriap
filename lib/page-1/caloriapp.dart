@@ -151,8 +151,7 @@ class _CaloriapState extends State<Caloriapp> {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = MaterialPageRoute(
-                      builder: (context) =>
-                          Entrega_de_historial_de_alimentos());
+                      builder: (context) => Entrega_Historial_de_alimentos());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom(

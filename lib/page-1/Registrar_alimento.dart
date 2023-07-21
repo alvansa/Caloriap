@@ -45,10 +45,12 @@ class Registrar_alimento extends StatelessWidget {
                 width: double.infinity,
                 child: Container(
                   // registrodealimentoALo (6:3986)
-                  padding: EdgeInsets.fromLTRB(24 * fem, 0 * fem, 25 * fem, 0 * fem),
+                  padding:
+                      EdgeInsets.fromLTRB(24 * fem, 0 * fem, 25 * fem, 0 * fem),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Color(0xff0c0c0c).withOpacity(0.8), // Agregar opacidad al color de fondo
+                    color: Color(0xff0c0c0c)
+                        .withOpacity(0.8), // Agregar opacidad al color de fondo
                     borderRadius: BorderRadius.circular(20 * fem),
                   ),
                   child: Column(
@@ -56,14 +58,16 @@ class Registrar_alimento extends StatelessWidget {
                     children: [
                       Container(
                         // autogroupysz716X (5HrPqmjoC1ajMEuSurYsz7)
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 101 * fem, 0 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 101 * fem, 0 * fem),
                         width: double.infinity,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               // groupKd1 (10:6471)
-                              margin: EdgeInsets.fromLTRB(0 * fem, 11 * fem, 62 * fem, 0 * fem),
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 11 * fem, 62 * fem, 0 * fem),
                               child: TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
@@ -87,7 +91,8 @@ class Registrar_alimento extends StatelessWidget {
                       ),
                       Container(
                         // ingresaralimentovco (6:4414)
-                        margin: EdgeInsets.fromLTRB(9 * fem, 0 * fem, 0 * fem, 16 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            9 * fem, 0 * fem, 0 * fem, 16 * fem),
                         child: Text(
                           'Ingresar alimento',
                           textAlign: TextAlign.center,
@@ -101,7 +106,8 @@ class Registrar_alimento extends StatelessWidget {
                       ),
                       Container(
                         // formRJf (6:4388)
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15 * fem),
@@ -160,7 +166,8 @@ class Registrar_alimento extends StatelessWidget {
                       //Botones
                       Container(
                         // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
                         width: double.infinity,
                         height: 50 * fem,
                         child: Row(
@@ -182,10 +189,12 @@ class Registrar_alimento extends StatelessWidget {
                                 );
                               },
                               style: TextButton.styleFrom(
-                                padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                padding: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
                               ),
                               child: Container(
-                                padding: EdgeInsets.fromLTRB(1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                                padding: EdgeInsets.fromLTRB(
+                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
                                 width: 157 * fem,
                                 height: double.infinity,
                                 decoration: BoxDecoration(
@@ -205,7 +214,8 @@ class Registrar_alimento extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: SizedBox(
                                     child: Container(
-                                      constraints: BoxConstraints(maxWidth: 146 * fem),
+                                      constraints:
+                                          BoxConstraints(maxWidth: 146 * fem),
                                       child: Text(
                                         'Aceptar',
                                         style: GoogleFonts.aBeeZee(
@@ -223,16 +233,21 @@ class Registrar_alimento extends StatelessWidget {
                             TextButton(
                               // botonaceptarqFD (27:505)
                               onPressed: () {
+                                //registar alimento
+                                //registrar consumo
+                                //pasar a la pagina de caloriapp principal
                                 MaterialPageRoute route = MaterialPageRoute(
                                   builder: (context) => Registrar_consumo(),
                                 );
                                 Navigator.push(context, route);
                               },
                               style: TextButton.styleFrom(
-                                padding: EdgeInsets.fromLTRB(10 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                padding: EdgeInsets.fromLTRB(
+                                    10 * fem, 0 * fem, 0 * fem, 0 * fem),
                               ),
                               child: Container(
-                                padding: EdgeInsets.fromLTRB(1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                                padding: EdgeInsets.fromLTRB(
+                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
                                 width: 155 * fem,
                                 height: double.infinity,
                                 decoration: BoxDecoration(
@@ -252,7 +267,8 @@ class Registrar_alimento extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: SizedBox(
                                     child: Container(
-                                      constraints: BoxConstraints(maxWidth: 146 * fem),
+                                      constraints:
+                                          BoxConstraints(maxWidth: 146 * fem),
                                       child: Text(
                                         'Aceptar y registrar consumo',
                                         style: GoogleFonts.aBeeZee(
@@ -272,22 +288,26 @@ class Registrar_alimento extends StatelessWidget {
                       ),
                       Container(
                         // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
                         width: double.infinity,
                         height: 50 * fem,
                         child: TextButton(
                           // botonaceptarqFD (27:505)
                           onPressed: () {
                             MaterialPageRoute route = MaterialPageRoute(
-                              builder: (context) => Registro_de_alimento_compuesto(),
+                              builder: (context) =>
+                                  Registro_de_alimento_compuesto(),
                             );
                             Navigator.push(context, route);
                           },
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                            padding: EdgeInsets.fromLTRB(
+                                0 * fem, 0 * fem, 0 * fem, 0 * fem),
                           ),
                           child: Container(
-                            padding: EdgeInsets.fromLTRB(1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                            padding: EdgeInsets.fromLTRB(
+                                1 * fem, 4 * fem, 1 * fem, 4 * fem),
                             width: double.infinity,
                             height: double.infinity,
                             decoration: BoxDecoration(
@@ -307,7 +327,8 @@ class Registrar_alimento extends StatelessWidget {
                               alignment: Alignment.center,
                               child: SizedBox(
                                 child: Container(
-                                  constraints: BoxConstraints(maxWidth: 200 * fem),
+                                  constraints:
+                                      BoxConstraints(maxWidth: 200 * fem),
                                   child: Text(
                                     'Ir a registro de alimento compuesto',
                                     style: GoogleFonts.aBeeZee(

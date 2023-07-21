@@ -7,10 +7,18 @@ import 'package:myapp/page-1/Auto_registro.dart';
 import 'package:myapp/page-1/caloriapp.dart';
 import '../controller/con_login.dart';
 
+Widget sesion() {
+  return new Scaffold(
+    body: Iniciar_sesion(),
+  );
+}
+
 class Iniciar_sesion extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final Login = controllerLogin();
+
+  Auto_registro registro = Auto_registro();
 
   @override
   Widget build(BuildContext context) {
@@ -275,8 +283,8 @@ class Iniciar_sesion extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
               child: TextButton(
                 onPressed: () {
-                  MaterialPageRoute route =
-                      MaterialPageRoute(builder: (context) => Auto_registro());
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (context) => registro.auto_registro());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom(

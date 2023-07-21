@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/controller/con_Signin.dart';
-import 'package:myapp/page-1/Iniciar_sesion.dart';
+import 'package:myapp/page-1/iniciar_sesion.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Caloriapp.dart';
 
@@ -14,6 +14,14 @@ class Auto_registro extends StatelessWidget {
   final passwordController = TextEditingController();
 
   controllerSingIn registro = controllerSingIn();
+
+  // Iniciar_sesion inicio = Iniciar_sesion();
+
+  Widget auto_registro() {
+    return new Scaffold(
+      body: Auto_registro(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -353,7 +361,7 @@ class Auto_registro extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route =
-                      MaterialPageRoute(builder: (context) => Iniciar_sesion());
+                      MaterialPageRoute(builder: (context) => sesion());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom(
