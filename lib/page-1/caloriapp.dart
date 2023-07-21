@@ -8,7 +8,19 @@ import 'package:myapp/page-1/Entrega_de_historial_de_alimentos.dart';
 import 'package:myapp/page-1/Registrar_alimento.dart';
 import 'package:myapp/page-1/iniciar_sesion.dart';
 
-class Caloriapp extends StatelessWidget {
+class Caloriapp extends StatefulWidget {
+  final List<dynamic>? datos;
+
+  Caloriapp({Key? key, required this.datos}) : super(key: key);
+  @override
+  _CaloriapState createState() => _CaloriapState();
+}
+
+class _CaloriapState extends State<Caloriapp> {
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;

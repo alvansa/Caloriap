@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: SingleChildScrollView(
-          child: Actualizar_alimento(
-            alimento_id: '2',
-          ),
+          child: Iniciar_sesion(),
         ),
       ),
     );

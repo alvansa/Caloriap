@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/Caloriapp.dart';
+import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/page-1/Actualizar_alimento.dart';
 
 class Seleccion_de_alimento extends StatelessWidget {
@@ -345,7 +345,7 @@ class Seleccion_de_alimento extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {
                             MaterialPageRoute route = MaterialPageRoute(
-                                builder: (context) => Caloriapp());
+                                builder: (context) => Caloriapp(datos: null));
                             Navigator.push(context, route);
                           },
                           style: TextButton.styleFrom(
