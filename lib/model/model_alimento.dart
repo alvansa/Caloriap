@@ -1,20 +1,22 @@
 // Path: lib\Funciones\view_Registrar_alimento.dart
-import 'connection.dart';
+import 'package:flutter/foundation.dart';
+import 'package:myapp/model/connection.dart';
+//import 'connection.dart';
 
 //funcion que recoga los datos de alimento de la bd
 
 class model_alimento {
   //aqui falta poner el email de usuario que lo ingreso
-  Future<void> reg_alimento(
+  Future<bool> reg_alimento(
       String nombre,
-      int calorias,
-      int proteinas,
-      int grasas_totales,
-      int hidratos_carbono,
-      int azucares,
-      int colesterol,
-      int sodio,
-      int porcion) async {
+      double calorias,
+      double proteinas,
+      double grasas_totales,
+      double hidratos_carbono,
+      double azucares,
+      double colesterol,
+      double sodio,
+      double porcion) async {
     final connection = await conn();
 
     try {
@@ -24,21 +26,23 @@ class model_alimento {
             values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false)''',
           substitutionValues: {'stringValue': nombre});
       await connection.close();
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
   Future<void> reg_alimento_predeterminado(
       String nombre,
-      int calorias,
-      int proteinas,
-      int grasas_totales,
-      int hidratos_carbono,
-      int azucares,
-      int colesterol,
-      int sodio,
-      int porcion) async {
+      double calorias,
+      double proteinas,
+      double grasas_totales,
+      double hidratos_carbono,
+      double azucares,
+      double colesterol,
+      double sodio,
+      double porcion) async {
     final connection = await conn();
 
     try {
@@ -99,14 +103,14 @@ class model_alimento {
   Future<bool> actualizar_alimento(
       int id_al,
       String nombre,
-      int calorias,
-      int azucares,
-      int proteinas,
-      int sodio,
-      int grasa_total,
-      int h_de_c,
-      int colesterol,
-      int porcion) async {
+      double calorias,
+      double azucares,
+      double proteinas,
+      double sodio,
+      double grasa_total,
+      double h_de_c,
+      double colesterol,
+      double porcion) async {
     final connection = await conn();
 
     try {

@@ -19,49 +19,48 @@ class Caloriapp extends StatelessWidget {
       child: Container(
         // caloriappcBZ (7:4416)
         width: double.infinity,
-        height: 812*fem,
-        decoration: BoxDecoration (
+        height: 812 * fem,
+        decoration: BoxDecoration(
           color: Color(0xff0c0c0c),
-          borderRadius: BorderRadius.circular(20*fem),
+          borderRadius: BorderRadius.circular(20 * fem),
         ),
         child: Stack(
           children: [
             Positioned(
               // patterntum (7:4417)
-              left: 0*fem,
-              top: 0*fem,
+              left: 0 * fem,
+              top: 0 * fem,
               child: Align(
                 child: SizedBox(
-                  width: 375*fem,
-                  height: 812*fem,
+                  width: 375 * fem,
+                  height: 812 * fem,
                   child: Image.asset(
                     'assets/page-1/images/pattern-d8s.png',
-                    width: 375*fem,
-                    height: 812*fem,
+                    width: 375 * fem,
+                    height: 812 * fem,
                   ),
                 ),
               ),
             ),
             Positioned(
               // ctabuttonanb (7:5233)
-              left: 116*fem,
-              top: 699*fem,
+              left: 116 * fem,
+              top: 699 * fem,
               child: TextButton(
                 onPressed: () {
-                  MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => Iniciar_sesion());
+                  MaterialPageRoute route =
+                      MaterialPageRoute(builder: (context) => Iniciar_sesion());
                   Navigator.push(context, route);
-
                 },
-                style: TextButton.styleFrom (
+                style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                 ),
                 child: Container(
-                  width: 161*fem,
-                  height: 57*fem,
-                  decoration: BoxDecoration (
-                    borderRadius: BorderRadius.circular(15*fem),
-                    gradient: const LinearGradient (
+                  width: 161 * fem,
+                  height: 57 * fem,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15 * fem),
+                    gradient: const LinearGradient(
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xffda2525), Color(0xff04ff95)],
@@ -71,11 +70,11 @@ class Caloriapp extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'Salir',
-                      style: SafeGoogleFont (
+                      style: SafeGoogleFont(
                         'ABeeZee',
-                        fontSize: 16*ffem,
+                        fontSize: 16 * ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.3102272749*ffem/fem,
+                        height: 1.3102272749 * ffem / fem,
                         color: Color(0xffffffff),
                       ),
                     ),
@@ -85,25 +84,25 @@ class Caloriapp extends StatelessWidget {
             ),
             Positioned(
               // ctabuttonkKh (7:5230)
-              left: 112*fem,
-              top: 563*fem,
+              left: 112 * fem,
+              top: 563 * fem,
               child: TextButton(
                 onPressed: () {
-                  MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => Registrar_alimento());
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (context) => Registrar_alimento());
                   Navigator.push(context, route);
-
                 },
-                style: TextButton.styleFrom (
+                style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                 ),
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(46*fem, 8*fem, 44*fem, 7*fem),
-                  width: 163*fem,
-                  height: 57*fem,
-                  decoration: BoxDecoration (
-                    borderRadius: BorderRadius.circular(15*fem),
-                    gradient: const LinearGradient (
+                  padding:
+                      EdgeInsets.fromLTRB(46 * fem, 8 * fem, 44 * fem, 7 * fem),
+                  width: 163 * fem,
+                  height: 57 * fem,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15 * fem),
+                    gradient: const LinearGradient(
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
@@ -114,16 +113,16 @@ class Caloriapp extends StatelessWidget {
                     // registraralimentoAPR (7:5232)
                     child: SizedBox(
                       child: Container(
-                        constraints: BoxConstraints (
-                          maxWidth: 73*fem,
+                        constraints: BoxConstraints(
+                          maxWidth: 73 * fem,
                         ),
                         child: Text(
                           'Registrar alimento',
-                          style: SafeGoogleFont (
+                          style: SafeGoogleFont(
                             'ABeeZee',
-                            fontSize: 16*ffem,
+                            fontSize: 16 * ffem,
                             fontWeight: FontWeight.w400,
-                            height: 1.3102272749*ffem/fem,
+                            height: 1.3102272749 * ffem / fem,
                             color: Color(0xffffffff),
                           ),
                         ),
@@ -135,41 +134,44 @@ class Caloriapp extends StatelessWidget {
             ),
             Positioned(
               // ctabutton4Du (7:5224)
-              left: 112*fem,
-              top: 441*fem,
+              left: 112 * fem,
+              top: 441 * fem,
               child: TextButton(
                 onPressed: () {
-                  MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => Entrega_de_historial_de_alimentos());
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (context) =>
+                          Entrega_de_historial_de_alimentos());
                   Navigator.push(context, route);
-
                 },
-                style: TextButton.styleFrom (
+                style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                 ),
                 child: Container(
-                  width: 170*fem,
-                  height: 57*fem,
-                  decoration: BoxDecoration (
-                    borderRadius: BorderRadius.circular(15*fem),
+                  width: 170 * fem,
+                  height: 57 * fem,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15 * fem),
                   ),
                   child: Stack(
                     children: [
                       Positioned(
                         // rectangle16GKy (7:5225)
-                        left: 0*fem,
-                        top: 0*fem,
+                        left: 0 * fem,
+                        top: 0 * fem,
                         child: Align(
                           child: SizedBox(
-                            width: 162.85*fem,
-                            height: 57*fem,
+                            width: 162.85 * fem,
+                            height: 57 * fem,
                             child: Container(
-                              decoration: BoxDecoration (
-                                borderRadius: BorderRadius.circular(15*fem),
-                                gradient: const LinearGradient (
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15 * fem),
+                                gradient: const LinearGradient(
                                   begin: Alignment(-1, -1.123),
                                   end: Alignment(1, 1.228),
-                                  colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
+                                  colors: <Color>[
+                                    Color(0xff53e78b),
+                                    Color(0xff14be77)
+                                  ],
                                   stops: <double>[0, 1],
                                 ),
                               ),
@@ -179,19 +181,19 @@ class Caloriapp extends StatelessWidget {
                       ),
                       Positioned(
                         // historialdeconsumoixf (7:5226)
-                        left: 3*fem,
-                        top: 20*fem,
+                        left: 3 * fem,
+                        top: 20 * fem,
                         child: Align(
                           child: SizedBox(
-                            width: 161*fem,
-                            height: 21*fem,
+                            width: 161 * fem,
+                            height: 21 * fem,
                             child: Text(
                               'Historial de consumo',
-                              style: SafeGoogleFont (
+                              style: SafeGoogleFont(
                                 'ABeeZee',
-                                fontSize: 16*ffem,
+                                fontSize: 16 * ffem,
                                 fontWeight: FontWeight.w400,
-                                height: 1.3102272749*ffem/fem,
+                                height: 1.3102272749 * ffem / fem,
                                 color: Color(0xffffffff),
                               ),
                             ),
@@ -205,24 +207,23 @@ class Caloriapp extends StatelessWidget {
             ),
             Positioned(
               // ctabuttonCcw (7:5217)
-              left: 107*fem,
-              top: 320*fem,
+              left: 107 * fem,
+              top: 320 * fem,
               child: TextButton(
                 onPressed: () {
-                  MaterialPageRoute route = 
-                    MaterialPageRoute(builder: (context) => Busqueda_de_alimentos());
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (context) => Busqueda_de_alimentos());
                   Navigator.push(context, route);
-
                 },
-                style: TextButton.styleFrom (
+                style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                 ),
                 child: Container(
-                  width: 161*fem,
-                  height: 57*fem,
-                  decoration: BoxDecoration (
-                    borderRadius: BorderRadius.circular(15*fem),
-                    gradient: const LinearGradient (
+                  width: 161 * fem,
+                  height: 57 * fem,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15 * fem),
+                    gradient: const LinearGradient(
                       begin: Alignment(-1, -1.123),
                       end: Alignment(1, 1.228),
                       colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
@@ -232,11 +233,11 @@ class Caloriapp extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'Búsqueda',
-                      style: SafeGoogleFont (
+                      style: SafeGoogleFont(
                         'ABeeZee',
-                        fontSize: 16*ffem,
+                        fontSize: 16 * ffem,
                         fontWeight: FontWeight.w400,
-                        height: 1.3102272749*ffem/fem,
+                        height: 1.3102272749 * ffem / fem,
                         color: Color(0xffffffff),
                       ),
                     ),
@@ -246,12 +247,12 @@ class Caloriapp extends StatelessWidget {
             ),
             Positioned(
               // logonombre1QDD (7:5200)
-              left: 9*fem,
-              top: 43*fem,
+              left: 9 * fem,
+              top: 43 * fem,
               child: Align(
                 child: SizedBox(
-                  width: 356*fem,
-                  height: 239*fem,
+                  width: 356 * fem,
+                  height: 239 * fem,
                   child: Image.asset(
                     'assets/page-1/images/logonombre-1-EEb.png',
                     fit: BoxFit.cover,
@@ -262,6 +263,6 @@ class Caloriapp extends StatelessWidget {
           ],
         ),
       ),
-          );
+    );
   }
 }
