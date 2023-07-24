@@ -36,7 +36,8 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
 
   void initState() {
     super.initState();
-    reg_al_comp = Registro_alimento_compuesto(email: widget.datosUsuario![0]);
+    reg_al_comp =
+        Registro_alimento_compuesto(datosUsuario: widget.datosUsuario!);
   }
 
   @override
@@ -196,17 +197,18 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                             TextButton(
                               // botonaceptarqFD (27:505)
                               onPressed: () {
+                                print(widget.datosUsuario![0]);
                                 alimento.ing_alimento(
-                                  nombreController.text,
-                                  caloriasController.text,
-                                  proteinasController.text,
-                                  grasasController.text,
-                                  carbohidratosController.text,
-                                  azucaresController.text,
-                                  colesterolController.text,
-                                  sodioController.text,
-                                  porcionController.text,
-                                );
+                                    nombreController.text,
+                                    caloriasController.text,
+                                    proteinasController.text,
+                                    grasasController.text,
+                                    carbohidratosController.text,
+                                    azucaresController.text,
+                                    colesterolController.text,
+                                    sodioController.text,
+                                    porcionController.text,
+                                    widget.datosUsuario![0]);
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.fromLTRB(

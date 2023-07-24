@@ -18,7 +18,8 @@ class con_reg_alimento {
       String azucares,
       String colesterol,
       String sodio,
-      String porcion) async {
+      String porcion,
+      String email) async {
     model_alimento reg_alimento1 = model_alimento();
     double calorias_int = 0;
     double proteinas_int = 0;
@@ -48,7 +49,8 @@ class con_reg_alimento {
         azucares_int,
         colesterol_int,
         sodio_int,
-        porcion_int);
+        porcion_int,
+        email);
   }
 
   Future<void> ing_alimento_predeterminado(

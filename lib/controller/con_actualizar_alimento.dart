@@ -13,12 +13,12 @@ class con_actualizar_alimento {
       String id_al,
       String nombre,
       String calorias,
-      String azucares,
       String proteina,
-      String sodio,
       String grasa_total,
       String h_de_c,
+      String azucares,
       String colesterol,
+      String sodio,
       String porcion) async {
     final alimento = model_alimento();
     final id_al_int = int.parse(id_al);
@@ -42,12 +42,12 @@ class con_actualizar_alimento {
         id_al_int,
         nombre,
         calorias_int,
-        azucares_int,
         proteinas_int,
-        sodio_int,
         grasas_totales_int,
+        azucares_int,
         hidratos_carbono_int,
         colesterol_int,
+        sodio_int,
         porcion_int);
 
     return act_alimento;

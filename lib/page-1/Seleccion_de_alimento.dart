@@ -6,7 +6,7 @@ import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/page-1/Actualizar_alimento.dart';
-import 'package:myapp/componente/Text_field.dart';
+import 'package:myapp/componente/Text_field_vista.dart';
 
 class Seleccion_de_alimento extends StatefulWidget {
   final List<dynamic> datos_alimento;
@@ -29,9 +29,35 @@ class Seleccion_de_alimento extends StatefulWidget {
 
 class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   final nombreController = TextEditingController();
+  final caloriasController = TextEditingController();
+  final proteinasController = TextEditingController();
+  final grasasController = TextEditingController();
+  final carbohidratosController = TextEditingController();
+  final azucaresController = TextEditingController();
+  final colesterolController = TextEditingController();
+  final sodioController = TextEditingController();
+  final porcionController = TextEditingController();
+
+  Actualizar_alimento? actualizar_alimento;
+
+  void initState() {
+    super.initState();
+    actualizar_alimento = Actualizar_alimento(
+        alimento_id: widget.datos_alimento[0].toString(), email: widget.email);
+    print(widget.datos_alimento);
+    cargarDatos();
+  }
 
   void cargarDatos() {
     nombreController.text = widget.datos_alimento[1].toString();
+    caloriasController.text = widget.datos_alimento[2].toString();
+    azucaresController.text = widget.datos_alimento[3].toString();
+    proteinasController.text = widget.datos_alimento[4].toString();
+    sodioController.text = widget.datos_alimento[5].toString();
+    grasasController.text = widget.datos_alimento[6].toString();
+    carbohidratosController.text = widget.datos_alimento[7].toString();
+    colesterolController.text = widget.datos_alimento[8].toString();
+    porcionController.text = widget.datos_alimento[9].toString();
   }
 
   @override
@@ -46,9 +72,8 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
           Container(
             // Definición del fondo de pantalla
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xff0c0c0c),
-              borderRadius: BorderRadius.circular(20 * fem),
               image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/page-1/images/pattern-71q.png'),
@@ -110,7 +135,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                         margin: EdgeInsets.fromLTRB(
                             9 * fem, 0 * fem, 0 * fem, 16 * fem),
                         child: Text(
-                          'Actualizar alimento',
+                          'Seleccionar alimento',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.newsCycle(
                             fontSize: 25 * ffem,
@@ -131,52 +156,60 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TextFieldsIngreso(
+                            TextFieldVista(
                               hintText: 'Nombre',
                               controller: TextEditingController(
-                                  text: widget.datos_alimento[1].toString()),
+                                  text: nombreController.text),
                               fem: fem,
                             ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Calorias (kcal)',
-                            //   controller: caloriasController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Proteinas (g)',
-                            //   controller: proteinasController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Grasas totales (kcal)',
-                            //   controller: grasasController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'H. de C. disp (g)',
-                            //   controller: carbohidratosController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Azucares (g)',
-                            //   controller: azucaresController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Colesterol (g)',
-                            //   controller: colesterolController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Sodio (g)',
-                            //   controller: sodioController,
-                            //   fem: fem,
-                            // ),
-                            // TextFieldsIngreso(
-                            //   hintText: 'Porcion (g)',
-                            //   controller: porcionController,
-                            //   fem: fem,
-                            // ),
+                            TextFieldVista(
+                              hintText: 'Calorias',
+                              controller: TextEditingController(
+                                  text: caloriasController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'Proteinas',
+                              controller: TextEditingController(
+                                  text: proteinasController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'Grasas totales',
+                              controller: TextEditingController(
+                                  text: grasasController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'H. de C. disp',
+                              controller: TextEditingController(
+                                  text: carbohidratosController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'Azucares',
+                              controller: TextEditingController(
+                                  text: azucaresController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'Colesterol',
+                              controller: TextEditingController(
+                                  text: colesterolController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'Sodio',
+                              controller: TextEditingController(
+                                  text: sodioController.text),
+                              fem: fem,
+                            ),
+                            TextFieldVista(
+                              hintText: 'Porcion',
+                              controller: TextEditingController(
+                                  text: porcionController.text),
+                              fem: fem,
+                            ),
                           ],
                         ),
                       ),
@@ -191,46 +224,42 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             TextButton(
-                              // botonaceptarqFD (27:505)
-                              onPressed: () {},
+                              onPressed: () {
+                                //Llevar a actualizar aliemento
+                                MaterialPageRoute route = MaterialPageRoute(
+                                    builder: (context) =>
+                                        actualizar_alimento!.act_alimento());
+                                Navigator.push(context, route);
+                              },
                               style: TextButton.styleFrom(
-                                padding: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                               ),
                               child: Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                                width: 157 * fem,
+                                width: 157,
                                 height: double.infinity,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15 * fem),
+                                  borderRadius: BorderRadius.circular(15),
                                   gradient: const LinearGradient(
                                     begin: Alignment(-1, -1.123),
                                     end: Alignment(1, 1.228),
                                     colors: <Color>[
-                                      Color.fromRGBO(228, 74, 31, 1),
-                                      Color.fromRGBO(228, 74, 31, 1)
+                                      Color.fromRGBO(31, 197, 122, 1),
+                                      Color.fromRGBO(31, 197, 122, 1),
                                     ],
                                     stops: <double>[0, 1],
                                   ),
                                 ),
-                                child: Align(
-                                  // registraralimentocompuestoW6T (27:508)
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    child: Container(
-                                      constraints:
-                                          BoxConstraints(maxWidth: 146 * fem),
-                                      child: Text(
-                                        'Aceptar',
-                                        style: GoogleFonts.aBeeZee(
-                                          fontSize: 16 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.3102272749 * ffem / fem,
-                                          color: Color(0xffffffff),
-                                        ),
-                                      ),
+                                child: Center(
+                                  // Centra el texto horizontal y verticalmente dentro del Container
+                                  child: Text(
+                                    'Actualizar Alimento',
+                                    style: GoogleFonts.aBeeZee(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xffffffff),
                                     ),
+                                    textAlign: TextAlign
+                                        .center, // Centra el texto dentro del TextButton
                                   ),
                                 ),
                               ),
@@ -261,8 +290,8 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                                     begin: Alignment(-1, -1.123),
                                     end: Alignment(1, 1.228),
                                     colors: <Color>[
-                                      Color.fromRGBO(228, 74, 31, 1),
-                                      Color.fromRGBO(228, 74, 31, 1)
+                                      Color.fromRGBO(31, 197, 122, 1),
+                                      Color.fromRGBO(31, 197, 122, 1)
                                     ],
                                     stops: <double>[0, 1],
                                   ),
@@ -275,7 +304,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                                       constraints:
                                           BoxConstraints(maxWidth: 146 * fem),
                                       child: Text(
-                                        'Aceptar y registrar consumo',
+                                        'Registrar Consumo',
                                         style: GoogleFonts.aBeeZee(
                                           fontSize: 16 * ffem,
                                           fontWeight: FontWeight.w400,
@@ -291,65 +320,6 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                           ],
                         ),
                       ),
-                      Container(
-                        // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
-                        width: double.infinity,
-                        height: 50 * fem,
-                        child: TextButton(
-                          // botonaceptarqFD (27:505)
-                          onPressed: () {
-                            // MaterialPageRoute route = MaterialPageRoute(
-                            //   builder: (context) =>
-                            //       Registro_de_alimento_compuesto(),
-                            // );
-                            // Navigator.push(context, route);
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(
-                                1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                            width: double.infinity,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15 * fem),
-                              gradient: const LinearGradient(
-                                begin: Alignment(-1, -1.123),
-                                end: Alignment(1, 1.228),
-                                colors: <Color>[
-                                  Color.fromRGBO(228, 74, 31, 1),
-                                  Color.fromRGBO(228, 74, 31, 1)
-                                ],
-                                stops: <double>[0, 1],
-                              ),
-                            ),
-                            child: Align(
-                              // registraralimentocompuestoW6T (27:508)
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                child: Container(
-                                  constraints:
-                                      BoxConstraints(maxWidth: 200 * fem),
-                                  child: Text(
-                                    'Ir a registro de alimento compuesto',
-                                    style: GoogleFonts.aBeeZee(
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3102272749 * ffem / fem,
-                                      color: Color(0xffffffff),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Otros widgets y botones aquí...
                     ],
                   ),
                 ),

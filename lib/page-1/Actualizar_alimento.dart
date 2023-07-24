@@ -20,6 +20,15 @@ class Actualizar_alimento extends StatefulWidget {
 
   @override
   _Actualizar_alimentoState createState() => _Actualizar_alimentoState();
+
+  Widget act_alimento() {
+    return Scaffold(
+      body: Actualizar_alimento(
+        alimento_id: alimento_id,
+        email: email,
+      ),
+    );
+  }
 }
 
 class _Actualizar_alimentoState extends State<Actualizar_alimento> {
@@ -39,6 +48,7 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
   @override
   void initState() {
     super.initState();
+
     cargarDatos();
   }
 
@@ -49,12 +59,12 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
       setState(() {
         nombreController.text = datos[1].toString();
         caloriasController.text = datos[2].toString();
+        azucaresController.text = datos[3].toString();
         proteinasController.text = datos[4].toString();
+        sodioController.text = datos[5].toString();
         grasasController.text = datos[6].toString();
         carbohidratosController.text = datos[7].toString();
-        azucaresController.text = datos[3].toString();
         colesterolController.text = datos[8].toString();
-        sodioController.text = datos[5].toString();
         porcionController.text = datos[9].toString();
       });
     }
@@ -75,10 +85,9 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
               padding:
                   EdgeInsets.fromLTRB(24 * fem, 0 * fem, 25 * fem, 0 * fem),
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xff0c0c0c),
-                borderRadius: BorderRadius.circular(20 * fem),
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
                     'assets/page-1/images/pattern-71q.png',
@@ -126,7 +135,7 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                     margin: EdgeInsets.fromLTRB(
                         9 * fem, 0 * fem, 0 * fem, 16 * fem),
                     child: Text(
-                      'Ingresar alimento',
+                      'Actualizar Alimento',
                       textAlign: TextAlign.center,
                       style: SafeGoogleFont(
                         'News Cycle',
@@ -230,7 +239,7 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                           child: Container(
                             padding: EdgeInsets.fromLTRB(
                                 1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                            width: 157 * fem,
+                            width: 320 * fem,
                             height: double.infinity,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15 * fem),
@@ -238,134 +247,16 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                                 begin: Alignment(-1, -1.123),
                                 end: Alignment(1, 1.228),
                                 colors: <Color>[
-                                  Color.fromRGBO(228, 74, 31, 1),
-                                  Color.fromRGBO(228, 74, 31, 1)
+                                  Color.fromRGBO(31, 197, 122, 1),
+                                  Color.fromRGBO(31, 197, 122, 1),
                                 ],
                                 stops: <double>[0, 1],
                               ),
                             ),
-                            child: Align(
-                              // registraralimentocompuestoW6T (27:508)
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                    maxWidth: 146 * fem,
-                                  ),
-                                  child: Text(
-                                    'Aceptar',
-                                    style: SafeGoogleFont(
-                                      'ABeeZee',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3102272749 * ffem / fem,
-                                      color: Color(0xffffffff),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          // botonaceptarqFD (27:505)
-                          onPressed: () {
-                            MaterialPageRoute route = MaterialPageRoute(
-                                builder: (context) => Registrar_consumo());
-                            Navigator.push(context, route);
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.fromLTRB(
-                                10 * fem, 0 * fem, 0 * fem, 0 * fem),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(
-                                1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                            width: 155 * fem,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15 * fem),
-                              gradient: const LinearGradient(
-                                begin: Alignment(-1, -1.123),
-                                end: Alignment(1, 1.228),
-                                colors: <Color>[
-                                  Color.fromRGBO(228, 74, 31, 1),
-                                  Color.fromRGBO(228, 74, 31, 1)
-                                ],
-                                stops: <double>[0, 1],
-                              ),
-                            ),
-                            child: Align(
-                              // registraralimentocompuestoW6T (27:508)
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                    maxWidth: 146 * fem,
-                                  ),
-                                  child: Text(
-                                    'Aceptar y registrar consumo',
-                                    style: SafeGoogleFont(
-                                      'ABeeZee',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3102272749 * ffem / fem,
-                                      color: Color(0xffffffff),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 10 * fem),
-                    width: double.infinity,
-                    height: 50 * fem,
-                    child: TextButton(
-                      // botonaceptarqFD (27:505)
-                      onPressed: () {
-                        MaterialPageRoute route = MaterialPageRoute(
-                            builder: (context) =>
-                                reg_al_comp!.registro_al_comp());
-                        Navigator.push(context, route);
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(
-                            1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                        width: double.infinity,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15 * fem),
-                          gradient: const LinearGradient(
-                            begin: Alignment(-1, -1.123),
-                            end: Alignment(1, 1.228),
-                            colors: <Color>[
-                              Color.fromRGBO(228, 74, 31, 1),
-                              Color.fromRGBO(228, 74, 31, 1)
-                            ],
-                            stops: <double>[0, 1],
-                          ),
-                        ),
-                        child: Align(
-                          // registraralimentocompuestoW6T (27:508)
-                          alignment: Alignment.center,
-                          child: SizedBox(
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 200 * fem,
-                              ),
+                            child: Center(
+                              // registraralimentocompuestoW6T (27:508
                               child: Text(
-                                'Ir a registro de alimento compuesto',
+                                'Actualizar Alimento',
                                 style: SafeGoogleFont(
                                   'ABeeZee',
                                   fontSize: 16 * ffem,
@@ -377,10 +268,9 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                  // Otros widgets y botones aquí...
                 ],
               ),
             ),

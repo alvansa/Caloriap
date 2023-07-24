@@ -16,15 +16,16 @@ class model_alimento {
       double azucares,
       double colesterol,
       double sodio,
-      double porcion) async {
+      double porcion,
+      String email) async {
     final connection = await conn();
 
     try {
       //id_al , nombre , calorias , carbohidratos , proteinas , grasas_totales , hidratos_carbono , azucares , colesterol , sodio
       await connection.query(
-          '''insert into alimento (nombre, calorias,azucares,proteina,sodio,grasa_total, h_de_C,colesterol,porcion,predeterminado)
-            values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false)''',
-          substitutionValues: {'stringValue': nombre});
+          '''insert into alimento (nombre, calorias,azucares,proteina,sodio,grasa_total, h_de_C,colesterol,porcion,predeterminado,email)
+            values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false,@email)''',
+          substitutionValues: {'stringValue': nombre, 'email': email});
       await connection.close();
     } catch (e) {
       print(e);
@@ -103,20 +104,21 @@ class model_alimento {
       int id_al,
       String nombre,
       double calorias,
-      double azucares,
       double proteinas,
-      double sodio,
       double grasa_total,
       double h_de_c,
+      double azucares,
       double colesterol,
+      double sodio,
       double porcion) async {
     final connection = await conn();
 
     try {
       await connection.query(
-          '''update alimento set nombre = @nom, calorias = $calorias, azucares = $azucares, proteinas = $proteinas, sodio = $sodio, grasa_total = $grasa_total, h_de_c = $h_de_c, colesterol = $colesterol, porcion = $porcion where id_al = $id_al''',
+          '''update alimento set nombre = @nom, calorias = $calorias, azucares = $azucares, proteina = $proteinas, sodio = $sodio, grasa_total = $grasa_total, h_de_c = $h_de_c, colesterol = $colesterol, porcion = $porcion where id_al = $id_al''',
           substitutionValues: {'nom': nombre});
       await connection.close();
+      print('alimento actualizado');
       return true;
     } catch (e) {
       print('error en actualizar alimento: $e');
