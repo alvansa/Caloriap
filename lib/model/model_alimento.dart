@@ -72,7 +72,7 @@ class model_alimento {
 
 //nombre, tipo, calorias , restriccion.
 //Falta ver como lo hacemos con los filtro de tipo y restriccion
-  Future<List<List<dynamic>>?> listar_alimentos(
+  Future<List<List<dynamic>>> listar_alimentos(
       String nombre, double max_cal, String email) async {
     try {
       final connection = await conn();
@@ -81,18 +81,19 @@ class model_alimento {
         where nombre like @nombre 
         and calorias <= $max_cal
         and (predeterminado = true or id_al in (select id_al from alimento where email = @email))    
-        order by nombre desc
+        order by nombre asc
         ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
 
-      final data =
-          result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
+      //final data =
+      //    result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
 
       await connection.close();
-
-      return data;
+      print(result);
+      return result;
     } catch (e) {
-      print('error en conectar a la base de datos: $e');
-      return null;
+      print('error en listar alimentos: $e');
+      List<List> result = [];
+      return result;
     }
   }
 

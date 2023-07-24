@@ -18,9 +18,11 @@ class Caloriapp extends StatefulWidget {
 
 class _CaloriapState extends State<Caloriapp> {
   Historial_de_alimentos? h_de_alimentos;
+  Busqueda_de_alimentos? b_de_alimentos;
   void initState() {
     super.initState();
     h_de_alimentos = Historial_de_alimentos(email: widget.datos);
+    b_de_alimentos = Busqueda_de_alimentos(email: widget.datos);
   }
 
   @override
@@ -225,7 +227,7 @@ class _CaloriapState extends State<Caloriapp> {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = MaterialPageRoute(
-                      builder: (context) => Busqueda_de_alimentos());
+                      builder: (context) => b_de_alimentos!.busqueda());
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom(
