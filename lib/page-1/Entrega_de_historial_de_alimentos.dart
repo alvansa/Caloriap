@@ -14,7 +14,7 @@ class Historial_de_alimentos extends StatefulWidget {
 
   Historial_de_alimentos({Key? key, required this.email}) : super(key: key);
   Widget historial() {
-    return new Scaffold(
+    return Scaffold(
       body: Historial_de_alimentos(
         email: email,
       ),

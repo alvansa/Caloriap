@@ -46,7 +46,8 @@ class con_reg_al_comp {
     for (i = 0; i < datos_nutricionales.length; i++) {
       for (j = 2; j < 9; j++) {
         datos_nutricionales_sumados[j - 2] +=
-            (datos_nutricionales[i][j] * porciones[i]) / 100;
+            (datos_nutricionales[i][j] * porciones[i]) /
+                100; // cambiar 100 por la porcion del alimento
       }
     }
 

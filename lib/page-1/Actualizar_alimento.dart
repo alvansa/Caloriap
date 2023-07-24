@@ -11,9 +11,12 @@ import '../controller/con_actualizar_alimento.dart';
 
 class Actualizar_alimento extends StatefulWidget {
   final String alimento_id;
+  final String email;
 
   //constructor
-  Actualizar_alimento({Key? key, required this.alimento_id}) : super(key: key);
+  Actualizar_alimento(
+      {Key? key, required this.alimento_id, required this.email})
+      : super(key: key);
 
   @override
   _Actualizar_alimentoState createState() => _Actualizar_alimentoState();
@@ -21,6 +24,7 @@ class Actualizar_alimento extends StatefulWidget {
 
 class _Actualizar_alimentoState extends State<Actualizar_alimento> {
   con_actualizar_alimento alimento = con_actualizar_alimento();
+  Registro_alimento_compuesto? reg_al_comp;
 
   final nombreController = TextEditingController();
   final caloriasController = TextEditingController();
@@ -328,7 +332,7 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                       onPressed: () {
                         MaterialPageRoute route = MaterialPageRoute(
                             builder: (context) =>
-                                Registro_de_alimento_compuesto());
+                                reg_al_comp!.registro_al_comp());
                         Navigator.push(context, route);
                       },
                       style: TextButton.styleFrom(

@@ -6,210 +6,237 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/page-1/Registrar_alimento.dart';
 
-class Registro_de_alimento_compuesto extends StatelessWidget {
+class Registro_alimento_compuesto extends StatefulWidget {
+  final String email;
+  //Constructor de alimento compuesto
+  const Registro_alimento_compuesto({super.key, required this.email});
+
+  Widget registro_al_comp() {
+    return new Scaffold(
+      body: Registro_alimento_compuesto(email: email),
+    );
+  }
+
+  @override
+  State<Registro_alimento_compuesto> createState() =>
+      _Registro_alimento_compuestoState();
+}
+
+class _Registro_alimento_compuestoState
+    extends State<Registro_alimento_compuesto> {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return SizedBox(
-      width: double.infinity,
-      child: Container(
-        // registrodealimentocompuestonN3 (27:509)
-        padding: EdgeInsets.fromLTRB(9 * fem, 18 * fem, 10.14 * fem, 89 * fem),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xff0c0c0c),
-          borderRadius: BorderRadius.circular(20 * fem),
-          image: const DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              'assets/page-1/images/pattern-AAT.png',
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            // Definición del fondo de pantalla
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color(0xff0c0c0c),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/page-1/images/pattern-71q.png'),
+              ),
             ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              // salidaDTM (27:910)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
+          ListView(
+            children: [
+              SizedBox(
+                width: double.infinity,
                 child: Container(
-                  width: 45 * fem,
-                  height: 45 * fem,
-                  child: Image.asset(
-                    'assets/page-1/images/salida-QVV.png',
-                    width: 45 * fem,
-                    height: 45 * fem,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              // autogroupm991JDu (5HrPRCcQUe6MKT3haLm991)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 8 * fem),
-              width: double.infinity,
-              height: 50 * fem,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // searchDLs (27:904)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        21 * fem, 16 * fem, 47 * fem, 16 * fem),
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0x19f4f4f4)),
-                      color: Color(0x19ffffff),
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x115a6cea),
-                          offset: Offset(12 * fem, 26 * fem),
-                          blurRadius: 25 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // iconsearchsAX (27:906)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 22 * fem, 0 * fem),
-                          width: 18 * fem,
-                          height: 18 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/icon-search-F51.png',
-                            width: 18 * fem,
-                            height: 18 * fem,
-                          ),
-                        ),
-                        Container(
-                          // searcsampleyzF (27:909)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 3 * fem, 0 * fem, 0 * fem),
-                          child: Text(
-                            'What do you want to order?',
-                            style: SafeGoogleFont(
-                              'Roboto',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.1725 * ffem / fem,
-                              letterSpacing: 0.5 * fem,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // botonaceptarGTZ (30:1808)
-                    width: 73.86 * fem,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15 * fem),
-                      gradient: const LinearGradient(
-                        begin: Alignment(-1, -1.123),
-                        end: Alignment(1, 1.228),
-                        colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
-                        stops: <double>[0, 1],
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Añadir',
-                        style: SafeGoogleFont(
-                          'ABeeZee',
-                          fontSize: 16 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.3102272749 * ffem / fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              // componentesdelalimentoHdZ (30:1807)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 498 * fem),
-              width: double.infinity,
-              child: Text(
-                'Componentes del alimento',
-                textAlign: TextAlign.center,
-                style: SafeGoogleFont(
-                  'News Cycle',
-                  fontSize: 25 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.3102272034 * ffem / fem,
-                  color: Color(0xffffffff),
-                ),
-              ),
-            ),
-            Container(
-              // botonaceptarBD9 (30:1816)
-              margin: EdgeInsets.fromLTRB(
-                  103 * fem, 0 * fem, 100.86 * fem, 0 * fem),
-              child: TextButton(
-                onPressed: () {
-                  MaterialPageRoute route = MaterialPageRoute(
-                      builder: (context) => Caloriapp(datos: null));
-                  Navigator.push(context, route);
-                },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Container(
+                  // registrodealimentoALo (6:3986)
                   padding:
-                      EdgeInsets.fromLTRB(1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                      EdgeInsets.fromLTRB(24 * fem, 0 * fem, 25 * fem, 0 * fem),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15 * fem),
-                    gradient: const LinearGradient(
-                      begin: Alignment(-1, -1.123),
-                      end: Alignment(1, 1.228),
-                      colors: <Color>[Color(0xff53e78b), Color(0xff14be77)],
-                      stops: <double>[0, 1],
-                    ),
+                    color: Color(0xff0c0c0c)
+                        .withOpacity(0.8), // Agregar opacidad al color de fondo
+                    borderRadius: BorderRadius.circular(20 * fem),
                   ),
-                  child: Align(
-                    // registraralimentocompuestoQbh (30:1819)
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                      child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 146 * fem,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        // autogroupysz716X (5HrPqmjoC1ajMEuSurYsz7)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 101 * fem, 0 * fem),
+                        width: double.infinity,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // groupKd1 (10:6471)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 11 * fem, 62 * fem, 0 * fem),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                ),
+                                child: SizedBox(
+                                  width: 45 * fem,
+                                  height: 45 * fem,
+                                  child: Image.asset(
+                                    'assets/page-1/images/group.png',
+                                    width: 45 * fem,
+                                    height: 45 * fem,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+                      // Titulo de 'Registrar Alimento Compuesto'
+                      Container(
+                        // ingresaralimentovco (6:4414)
+                        margin: EdgeInsets.fromLTRB(
+                            9 * fem, 0 * fem, 0 * fem, 16 * fem),
                         child: Text(
-                          'Registrar alimento compuesto',
-                          style: SafeGoogleFont(
-                            'ABeeZee',
-                            fontSize: 16 * ffem,
+                          'Registrar Alimento Compuesto',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.newsCycle(
+                            fontSize: 32 * ffem,
                             fontWeight: FontWeight.w400,
-                            height: 1.3102272749 * ffem / fem,
+                            height: 1.3102272034 * ffem / fem,
                             color: Color(0xffffffff),
                           ),
                         ),
                       ),
-                    ),
+                      Container(
+                        // formRJf (6:4388)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15 * fem),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [],
+                        ),
+                      ),
+                      //Botones
+                      Container(
+                        // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                        width: double.infinity,
+                        height: 50 * fem,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              // botonaceptarqFD (27:505)
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                                width: 157 * fem,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15 * fem),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment(-1, -1.123),
+                                    end: Alignment(1, 1.228),
+                                    colors: <Color>[
+                                      Color.fromRGBO(228, 74, 31, 1),
+                                      Color.fromRGBO(228, 74, 31, 1)
+                                    ],
+                                    stops: <double>[0, 1],
+                                  ),
+                                ),
+                                child: Align(
+                                  // registraralimentocompuestoW6T (27:508)
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: 146 * fem),
+                                      child: Text(
+                                        'Aceptar',
+                                        style: GoogleFonts.aBeeZee(
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3102272749 * ffem / fem,
+                                          color: Color(0xffffffff),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              // botonaceptarqFD (27:505)
+                              onPressed: () {
+                                //registar alimento
+                                //registrar consumo
+                                //pasar a la pagina de caloriapp principal
+                              },
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(
+                                    10 * fem, 0 * fem, 0 * fem, 0 * fem),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                                width: 155 * fem,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15 * fem),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment(-1, -1.123),
+                                    end: Alignment(1, 1.228),
+                                    colors: <Color>[
+                                      Color.fromRGBO(228, 74, 31, 1),
+                                      Color.fromRGBO(228, 74, 31, 1)
+                                    ],
+                                    stops: <double>[0, 1],
+                                  ),
+                                ),
+                                child: Align(
+                                  // registraralimentocompuestoW6T (27:508)
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: 146 * fem),
+                                      child: Text(
+                                        'Aceptar y registrar consumo',
+                                        style: GoogleFonts.aBeeZee(
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3102272749 * ffem / fem,
+                                          color: Color(0xffffffff),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }

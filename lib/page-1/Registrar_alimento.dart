@@ -5,7 +5,21 @@ import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/page-1/Registro_de_alimento_compuesto.dart';
 import '../controller/con_reg_alimento.dart';
 
-class Registrar_alimento extends StatelessWidget {
+class Registrar_alimento extends StatefulWidget {
+  final List<dynamic>? datosUsuario;
+  const Registrar_alimento({super.key, required this.datosUsuario});
+
+  @override
+  State<Registrar_alimento> createState() => _Registrar_alimentoState();
+
+  Widget registrar_alimento() {
+    return Scaffold(
+      body: Registrar_alimento(datosUsuario: datosUsuario),
+    );
+  }
+}
+
+class _Registrar_alimentoState extends State<Registrar_alimento> {
   final nombreController = TextEditingController();
   final caloriasController = TextEditingController();
   final proteinasController = TextEditingController();
@@ -17,6 +31,13 @@ class Registrar_alimento extends StatelessWidget {
   final porcionController = TextEditingController();
 
   con_reg_alimento alimento = con_reg_alimento();
+
+  Registro_alimento_compuesto? reg_al_comp;
+
+  void initState() {
+    super.initState();
+    reg_al_comp = Registro_alimento_compuesto(email: widget.datosUsuario![0]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +51,9 @@ class Registrar_alimento extends StatelessWidget {
           Container(
             // Definición del fondo de pantalla
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xff0c0c0c),
-              borderRadius: BorderRadius.circular(20 * fem),
-              image: const DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/page-1/images/pattern-71q.png'),
               ),
@@ -297,7 +317,7 @@ class Registrar_alimento extends StatelessWidget {
                           onPressed: () {
                             MaterialPageRoute route = MaterialPageRoute(
                               builder: (context) =>
-                                  Registro_de_alimento_compuesto(),
+                                  reg_al_comp!.registro_al_comp(),
                             );
                             Navigator.push(context, route);
                           },
