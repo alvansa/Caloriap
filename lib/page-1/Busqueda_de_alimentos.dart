@@ -231,7 +231,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                                     setState(() {
                                       seleccion = Seleccion_de_alimento(
                                           datos_alimento: Busqueda![index],
-                                          email: widget.emailUsuario);
+                                          email: widget.email);
                                     });
                                     Navigator.push(
                                       context,

@@ -11,11 +11,11 @@ import '../controller/con_actualizar_alimento.dart';
 
 class Actualizar_alimento extends StatefulWidget {
   final String alimento_id;
-  final String email;
+  final List<dynamic>? datos;
 
   //constructor
   Actualizar_alimento(
-      {Key? key, required this.alimento_id, required this.email})
+      {Key? key, required this.alimento_id, required this.datos})
       : super(key: key);
 
   @override
@@ -25,14 +25,14 @@ class Actualizar_alimento extends StatefulWidget {
     return Scaffold(
       body: Actualizar_alimento(
         alimento_id: alimento_id,
-        email: email,
+        datos: datos,
       ),
     );
   }
 }
 
 class _Actualizar_alimentoState extends State<Actualizar_alimento> {
-  con_actualizar_alimento alimento = con_actualizar_alimento();
+  con_actualizar_alimento con_alimento = con_actualizar_alimento();
   Registro_alimento_compuesto? reg_al_comp;
 
   final nombreController = TextEditingController();
@@ -54,7 +54,7 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
 
   void cargarDatos() async {
     List<dynamic>? datos =
-        await alimento.cargar_datos(int.parse(widget.alimento_id));
+        await con_alimento.cargar_datos(int.parse(widget.alimento_id));
     if (datos != null && datos.isNotEmpty) {
       setState(() {
         nombreController.text = datos[1].toString();
@@ -160,48 +160,39 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                         TextFieldsIngreso(
                             hintText: 'Nombre',
                             //ingresar los datos pedidos
-                            controller: TextEditingController(
-                                text: nombreController.text),
+                            controller: nombreController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Calorias (kcal)',
-                            controller: TextEditingController(
-                                text: caloriasController.text),
+                            controller: caloriasController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Proteinas (g)',
-                            controller: TextEditingController(
-                                text: proteinasController.text),
+                            controller: proteinasController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Grasas totales (kcal)',
-                            controller: TextEditingController(
-                                text: grasasController.text),
+                            controller: grasasController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'H. de C. disp (g)',
-                            controller: TextEditingController(
-                                text: carbohidratosController.text),
+                            controller: carbohidratosController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Azucares (g)',
-                            controller: TextEditingController(
-                                text: azucaresController.text),
+                            controller: azucaresController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Colesterol (g)',
-                            controller: TextEditingController(
-                                text: colesterolController.text),
+                            controller: colesterolController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Sodio (g)',
-                            controller: TextEditingController(
-                                text: sodioController.text),
+                            controller: sodioController,
                             fem: fem),
                         TextFieldsIngreso(
                             hintText: 'Porcion (g)',
-                            controller: TextEditingController(
-                                text: porcionController.text),
+                            controller: porcionController,
                             fem: fem),
                       ],
                     ),
@@ -218,8 +209,9 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                       children: [
                         TextButton(
                           // botonaceptarqFD (27:505)
-                          onPressed: () {
-                            alimento.actualizar_alimento(
+                          onPressed: () async {
+                            final result =
+                                await con_alimento.actualizar_alimento(
                               widget.alimento_id,
                               nombreController.text,
                               caloriasController.text,
@@ -231,6 +223,30 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                               sodioController.text,
                               porcionController.text,
                             );
+                            if (result == true) {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Exito"),
+                                      content: Text(
+                                          "Alimento actualizado correctamente"),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => Caloriapp(
+                                                        datos: widget
+                                                            .datos)), //Caloriapp el email y el tipo
+                                              );
+                                            },
+                                            child: Text("Ok"))
+                                      ],
+                                    );
+                                  });
+                            }
                           },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.fromLTRB(

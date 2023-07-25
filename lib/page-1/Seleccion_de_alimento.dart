@@ -10,7 +10,7 @@ import 'package:myapp/componente/Text_field_vista.dart';
 
 class Seleccion_de_alimento extends StatefulWidget {
   final List<dynamic> datos_alimento;
-  final String email;
+  final List<dynamic>? email;
 
   //constructor de clase Seleccion_de_alimento
   Seleccion_de_alimento(
@@ -43,7 +43,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   void initState() {
     super.initState();
     actualizar_alimento = Actualizar_alimento(
-        alimento_id: widget.datos_alimento[0].toString(), email: widget.email);
+        alimento_id: widget.datos_alimento[0].toString(), datos: widget.email);
     print(widget.datos_alimento);
     cargarDatos();
   }

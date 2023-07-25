@@ -38,14 +38,15 @@ class con_actualizar_alimento {
     if (colesterol.isNotEmpty) colesterol_int = double.parse(colesterol);
     if (sodio.isNotEmpty) sodio_int = double.parse(sodio);
     if (porcion.isNotEmpty) porcion_int = double.parse(porcion);
+    print('colesterol a actualizar $colesterol_int');
     final act_alimento = alimento.actualizar_alimento(
         id_al_int,
         nombre,
         calorias_int,
         proteinas_int,
         grasas_totales_int,
-        azucares_int,
         hidratos_carbono_int,
+        azucares_int,
         colesterol_int,
         sodio_int,
         porcion_int);

@@ -1,7 +1,6 @@
 // Path: lib\Funciones\view_Registrar_alimento.dart
 import 'package:flutter/foundation.dart';
 import 'package:myapp/model/connection.dart';
-//import 'connection.dart';
 
 //funcion que recoga los datos de alimento de la bd
 
@@ -50,10 +49,9 @@ class model_alimento {
           '''insert into alimento (nombre, calorias,azucares,proteina,sodio,grasa_total, h_de_C,colesterol,porcion,predeterminado)
             values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,true)''',
           substitutionValues: {'stringValue': nombre});
+      await connection.close();
     } catch (e) {
       print(e);
-    } finally {
-      await connection.close();
     }
   }
 
@@ -114,11 +112,33 @@ class model_alimento {
     final connection = await conn();
 
     try {
-      await connection.query(
-          '''update alimento set nombre = @nom, calorias = $calorias, azucares = $azucares, proteina = $proteinas, sodio = $sodio, grasa_total = $grasa_total, h_de_c = $h_de_c, colesterol = $colesterol, porcion = $porcion where id_al = $id_al''',
-          substitutionValues: {'nom': nombre});
+      print('id del alimento a actualizar $id_al');
+
+      final result = await connection.query('''update alimento 
+          set nombre = @nom, 
+          calorias = @calorias, 
+          azucares = @azucares, 
+          proteina = @proteinas, 
+          sodio = @sodio, 
+          grasa_total = @grasa_total, 
+          h_de_c = @h_de_c, 
+          colesterol = @colesterol, 
+          porcion = @porcion 
+          where id_al = 15
+          RETURNING *;''', substitutionValues: {
+        'nom': nombre,
+        'colesterol': colesterol,
+        'id_al': id_al,
+        'calorias': calorias,
+        'azucares': azucares,
+        'proteinas': proteinas,
+        'sodio': sodio,
+        'grasa_total': grasa_total,
+        'h_de_c': h_de_c,
+        'porcion': porcion
+      });
       await connection.close();
-      print('alimento actualizado');
+      print(result);
       return true;
     } catch (e) {
       print('error en actualizar alimento: $e');
