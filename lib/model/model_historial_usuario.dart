@@ -46,7 +46,7 @@ class HistorialUsuario {
   Future<List<List>> getHistorialUsuario(String email, String fecha) async {
     final connection = await conn();
     final result = await connection.query(
-        'SELECT * FROM historial WHERE email = @email and fecha = @fecha',
+        'SELECT alimento.nombre,historial.porcion, alimento.porcion FROM historial, alimento WHERE alimento.id_al =historial.id_al and historial.email = @email and fecha = @fecha',
         substitutionValues: {'email': email, 'fecha': fecha});
     await connection.close();
 
@@ -56,8 +56,6 @@ class HistorialUsuario {
       historialUsuario.add(row[0].toString());
       historialUsuario.add(row[1].toString());
       historialUsuario.add(row[2].toString());
-      historialUsuario.add(row[3].toString());
-      historialUsuario.add(row[4].toString());
       historial.add(historialUsuario);
     }
     return historial;

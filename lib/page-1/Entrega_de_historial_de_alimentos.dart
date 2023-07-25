@@ -126,7 +126,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                 Container(
                   // autogrouppqkbKps (5HrNvxvTH5XwBVbbctPqkb)
                   margin: EdgeInsets.fromLTRB(
-                      45 * fem, 0 * fem, 45.14 * fem, 0 * fem),
+                      45 * fem, 0 * fem, 45.14 * fem, 40 * fem),
                   width: double.infinity,
                   height: 50 * fem,
                   child: Row(
@@ -213,30 +213,97 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                 ),
                 //Container de la lista
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: historial.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.fromLTRB(
-                            10 * fem, 20 * fem, 15 * fem, 0 * fem),
-                        padding: EdgeInsets.all(15 * fem),
-                        decoration: BoxDecoration(
-                          color: Color(
-                              0x19ffffff), // Cambia el color de fondo de cada elemento
-                          borderRadius: BorderRadius.circular(
-                              10), // Agrega bordes redondeados
-                        ),
-                        child: ListTile(
-                          title: Text(
-                            historial[index][1],
-                            style: const TextStyle(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Nombre del Alimento',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                      );
-                    },
+                          Text(
+                            'Porciones',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Porciones Totales',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: historial.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.fromLTRB(
+                                15 * fem, 5 * fem, 15 * fem, 0 * fem),
+                            padding: EdgeInsets.all(15 * fem),
+                            decoration: BoxDecoration(
+                              color: Color(
+                                  0x19ffffff), // Cambia el color de fondo de cada elemento
+                              borderRadius: BorderRadius.circular(
+                                  10), // Agrega bordes redondeados
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    historial[index][0], // Nombre del alimento
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    historial[index][1], // Porciones
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    historial[index][2], // Porciones totales
+                                    textAlign: TextAlign.right,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],
