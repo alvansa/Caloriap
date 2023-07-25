@@ -39,6 +39,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   final porcionController = TextEditingController();
 
   Actualizar_alimento? actualizar_alimento;
+  bool predeterminado = true;
 
   void initState() {
     super.initState();
@@ -49,6 +50,9 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   }
 
   void cargarDatos() {
+    if (widget.datos_alimento[10] == true) {
+      predeterminado = false;
+    }
     nombreController.text = widget.datos_alimento[1].toString();
     caloriasController.text = widget.datos_alimento[2].toString();
     azucaresController.text = widget.datos_alimento[3].toString();
@@ -223,43 +227,46 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            TextButton(
-                              onPressed: () {
-                                //Llevar a actualizar aliemento
-                                MaterialPageRoute route = MaterialPageRoute(
-                                    builder: (context) =>
-                                        actualizar_alimento!.act_alimento());
-                                Navigator.push(context, route);
-                              },
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              ),
-                              child: Container(
-                                width: 157,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment(-1, -1.123),
-                                    end: Alignment(1, 1.228),
-                                    colors: <Color>[
-                                      Color.fromRGBO(31, 197, 122, 1),
-                                      Color.fromRGBO(31, 197, 122, 1),
-                                    ],
-                                    stops: <double>[0, 1],
-                                  ),
+                            Visibility(
+                              visible: predeterminado,
+                              child: TextButton(
+                                onPressed: () {
+                                  //Llevar a actualizar aliemento
+                                  MaterialPageRoute route = MaterialPageRoute(
+                                      builder: (context) =>
+                                          actualizar_alimento!.act_alimento());
+                                  Navigator.push(context, route);
+                                },
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                 ),
-                                child: Center(
-                                  // Centra el texto horizontal y verticalmente dentro del Container
-                                  child: Text(
-                                    'Actualizar Alimento',
-                                    style: GoogleFonts.aBeeZee(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xffffffff),
+                                child: Container(
+                                  width: 157,
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment(-1, -1.123),
+                                      end: Alignment(1, 1.228),
+                                      colors: <Color>[
+                                        Color.fromRGBO(31, 197, 122, 1),
+                                        Color.fromRGBO(31, 197, 122, 1),
+                                      ],
+                                      stops: <double>[0, 1],
                                     ),
-                                    textAlign: TextAlign
-                                        .center, // Centra el texto dentro del TextButton
+                                  ),
+                                  child: Center(
+                                    // Centra el texto horizontal y verticalmente dentro del Container
+                                    child: Text(
+                                      'Actualizar Alimento',
+                                      style: GoogleFonts.aBeeZee(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xffffffff),
+                                      ),
+                                      textAlign: TextAlign
+                                          .center, // Centra el texto dentro del TextButton
+                                    ),
                                   ),
                                 ),
                               ),

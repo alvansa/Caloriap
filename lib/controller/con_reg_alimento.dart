@@ -53,7 +53,7 @@ class con_reg_alimento {
         email);
   }
 
-  Future<void> ing_alimento_predeterminado(
+  Future<bool> ing_alimento_predeterminado(
       String nombre,
       String calorias,
       String proteinas,
@@ -83,7 +83,7 @@ class con_reg_alimento {
     if (sodio.isNotEmpty) sodio_int = double.parse(sodio);
     if (porcion.isNotEmpty) porcion_int = double.parse(porcion);
 
-    await reg_alimento1.reg_alimento_predeterminado(
+    return await reg_alimento1.reg_alimento_predeterminado(
         nombre,
         calorias_int,
         proteinas_int,

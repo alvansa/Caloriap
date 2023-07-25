@@ -31,7 +31,7 @@ class model_alimento {
     }
   }
 
-  Future<void> reg_alimento_predeterminado(
+  Future<bool> reg_alimento_predeterminado(
       String nombre,
       double calorias,
       double proteinas,
@@ -50,8 +50,11 @@ class model_alimento {
             values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,true)''',
           substitutionValues: {'stringValue': nombre});
       await connection.close();
+
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 

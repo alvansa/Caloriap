@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Auto_registro.dart';
 import 'package:myapp/page-1/caloriapp.dart';
+import 'package:myapp/page-1/admin_caloriapp.dart';
 import '../controller/con_login.dart';
 
 Widget sesion() {
@@ -231,12 +232,23 @@ class Iniciar_sesion extends StatelessWidget {
 
                     //login Future<List> login(String email, String password)
                     if (lista?.isNotEmpty ?? false) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Caloriapp(
-                                datos: lista)), //Caloriapp el email y el tipo
-                      );
+                      if (lista?[0][3] == 1) {
+                        print('usuario');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Caloriapp(
+                                  datos: lista)), //Caloriapp el email y el tipo
+                        );
+                      } else {
+                        print('admin');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => admin_Caloriapp(
+                                  datos: lista)), //Caloriapp el email y el tipo
+                        );
+                      }
                     } else {
                       showDialog(
                           context: context,

@@ -37,6 +37,7 @@ class Persona {
       return result;
     } else {
       print('User found');
+      print(result);
       return result;
     }
   }
