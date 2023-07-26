@@ -61,7 +61,7 @@ class _CaloriapState extends State<Caloriapp> {
             Positioned(
               // ctabuttonanb (7:5233)
               left: 116 * fem,
-              top: 630 * fem,
+              top: 550 * fem,
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route =
@@ -101,7 +101,7 @@ class _CaloriapState extends State<Caloriapp> {
             Positioned(
               // ctabuttonkKh (7:5230)
               left: 112 * fem,
-              top: 563 * fem,
+              top: 470 * fem,
               child: TextButton(
                 onPressed: () {
                   print(widget.datos);
@@ -153,7 +153,7 @@ class _CaloriapState extends State<Caloriapp> {
             Positioned(
               // ctabutton4Du (7:5224)
               left: 112 * fem,
-              top: 441 * fem,
+              top: 380 * fem,
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = MaterialPageRoute(
@@ -225,7 +225,7 @@ class _CaloriapState extends State<Caloriapp> {
             Positioned(
               // ctabuttonCcw (7:5217)
               left: 107 * fem,
-              top: 320 * fem,
+              top: 300 * fem,
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = MaterialPageRoute(

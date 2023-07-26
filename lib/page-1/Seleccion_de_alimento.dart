@@ -53,6 +53,10 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
     if (widget.datos_alimento[10] == true) {
       predeterminado = false;
     }
+    if (widget.email![0][3] == 2) {
+      predeterminado = true;
+    }
+
     nombreController.text = widget.datos_alimento[1].toString();
     caloriasController.text = widget.datos_alimento[2].toString();
     azucaresController.text = widget.datos_alimento[3].toString();
