@@ -38,7 +38,6 @@ class _CaloriapState extends State<Caloriapp> {
         height: 812 * fem,
         decoration: BoxDecoration(
           color: Color(0xff0c0c0c),
-          borderRadius: BorderRadius.circular(20 * fem),
         ),
         child: Stack(
           children: [
@@ -51,7 +50,7 @@ class _CaloriapState extends State<Caloriapp> {
                   width: 375 * fem,
                   height: 812 * fem,
                   child: Image.asset(
-                    'assets/page-1/images/pattern-d8s.png',
+                    'assets/page-1/images/fondo_oficial.png',
                     width: 375 * fem,
                     height: 812 * fem,
                   ),

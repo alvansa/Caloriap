@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/controller/con_Signin.dart';
 import 'package:myapp/page-1/iniciar_sesion.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/Caloriapp.dart';
+import 'package:myapp/page-1/caloriapp.dart';
 
 //ejemplo
 class Auto_registro extends StatelessWidget {
