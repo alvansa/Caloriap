@@ -17,4 +17,10 @@ class controllerHistorialDeUsuario {
     HistorialUsuario historialUsuario = HistorialUsuario(email, fecha, 0, 0);
     return await historialUsuario.getHistorialUsuario(email, fecha);
   }
+
+  Future<int> getPorcionesConsumidas(String email, String fecha) async {
+    //obtener variables de la vista
+    HistorialUsuario historialUsuario = HistorialUsuario(email, fecha, 0, 0);
+    return await historialUsuario.getSumPorcionesAlimentos(email, fecha);
+  }
 }
