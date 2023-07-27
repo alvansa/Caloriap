@@ -309,10 +309,10 @@ class _admin_Registrar_alimentoState extends State<admin_Registrar_alimento> {
                                 //registar alimento
                                 //registrar consumo
                                 //pasar a la pagina de caloriapp principal
-                                MaterialPageRoute route = MaterialPageRoute(
-                                  builder: (context) => Registrar_consumo(),
-                                );
-                                Navigator.push(context, route);
+                                //MaterialPageRoute route = MaterialPageRoute(
+                                //  builder: (context) => Registrar_consumo(),
+                                //);
+                                //Navigator.push(context, route);
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.fromLTRB(

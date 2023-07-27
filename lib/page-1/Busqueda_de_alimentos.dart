@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Seleccion_de_alimento.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/Caloriapp.dart';
+import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/controller/con_busqueda_alimento.dart';
 
 class Busqueda_de_alimentos extends StatefulWidget {

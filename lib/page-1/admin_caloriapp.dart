@@ -38,7 +38,6 @@ class _admin_CaloriapState extends State<admin_Caloriapp> {
         height: 812 * fem,
         decoration: BoxDecoration(
           color: Color(0xff0c0c0c),
-          borderRadius: BorderRadius.circular(20 * fem),
         ),
         child: Stack(
           children: [

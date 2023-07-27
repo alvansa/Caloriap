@@ -38,8 +38,9 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   final sodioController = TextEditingController();
   final porcionController = TextEditingController();
 
+  bool predeterminado = false;
+
   Actualizar_alimento? actualizar_alimento;
-  bool predeterminado = true;
 
   void initState() {
     super.initState();
@@ -56,7 +57,6 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
     if (widget.email![0][3] == 2) {
       predeterminado = true;
     }
-
     nombreController.text = widget.datos_alimento[1].toString();
     caloriasController.text = widget.datos_alimento[2].toString();
     azucaresController.text = widget.datos_alimento[3].toString();
@@ -278,12 +278,14 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                             TextButton(
                               // botonaceptarqFD (27:505)
                               onPressed: () {
-                                //registar alimento
-                                //registrar consumo
-                                //pasar a la pagina de caloriapp principal
+                                print(widget.email![0]);
+                                print(widget.email![0][0]);
+                                //Llevar a registrar consumo con info de email y id_alimento
                                 MaterialPageRoute route = MaterialPageRoute(
-                                  builder: (context) => Registrar_consumo(),
-                                );
+                                    builder: (context) => Registrar_consumo(
+                                        email_consumo: widget.email![0][0],
+                                        id_alimento_consumo:
+                                            widget.datos_alimento[0]));
                                 Navigator.push(context, route);
                               },
                               style: TextButton.styleFrom(
