@@ -34,12 +34,12 @@ class _admin_Registrar_alimentoState extends State<admin_Registrar_alimento> {
 
   con_reg_alimento alimento = con_reg_alimento();
 
-  Registro_alimento_compuesto? reg_al_comp;
+  //Registro_alimento_compuesto? reg_al_comp;
 
   void initState() {
     super.initState();
-    reg_al_comp =
-        Registro_alimento_compuesto(datosUsuario: widget.datosUsuario!);
+    // reg_al_comp =
+    //     Registro_alimento_compuesto(datosUsuario: widget.datosUsuario!);
   }
 
   @override
@@ -369,8 +369,8 @@ class _admin_Registrar_alimentoState extends State<admin_Registrar_alimento> {
                           // botonaceptarqFD (27:505)
                           onPressed: () {
                             MaterialPageRoute route = MaterialPageRoute(
-                              builder: (context) =>
-                                  reg_al_comp!.registro_al_comp(),
+                              builder: (context) => Registro_alimento_compuesto(
+                                  datosUsuario: widget.datosUsuario!),
                             );
                             Navigator.push(context, route);
                           },

@@ -32,12 +32,10 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
 
   con_reg_alimento alimento = con_reg_alimento();
 
-  Registro_alimento_compuesto? reg_al_comp;
+  //Registro_alimento_compuesto? reg_al_comp;
 
   void initState() {
     super.initState();
-    reg_al_comp =
-        Registro_alimento_compuesto(datosUsuario: widget.datosUsuario!);
   }
 
   @override
@@ -56,7 +54,7 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
               color: Color(0xff0c0c0c),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/page-1/images/pattern-71q.png'),
+                image: AssetImage('assets/page-1/images/fondo_oficial.png'),
               ),
             ),
           ),
@@ -197,7 +195,8 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                             TextButton(
                               // botonaceptarqFD (27:505)
                               onPressed: () {
-                                print(widget.datosUsuario![0]);
+                                print(
+                                    'Datos que recibe registrar alimento ${widget.datosUsuario![0]}');
                                 alimento.ing_alimento(
                                     nombreController.text,
                                     caloriasController.text,
@@ -208,7 +207,7 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                                     colesterolController.text,
                                     sodioController.text,
                                     porcionController.text,
-                                    widget.datosUsuario![0]);
+                                    widget.datosUsuario![0][0]);
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.fromLTRB(
@@ -318,8 +317,8 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                           // botonaceptarqFD (27:505)
                           onPressed: () {
                             MaterialPageRoute route = MaterialPageRoute(
-                              builder: (context) =>
-                                  reg_al_comp!.registro_al_comp(),
+                              builder: (context) => Registro_alimento_compuesto(
+                                  datosUsuario: widget.datosUsuario!),
                             );
                             Navigator.push(context, route);
                           },

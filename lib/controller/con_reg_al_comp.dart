@@ -11,7 +11,7 @@ class con_reg_al_comp {
   }
 
   //Registras los alimentos que lo componen y sus porciones
-  Future<bool> reg_datos(List alimentos, List porciones, int id_al_comp) async {
+  Future<bool> reg_datos(int id_al_comp, List alimentos, List porciones) async {
     final alimento_compuesto = model_alimento_compuesto();
     final alimento = model_alimento();
 
@@ -38,7 +38,7 @@ class con_reg_al_comp {
       datos_nutricionales.add(dato!);
     }
 
-    print('datos nutricionales: $datos_nutricionales[0]');
+    //print('datos nutricionales: $datos_nutricionales');
     //print('porciones: $porciones');
 
     //sumar los datos nutriconales segun la porcion ingresada indice [2 al 8] el 9 es la porcion

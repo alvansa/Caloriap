@@ -3,20 +3,15 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/componente/Text_field.dart';
+import 'package:myapp/page-1/Agregar_alimentos_al_compuesto.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/caloriapp.dart';
-import 'package:myapp/page-1/Busqueda_de_alimentos.dart';
+import 'package:myapp/controller/con_reg_al_comp.dart';
 
 class Registro_alimento_compuesto extends StatefulWidget {
-  final List<dynamic> datosUsuario;
+  final List<dynamic>? datosUsuario;
   //Constructor de alimento compuesto
   const Registro_alimento_compuesto({super.key, required this.datosUsuario});
-
-  Widget registro_al_comp() {
-    return new Scaffold(
-      body: Registro_alimento_compuesto(datosUsuario: datosUsuario),
-    );
-  }
 
   @override
   State<Registro_alimento_compuesto> createState() =>
@@ -25,9 +20,20 @@ class Registro_alimento_compuesto extends StatefulWidget {
 
 class _Registro_alimento_compuestoState
     extends State<Registro_alimento_compuesto> {
+  //Variables
   final nombreController = TextEditingController();
-
+  Agregar_alimentos? nuevos_alimentos;
   List<List<dynamic>>? Busqueda = [];
+  List datos_al_comp = [];
+  List nombres = [];
+  con_reg_al_comp reg_al_comp = con_reg_al_comp();
+
+  void initState() {
+    super.initState();
+    print('Datos que recibe registrar al_comp ${widget.datosUsuario}');
+    nuevos_alimentos = Agregar_alimentos(email: widget.datosUsuario);
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -44,7 +50,7 @@ class _Registro_alimento_compuestoState
               color: Color(0xff0c0c0c),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/page-1/images/pattern-71q.png'),
+                image: AssetImage('assets/page-1/images/fondo_oficial.png'),
               ),
             ),
           ),
@@ -123,6 +129,7 @@ class _Registro_alimento_compuestoState
                           borderRadius: BorderRadius.circular(15 * fem),
                         ),
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextFieldsIngreso(
@@ -138,9 +145,31 @@ class _Registro_alimento_compuestoState
                                 ),
                                 width: 200 * fem,
                                 child: TextButton(
-                                  onPressed: () {
-                                    print(
-                                        '¡TextButton dentro del Container presionado!');
+                                  onPressed: () async {
+                                    //Al momomento de apretar este boton se guarda el nombre del alimento compuesto
+                                    int id_al_comp = await reg_al_comp
+                                        .reg_nombre(nombreController.text);
+                                    //y se pasa a la pagina de agregar alimentos
+                                    List datos_recibidos = await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            nuevos_alimentos!.agregar(),
+                                      ),
+                                    );
+                                    if (datos_recibidos.isNotEmpty) {
+                                      cargar_lista_alimentos(
+                                          datos_recibidos[2]);
+                                      datos_al_comp = datos_recibidos;
+                                      print(datos_al_comp);
+
+                                      reg_al_comp.reg_datos(id_al_comp,
+                                          datos_al_comp[0], datos_al_comp[1]);
+                                      reg_al_comp.reg_valor_nutricional(
+                                          id_al_comp,
+                                          datos_al_comp[0],
+                                          datos_al_comp[1]);
+                                    }
                                   },
                                   style: TextButton.styleFrom(
                                     padding: EdgeInsets.fromLTRB(
@@ -177,6 +206,39 @@ class _Registro_alimento_compuestoState
                           ],
                         ),
                       ),
+                      Container(
+                        height: 200, // Ajusta la altura según tus necesidades
+                        child: datos_al_comp.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: datos_al_comp[2]!.length,
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                    color: Color(
+                                        0x19ffffff), // Color de fondo gris
+                                    child: ListTile(
+                                      title: Text(
+                                        datos_al_comp[2]![index],
+                                        style: TextStyle(
+                                            color: Colors
+                                                .white), // Color de letra blanca
+                                      ),
+                                      subtitle: Text(
+                                        datos_al_comp[1]![index].toString(),
+                                        style: TextStyle(
+                                            color: Colors
+                                                .white), // Color de letra blanca
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                            : const Center(
+                                child: Text(
+                                  'No se han agregado alimentos',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                      ),
                       //Botones
                       Container(
                         // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
@@ -187,100 +249,94 @@ class _Registro_alimento_compuestoState
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // TextButton(
-                            //   // botonaceptarqFD (27:505)
-                            //   onPressed: () {},
-                            //   style: TextButton.styleFrom(
-                            //     padding: EdgeInsets.fromLTRB(
-                            //         0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                            //   ),
-                            //   child: Container(
-                            //     padding: EdgeInsets.fromLTRB(
-                            //         1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                            //     width: 157 * fem,
-                            //     height: double.infinity,
-                            //     decoration: BoxDecoration(
-                            //       borderRadius: BorderRadius.circular(15 * fem),
-                            //       gradient: const LinearGradient(
-                            //         begin: Alignment(-1, -1.123),
-                            //         end: Alignment(1, 1.228),
-                            //         colors: <Color>[
-                            //           Color.fromRGBO(228, 74, 31, 1),
-                            //           Color.fromRGBO(228, 74, 31, 1)
-                            //         ],
-                            //         stops: <double>[0, 1],
-                            //       ),
-                            //     ),
-                            //     child: Align(
-                            //       // registraralimentocompuestoW6T (27:508)
-                            //       alignment: Alignment.center,
-                            //       child: SizedBox(
-                            //         child: Container(
-                            //           constraints:
-                            //               BoxConstraints(maxWidth: 146 * fem),
-                            //           child: Text(
-                            //             'Aceptar',
-                            //             style: GoogleFonts.aBeeZee(
-                            //               fontSize: 16 * ffem,
-                            //               fontWeight: FontWeight.w400,
-                            //               height: 1.3102272749 * ffem / fem,
-                            //               color: Color(0xffffffff),
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-                            // TextButton(
-                            //   // botonaceptarqFD (27:505)
-                            //   onPressed: () {
-                            //     //registar alimento
-                            //     //registrar consumo
-                            //     //pasar a la pagina de caloriapp principal
-                            //   },
-                            //   style: TextButton.styleFrom(
-                            //     padding: EdgeInsets.fromLTRB(
-                            //         10 * fem, 0 * fem, 0 * fem, 0 * fem),
-                            //   ),
-                            //   child: Container(
-                            //     padding: EdgeInsets.fromLTRB(
-                            //         1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                            //     width: 155 * fem,
-                            //     height: double.infinity,
-                            //     decoration: BoxDecoration(
-                            //       borderRadius: BorderRadius.circular(15 * fem),
-                            //       gradient: const LinearGradient(
-                            //         begin: Alignment(-1, -1.123),
-                            //         end: Alignment(1, 1.228),
-                            //         colors: <Color>[
-                            //           Color.fromRGBO(228, 74, 31, 1),
-                            //           Color.fromRGBO(228, 74, 31, 1)
-                            //         ],
-                            //         stops: <double>[0, 1],
-                            //       ),
-                            //     ),
-                            //     child: Align(
-                            //       // registraralimentocompuestoW6T (27:508)
-                            //       alignment: Alignment.center,
-                            //       child: SizedBox(
-                            //         child: Container(
-                            //           constraints:
-                            //               BoxConstraints(maxWidth: 146 * fem),
-                            //           child: Text(
-                            //             'Aceptar y registrar consumo',
-                            //             style: GoogleFonts.aBeeZee(
-                            //               fontSize: 16 * ffem,
-                            //               fontWeight: FontWeight.w400,
-                            //               height: 1.3102272749 * ffem / fem,
-                            //               color: Color(0xffffffff),
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
+                            TextButton(
+                              // botonaceptarqFD (27:505)
+                              onPressed: () {
+                                if (datos_al_comp.isNotEmpty) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text("Exito"),
+                                          content: Text(
+                                              "Alimento compuesto registrado"),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Caloriapp(
+                                                                datos: widget
+                                                                    .datosUsuario)), //Caloriapp el email y el tipo
+                                                  );
+                                                },
+                                                child: Text("Ok"))
+                                          ],
+                                        );
+                                      });
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text("Error"),
+                                          content: Text(
+                                              "No se ha registrado ningun alimento"),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("Ok"))
+                                          ],
+                                        );
+                                      });
+                                }
+                              },
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                                width: 157 * fem,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15 * fem),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment(-1, -1.123),
+                                    end: Alignment(1, 1.228),
+                                    colors: <Color>[
+                                      Color.fromRGBO(228, 74, 31, 1),
+                                      Color.fromRGBO(228, 74, 31, 1)
+                                    ],
+                                    stops: <double>[0, 1],
+                                  ),
+                                ),
+                                child: Align(
+                                  // registraralimentocompuestoW6T (27:508)
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: 146 * fem),
+                                      child: Text(
+                                        'Aceptar',
+                                        style: GoogleFonts.aBeeZee(
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3102272749 * ffem / fem,
+                                          color: Color(0xffffffff),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -294,14 +350,10 @@ class _Registro_alimento_compuestoState
       ),
     );
   }
-  /*
-  void cargar_lista_alimentos(String email, String busqueda) async {
-    List<List<dynamic>>? BusquedaData = await busqueda_alimentos
-        .busqueda_alimentos(_busquedaController.text, email);
-    //print(BusquedaData);
+
+  void cargar_lista_alimentos(List alimentos) {
     setState(() {
-      Busqueda = BusquedaData;
+      nombres = alimentos;
     });
   }
-  */
 }

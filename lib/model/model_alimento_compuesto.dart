@@ -26,7 +26,7 @@ class model_alimento_compuesto {
     }
   }
 
-  Future<bool> reg_al_comp(int id_al, int id_al_comp, double porcion) async {
+  Future<bool> reg_al_comp(int id_al, int id_al_comp, int porcion) async {
     final connection = await conn();
     try {
       await connection.query(
@@ -45,12 +45,14 @@ class model_alimento_compuesto {
     try {
       final connection = await conn();
 
-      final result = await connection.query('''select * from alimento_compuesto 
+      final result = await connection.query(
+          '''select * from alimento_compuesto 
         where nombre like @nombre 
         and calorias <= $max_cal
         and (predeterminado = true or id_al in (select id_al from alimento_compuesto where email = @email))    
         order by nombre desc
-        ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
+        ''',
+          substitutionValues: {'nombre': '%$nombre%', 'email': email});
 
       final data =
           result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
@@ -68,7 +70,8 @@ class model_alimento_compuesto {
     final connection = await conn();
     try {
       //update alimento_compuesto con datos_nutricionales
-      await connection.query('''UPDATE alimento_compuesto SET 
+      await connection
+          .query('''UPDATE alimento_compuesto SET 
           calorias = @calorias, 
           azucares = @azucares, 
           proteina = @proteina, 
@@ -76,17 +79,18 @@ class model_alimento_compuesto {
           grasa_total = @grasa, 
           h_de_c = @h_de_c, 
           colesterol = @colesterol, 
-          porcion = @porcion where id_al_comp = @id''', substitutionValues: {
-        'calorias': datos_nutricionales[0],
-        'azucares': datos_nutricionales[1],
-        'proteina': datos_nutricionales[2],
-        'sodio': datos_nutricionales[3],
-        'grasa': datos_nutricionales[4],
-        'h_de_c': datos_nutricionales[5],
-        'colesterol': datos_nutricionales[6],
-        'porcion': datos_nutricionales[7],
-        'id': id
-      });
+          porcion = @porcion where id_al_comp = @id''',
+              substitutionValues: {
+            'calorias': datos_nutricionales[0],
+            'azucares': datos_nutricionales[1],
+            'proteina': datos_nutricionales[2],
+            'sodio': datos_nutricionales[3],
+            'grasa': datos_nutricionales[4],
+            'h_de_c': datos_nutricionales[5],
+            'colesterol': datos_nutricionales[6],
+            'porcion': datos_nutricionales[7],
+            'id': id
+          });
       await connection.close();
       return true;
     } catch (e) {

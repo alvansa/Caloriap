@@ -59,7 +59,7 @@ class _CaloriapState extends State<Caloriapp> {
             ),
             Positioned(
               // ctabuttonanb (7:5233)
-              left: 116 * fem,
+              left: 112 * fem,
               top: 550 * fem,
               child: TextButton(
                 onPressed: () {
@@ -71,7 +71,7 @@ class _CaloriapState extends State<Caloriapp> {
                   padding: EdgeInsets.zero,
                 ),
                 child: Container(
-                  width: 161 * fem,
+                  width: 163 * fem,
                   height: 57 * fem,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15 * fem),
@@ -103,10 +103,10 @@ class _CaloriapState extends State<Caloriapp> {
               top: 470 * fem,
               child: TextButton(
                 onPressed: () {
-                  print(widget.datos);
+                  print('Datos enviados: ${widget.datos}');
                   MaterialPageRoute route = MaterialPageRoute(
                       builder: (context) =>
-                          Registrar_alimento(datosUsuario: widget.datos![0]));
+                          Registrar_alimento(datosUsuario: widget.datos!));
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom(
@@ -223,7 +223,7 @@ class _CaloriapState extends State<Caloriapp> {
             ),
             Positioned(
               // ctabuttonCcw (7:5217)
-              left: 107 * fem,
+              left: 112 * fem,
               top: 300 * fem,
               child: TextButton(
                 onPressed: () {
@@ -235,7 +235,7 @@ class _CaloriapState extends State<Caloriapp> {
                   padding: EdgeInsets.zero,
                 ),
                 child: Container(
-                  width: 161 * fem,
+                  width: 163 * fem,
                   height: 57 * fem,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15 * fem),
