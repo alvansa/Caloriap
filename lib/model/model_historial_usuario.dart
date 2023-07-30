@@ -43,7 +43,8 @@ class HistorialUsuario {
   }
 
   //funtion 'getHistorialUsuario' to get all reg_consumo from table 'historial' from a specific date, input String 'email' and date 'fecha'
-  Future<List<List>> getHistorialUsuario(String email, String fecha) async {
+  Future<List<List<dynamic>>> getHistorialUsuario(
+      String email, String fecha) async {
     final connection = await conn();
     final result = await connection.query('''SELECT 
         (CASE WHEN historial.ID_al IS NOT NULL THEN (Select nombre from alimento WHERE alimento.id_al = historial.id_al) 
@@ -69,6 +70,7 @@ class HistorialUsuario {
       historialUsuario.add(row[0].toString());
       historialUsuario.add(row[1].toString());
       historialUsuario.add(row[2].toString());
+      historialUsuario.add(row[3].toString());
       historial.add(historialUsuario);
     }
     return historial;
@@ -85,8 +87,8 @@ class HistorialUsuario {
       return 0;
     }
 
-    return results[0][
-        0]; //retorna la suma de las porciones de los alimentos consumidos en un dia
+    return results[0][0];
+    //retorna la suma de las porciones de los alimentos consumidos en un dia
   }
 }
 /*

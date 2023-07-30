@@ -35,14 +35,15 @@ class Auto_registro extends StatelessWidget {
         //padding: EdgeInsets.fromLTRB(18*fem, 75*fem, 18*fem, 21*fem),
         width: double.infinity,
         height: 812 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xff0c0c0c),
-          // image: const DecorationImage(
-          //   fit: BoxFit.cover,
-          //   image: AssetImage(
-          //     'assets/page-1/images/fondo_oficial.png',
-          //   ),
-          // ),
+          image: DecorationImage(
+            opacity: 0.3,
+            fit: BoxFit.cover,
+            image: AssetImage(
+              'assets/page-1/images/fondo_oficial.png',
+            ),
+          ),
         ),
         child: SingleChildScrollView(
           child: Column(

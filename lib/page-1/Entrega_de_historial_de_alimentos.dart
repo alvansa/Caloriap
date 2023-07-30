@@ -31,7 +31,8 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
   controllerHistorialDeUsuario hist_alimentos = controllerHistorialDeUsuario();
 
   List<List<dynamic>> historial = [];
-  int totalPorciones = 0;
+  double totalPorciones = 0;
+  double totalCalorias = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -189,8 +190,8 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                           //Funcion para actualizar el historial al momento de apretar el boton
                           actualizar_lista(
                               _dateController.text, widget.emailUsuario);
-                          suma_porciones(
-                              _dateController.text, widget.emailUsuario);
+
+                          // mostrar_total(historial);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xff53e78b),
@@ -343,7 +344,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                             Expanded(
                               flex: 2,
                               child: Text(
-                                '',
+                                totalCalorias.toString(),
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
                                   color: Colors.white,
@@ -372,16 +373,23 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
         await hist_alimentos.getHistorialUsuario(email, _dateController.text);
     setState(() {
       historial = historialData;
+      if (historial.isNotEmpty) {
+        mostrar_total(historial);
+      } else {
+        totalPorciones = 0;
+        totalCalorias = 0;
+      }
     });
   }
 
   //Funcion que obtiene el total de calorias
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
-  void suma_porciones(String date, String email) async {
-    int calorias = await hist_alimentos.getPorcionesConsumidas(
-        email, _dateController.text);
+  void mostrar_total(List<List> historial) {
+    List total = hist_alimentos.porcion_calorias_total(historial);
+    print(total);
     setState(() {
-      totalPorciones = calorias;
+      totalPorciones = total[0];
+      totalCalorias = total[1];
     });
   }
 }
