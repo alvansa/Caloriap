@@ -45,8 +45,21 @@ class HistorialUsuario {
   //funtion 'getHistorialUsuario' to get all reg_consumo from table 'historial' from a specific date, input String 'email' and date 'fecha'
   Future<List<List>> getHistorialUsuario(String email, String fecha) async {
     final connection = await conn();
-    final result = await connection.query(
-        'SELECT alimento.nombre,historial.porcion, alimento.porcion FROM historial, alimento WHERE alimento.id_al =historial.id_al and historial.email = @email and fecha = @fecha',
+    final result = await connection.query('''SELECT 
+        (CASE WHEN historial.ID_al IS NOT NULL THEN (Select nombre from alimento WHERE alimento.id_al = historial.id_al) 
+		  WHEN historial.ID_al_comp IS NOT NULL THEN (Select nombre from alimento_compuesto WHERE alimento_compuesto.id_al_comp = historial.id_al_comp)  END) as nombre,
+      historial.porcion as porcion_consumida,
+		  (CASE WHEN historial.ID_al IS NOT NULL THEN (Select porcion from alimento WHERE alimento.id_al = historial.id_al) 
+		  WHEN historial.ID_al_comp IS NOT NULL THEN (Select porcion from alimento_compuesto WHERE alimento_compuesto.id_al_comp = historial.id_al_comp)  END) as porcion,
+		  (CASE WHEN historial.ID_al IS NOT NULL THEN (Select calorias from alimento WHERE alimento.id_al = historial.id_al) 
+		  WHEN historial.ID_al_comp IS NOT NULL THEN (Select calorias from alimento_compuesto WHERE alimento_compuesto.id_al_comp = historial.id_al_comp)  END) as calorias
+        FROM
+		      historial
+		    LEFT JOIN
+  			  alimento ON historial.ID_al = alimento.id_al
+		    LEFT JOIN
+  			  alimento_compuesto ON historial.ID_al_comp = alimento_compuesto.id_al_comp
+        WHERE historial.email = @email and historial.fecha = @fecha;''',
         substitutionValues: {'email': email, 'fecha': fecha});
     await connection.close();
 

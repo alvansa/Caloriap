@@ -36,9 +36,10 @@ class Iniciar_sesion extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Color(0xff0c0c0c),
           image: DecorationImage(
+            opacity: 0.3,
             fit: BoxFit.cover,
             image: AssetImage(
-              'assets/page-1/images/pattern-k9M.png',
+              'assets/page-1/images/fondo_oficial.png',
             ),
           ),
         ),

@@ -146,29 +146,51 @@ class _Registro_alimento_compuestoState
                                 width: 200 * fem,
                                 child: TextButton(
                                   onPressed: () async {
-                                    //Al momomento de apretar este boton se guarda el nombre del alimento compuesto
-                                    int id_al_comp = await reg_al_comp
-                                        .reg_nombre(nombreController.text);
-                                    //y se pasa a la pagina de agregar alimentos
-                                    List datos_recibidos = await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            nuevos_alimentos!.agregar(),
-                                      ),
-                                    );
-                                    if (datos_recibidos.isNotEmpty) {
-                                      cargar_lista_alimentos(
-                                          datos_recibidos[2]);
-                                      datos_al_comp = datos_recibidos;
-                                      print(datos_al_comp);
+                                    if (nombreController.text.isNotEmpty) {
+                                      //Al momomento de apretar este boton se guarda el nombre del alimento compuesto
+                                      int id_al_comp =
+                                          await reg_al_comp.reg_nombre(
+                                              nombreController.text,
+                                              widget.datosUsuario![0][0]);
+                                      //y se pasa a la pagina de agregar alimentos
+                                      List datos_recibidos =
+                                          await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              nuevos_alimentos!.agregar(),
+                                        ),
+                                      );
+                                      if (datos_recibidos.isNotEmpty) {
+                                        cargar_lista_alimentos(
+                                            datos_recibidos[2]);
+                                        datos_al_comp = datos_recibidos;
+                                        print(datos_al_comp);
 
-                                      reg_al_comp.reg_datos(id_al_comp,
-                                          datos_al_comp[0], datos_al_comp[1]);
-                                      reg_al_comp.reg_valor_nutricional(
-                                          id_al_comp,
-                                          datos_al_comp[0],
-                                          datos_al_comp[1]);
+                                        reg_al_comp.reg_datos(id_al_comp,
+                                            datos_al_comp[0], datos_al_comp[1]);
+                                        reg_al_comp.reg_valor_nutricional(
+                                            id_al_comp,
+                                            datos_al_comp[0],
+                                            datos_al_comp[1]);
+                                      }
+                                    } else {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text("Error"),
+                                              content: Text(
+                                                  "No se ha ingresado el nombre del alimento compuesto"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Text("Ok"))
+                                              ],
+                                            );
+                                          });
                                     }
                                   },
                                   style: TextButton.styleFrom(
@@ -242,102 +264,97 @@ class _Registro_alimento_compuestoState
                       //Botones
                       Container(
                         // autogroup1dhhJcf (5HrPx6taktLcSckF5D1DHH)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 0 * fem, 10 * fem),
                         width: double.infinity,
                         height: 50 * fem,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            TextButton(
-                              // botonaceptarqFD (27:505)
-                              onPressed: () {
-                                if (datos_al_comp.isNotEmpty) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text("Exito"),
-                                          content: Text(
-                                              "Alimento compuesto registrado"),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Caloriapp(
-                                                                datos: widget
-                                                                    .datosUsuario)), //Caloriapp el email y el tipo
-                                                  );
-                                                },
-                                                child: Text("Ok"))
-                                          ],
-                                        );
-                                      });
-                                } else {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text("Error"),
-                                          content: Text(
-                                              "No se ha registrado ningun alimento"),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text("Ok"))
-                                          ],
-                                        );
-                                      });
-                                }
-                              },
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                              ),
-                              child: Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    1 * fem, 4 * fem, 1 * fem, 4 * fem),
-                                width: 157 * fem,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15 * fem),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment(-1, -1.123),
-                                    end: Alignment(1, 1.228),
-                                    colors: <Color>[
-                                      Color.fromRGBO(228, 74, 31, 1),
-                                      Color.fromRGBO(228, 74, 31, 1)
-                                    ],
-                                    stops: <double>[0, 1],
-                                  ),
+                        child: Center(
+                          child: TextButton(
+                            // botonaceptarqFD (27:505)
+                            onPressed: () {
+                              if (datos_al_comp.isNotEmpty) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text("Exito"),
+                                        content: Text(
+                                            "Alimento compuesto registrado"),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Caloriapp(
+                                                              datos: widget
+                                                                  .datosUsuario)), //Caloriapp el email y el tipo
+                                                );
+                                              },
+                                              child: Text("Ok"))
+                                        ],
+                                      );
+                                    });
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text("Error"),
+                                        content: Text(
+                                            "No se ha registrado ningun alimento"),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Ok"))
+                                        ],
+                                      );
+                                    });
+                              }
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(
+                                  1 * fem, 4 * fem, 1 * fem, 4 * fem),
+                              width: 200 * fem,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15 * fem),
+                                gradient: const LinearGradient(
+                                  begin: Alignment(-1, -1.123),
+                                  end: Alignment(1, 1.228),
+                                  colors: <Color>[
+                                    Color.fromRGBO(228, 74, 31, 1),
+                                    Color.fromRGBO(228, 74, 31, 1)
+                                  ],
+                                  stops: <double>[0, 1],
                                 ),
-                                child: Align(
-                                  // registraralimentocompuestoW6T (27:508)
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    child: Container(
-                                      constraints:
-                                          BoxConstraints(maxWidth: 146 * fem),
-                                      child: Text(
-                                        'Aceptar',
-                                        style: GoogleFonts.aBeeZee(
-                                          fontSize: 16 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.3102272749 * ffem / fem,
-                                          color: Color(0xffffffff),
-                                        ),
+                              ),
+                              child: Align(
+                                // registraralimentocompuestoW6T (27:508)
+                                alignment: Alignment.center,
+                                child: SizedBox(
+                                  child: Container(
+                                    constraints:
+                                        BoxConstraints(maxWidth: 146 * fem),
+                                    child: Text(
+                                      'Aceptar',
+                                      style: GoogleFonts.aBeeZee(
+                                        fontSize: 16 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.3102272749 * ffem / fem,
+                                        color: Color(0xffffffff),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],

@@ -2,32 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/page-1/Registrar_consumo.dart';
-import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/caloriapp.dart';
+import 'package:myapp/page-1/Registrar_consumo_compuesto.dart';
 import 'package:myapp/page-1/Actualizar_alimento.dart';
 import 'package:myapp/componente/Text_field_vista.dart';
 
-class Seleccion_de_alimento extends StatefulWidget {
+class Seleccion_de_alimento_comp extends StatefulWidget {
   final List<dynamic> datos_alimento;
   final List<dynamic>? email;
 
-  //constructor de clase Seleccion_de_alimento
-  Seleccion_de_alimento(
+  //constructor de clase Seleccion_de_alimento_comp
+  Seleccion_de_alimento_comp(
       {Key? key, required this.datos_alimento, required this.email})
       : super(key: key);
 
-  Widget seleccion() {
+  Widget seleccion_comp() {
     return Scaffold(
-      body: Seleccion_de_alimento(datos_alimento: datos_alimento, email: email),
+      body: Seleccion_de_alimento_comp(
+          datos_alimento: datos_alimento, email: email),
     );
   }
 
   @override
-  State<Seleccion_de_alimento> createState() => _Seleccion_de_alimentoState();
+  State<Seleccion_de_alimento_comp> createState() =>
+      _Seleccion_de_alimento_compState();
 }
 
-class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
+class _Seleccion_de_alimento_compState
+    extends State<Seleccion_de_alimento_comp> {
+  //Varibaes para los controladores de los textfield
   final nombreController = TextEditingController();
   final caloriasController = TextEditingController();
   final proteinasController = TextEditingController();
@@ -44,9 +46,9 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
 
   void initState() {
     super.initState();
-    actualizar_alimento = Actualizar_alimento(
-        alimento_id: widget.datos_alimento[0].toString(), datos: widget.email);
-    print(widget.email);
+    // actualizar_alimento = Actualizar_alimento(
+    //     alimento_id: widget.datos_alimento[0].toString(), datos: widget.email);
+    print(widget.datos_alimento);
     cargarDatos();
   }
 
@@ -143,7 +145,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                         margin: EdgeInsets.fromLTRB(
                             9 * fem, 0 * fem, 0 * fem, 16 * fem),
                         child: Text(
-                          'Seleccionar alimento',
+                          'Seleccionar alimento compuesto',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.newsCycle(
                             fontSize: 25 * ffem,
@@ -282,10 +284,11 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                                 print(widget.email![0][0]);
                                 //Llevar a registrar consumo con info de email y id_alimento
                                 MaterialPageRoute route = MaterialPageRoute(
-                                    builder: (context) => Registrar_consumo(
-                                        email_consumo: widget.email![0][0],
-                                        id_alimento_consumo:
-                                            widget.datos_alimento[0]));
+                                    builder: (context) =>
+                                        Registrar_consumo_compuesto(
+                                            email_consumo: widget.email![0][0],
+                                            id_alimento_consumo:
+                                                widget.datos_alimento[0]));
                                 Navigator.push(context, route);
                               },
                               style: TextButton.styleFrom(

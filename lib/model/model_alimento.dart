@@ -86,9 +86,6 @@ class model_alimento {
         order by nombre asc
         ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
 
-      //final data =
-      //    result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
-
       await connection.close();
       print(result);
       return result;

@@ -3,12 +3,12 @@ import 'connection.dart';
 //En general falta ver si hacemos un registro predeterminado y otro para el usuario
 
 class model_alimento_compuesto {
-  Future<int> reg_al_comp_nombre(String nombre) async {
+  Future<int> reg_al_comp_nombre(String nombre, String email) async {
     final connection = await conn();
     try {
       await connection.query(
-          '''insert into alimento_compuesto (nombre,predeterminado) values (@nombre,true)''',
-          substitutionValues: {'nombre': nombre});
+          '''insert into alimento_compuesto (nombre,predeterminado,email) values (@nombre,false,@email)''',
+          substitutionValues: {'nombre': nombre, 'email': email});
       var id_al_comp = 0;
       final result = await connection.query(
           '''select id_al_comp from alimento_compuesto where nombre = @nombre''',
@@ -40,29 +40,25 @@ class model_alimento_compuesto {
     }
   }
 
-  Future<List<List<dynamic>>?> listar_alimentos(
+  Future<List<List<dynamic>>> listar_alimentos(
       String nombre, double max_cal, String email) async {
     try {
       final connection = await conn();
 
-      final result = await connection.query(
-          '''select * from alimento_compuesto 
+      final result = await connection.query('''select * from alimento_compuesto 
         where nombre like @nombre 
         and calorias <= $max_cal
-        and (predeterminado = true or id_al in (select id_al from alimento_compuesto where email = @email))    
-        order by nombre desc
-        ''',
-          substitutionValues: {'nombre': '%$nombre%', 'email': email});
-
-      final data =
-          result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
+        and (predeterminado = true or id_al_comp in (select id_al_comp from alimento_compuesto where email = @email))    
+        order by nombre asc
+        ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
 
       await connection.close();
 
-      return data;
+      return result;
     } catch (e) {
       print('error en conectar a la base de datos: $e');
-      return null;
+      List<List> result = [];
+      return result;
     }
   }
 
@@ -70,8 +66,7 @@ class model_alimento_compuesto {
     final connection = await conn();
     try {
       //update alimento_compuesto con datos_nutricionales
-      await connection
-          .query('''UPDATE alimento_compuesto SET 
+      await connection.query('''UPDATE alimento_compuesto SET 
           calorias = @calorias, 
           azucares = @azucares, 
           proteina = @proteina, 
@@ -79,18 +74,17 @@ class model_alimento_compuesto {
           grasa_total = @grasa, 
           h_de_c = @h_de_c, 
           colesterol = @colesterol, 
-          porcion = @porcion where id_al_comp = @id''',
-              substitutionValues: {
-            'calorias': datos_nutricionales[0],
-            'azucares': datos_nutricionales[1],
-            'proteina': datos_nutricionales[2],
-            'sodio': datos_nutricionales[3],
-            'grasa': datos_nutricionales[4],
-            'h_de_c': datos_nutricionales[5],
-            'colesterol': datos_nutricionales[6],
-            'porcion': datos_nutricionales[7],
-            'id': id
-          });
+          porcion = @porcion where id_al_comp = @id''', substitutionValues: {
+        'calorias': datos_nutricionales[0],
+        'azucares': datos_nutricionales[1],
+        'proteina': datos_nutricionales[2],
+        'sodio': datos_nutricionales[3],
+        'grasa': datos_nutricionales[4],
+        'h_de_c': datos_nutricionales[5],
+        'colesterol': datos_nutricionales[6],
+        'porcion': datos_nutricionales[7],
+        'id': id
+      });
       await connection.close();
       return true;
     } catch (e) {

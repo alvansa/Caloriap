@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Seleccion_de_alimento.dart';
+import 'package:myapp/page-1/Seleccion_alimento_compuesto.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/controller/con_busqueda_alimento.dart';
@@ -31,8 +32,12 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
 
   con_busqueda_alimento busqueda_alimentos = con_busqueda_alimento();
   Seleccion_de_alimento? seleccion;
+  Seleccion_de_alimento_comp? seleccion_compuesto;
 
   List<List<dynamic>>? Busqueda = [];
+
+  List<List<dynamic>>? BusquedaData_alimento_compuesto = [];
+  List<List<dynamic>>? BusquedaData_alimento = [];
 
   void initState() {
     super.initState();
@@ -228,23 +233,37 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    setState(() {
-                                      seleccion = Seleccion_de_alimento(
-                                          datos_alimento: Busqueda![index],
-                                          email: widget.email);
-                                    });
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => seleccion!.seleccion(
-                                            // datos_alimento: Busqueda![index],
-                                            // email: widget.email![0][0],
-                                            ),
-                                      ),
-                                    );
-                                    // Acción a realizar al presionar el botón
-                                    print(
-                                        'Presionaste: ${Busqueda![index][1]}');
+                                    //Si el alimento es compuesto mandar a la pagina de seleccion de alimento compuesto
+                                    if (BusquedaData_alimento_compuesto!
+                                        .contains(Busqueda![index])) {
+                                      seleccion_compuesto =
+                                          Seleccion_de_alimento_comp(
+                                              datos_alimento: Busqueda![index],
+                                              email: widget.email);
+
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              seleccion_compuesto!
+                                                  .seleccion_comp(),
+                                        ),
+                                      );
+                                      //Sino mandar a la seleccion de alimento simple
+                                    } else {
+                                      setState(() {
+                                        seleccion = Seleccion_de_alimento(
+                                            datos_alimento: Busqueda![index],
+                                            email: widget.email);
+                                      });
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              seleccion!.seleccion(),
+                                        ),
+                                      );
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -285,11 +304,14 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
   //Funcion que acutaliza la lista
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
   void actualizar_lista(String email, String busqueda, String max) async {
-    List<List<dynamic>>? BusquedaData = await busqueda_alimentos
-        .busqueda_alimentos(_busquedaController.text, max, email);
+    BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos(
+        _busquedaController.text, max, email);
+    BusquedaData_alimento_compuesto = await busqueda_alimentos
+        .busqueda_alimentos_compuesto(_busquedaController.text, max, email);
     //print(BusquedaData);
     setState(() {
-      Busqueda = BusquedaData;
+      Busqueda = (BusquedaData_alimento ?? []) +
+          (BusquedaData_alimento_compuesto ?? []);
     });
   }
 }

@@ -268,41 +268,35 @@ class _Agregar_alimentos extends State<Agregar_alimentos> {
                 Container(
                   // autogroup5u6ftr3 (5HrNqYuoqFYZcf9tcX5u6F)
                   margin:
-                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                      EdgeInsets.fromLTRB(0 * fem, 10 * fem, 0 * fem, 0 * fem),
                   width: double.infinity,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      //Boton de aceptar
-                      Container(
-                        //Boton de salida
-                        child: ElevatedButton(
-                          onPressed: () {
-                            //Devolver los datos del alimento compuesto
-                            Navigator.pop(
-                                context, [id_alimentos, porciones, nombres]);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xff53e78b),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15 * fem),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 16 * fem, horizontal: 16 * fem),
+                  child: Center(
+                    //Boton de salida
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //Devolver los datos del alimento compuesto
+                        Navigator.pop(
+                            context, [id_alimentos, porciones, nombres]);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          primary: Color(0xff53e78b),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15 * fem),
                           ),
-                          child: Text(
-                            'Aceptar',
-                            style: TextStyle(
-                              fontFamily: 'ABeeZee',
-                              fontSize: 16 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.3102272749 * ffem / fem,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 16 * fem, horizontal: 24 * fem),
+                          fixedSize: Size(200 * fem, 50 * fem)),
+                      child: Text(
+                        'Aceptar',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.3102272749 * ffem / fem,
+                          color: Color(0xffffffff),
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ],

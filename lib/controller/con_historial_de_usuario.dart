@@ -15,6 +15,7 @@ class controllerHistorialDeUsuario {
   Future<List<List>> getHistorialUsuario(String email, String fecha) async {
     //obtener variables de la vista
     HistorialUsuario historialUsuario = HistorialUsuario(email, fecha, 0, 0);
+
     return await historialUsuario.getHistorialUsuario(email, fecha);
   }
 }

@@ -37,13 +37,12 @@ class Auto_registro extends StatelessWidget {
         height: 812 * fem,
         decoration: BoxDecoration(
           color: Color(0xff0c0c0c),
-          borderRadius: BorderRadius.circular(20 * fem),
-          image: const DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              'assets/page-1/images/pattern-k9M.png',
-            ),
-          ),
+          // image: const DecorationImage(
+          //   fit: BoxFit.cover,
+          //   image: AssetImage(
+          //     'assets/page-1/images/fondo_oficial.png',
+          //   ),
+          // ),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -84,236 +83,197 @@ class Auto_registro extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: EdgeInsets.fromLTRB(
-                          24 * fem, 19 * fem, 188 * fem, 17 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0x19f4f4f4)),
-                        color: Color(0x19ffffff),
-                        borderRadius: BorderRadius.circular(15 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x115a6cea),
-                            offset: Offset(12 * fem, 26 * fem),
-                            blurRadius: 25 * fem,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Opacity(
-                            opacity: 0.5,
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 20.01 * fem, 1 * fem),
-                              width: 15.99 * fem,
-                              height: 20 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/iconly-bulk-profile.png',
-                                width: 15.99 * fem,
-                                height: 20 * fem,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            // Utilizamos el widget Expanded aquí
-                            child: TextField(
-                              style: SafeGoogleFont(
-                                'BentonSans Regular',
-                                fontSize: 14 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2575 * ffem / fem,
-                                letterSpacing: 0.5 * fem,
-                                color: Color(0xffffffff),
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder
-                                    .none, // Remove the border around the TextField
-                                contentPadding: EdgeInsets
-                                    .zero, // Remove any content padding
-                                isDense:
-                                    true, // Reduce the height of the TextField to match the original design
-                                hintText:
-                                    'Username', // Set the text you want to display (hint text)
-                                hintStyle: SafeGoogleFont(
-                                  // Set the style for the hint text
-                                  'BentonSans Regular',
-                                  fontSize: 14 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2575 * ffem / fem,
-                                  letterSpacing: 0.5 * fem,
-                                  color: Color(0xffffffff),
-                                ),
-                              ),
-                              controller:
-                                  usernameController, // Use this controller to get or set the input value
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12 * fem,
-                    ),
-                    Container(
-                      // nameforme71 (6:3467)
-                      padding: EdgeInsets.fromLTRB(
-                          24 * fem, 19 * fem, 188 * fem, 17 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0x19f4f4f4)),
-                        color: Color(0x19ffffff),
-                        borderRadius: BorderRadius.circular(15 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x115a6cea),
-                            offset: Offset(12 * fem, 26 * fem),
-                            blurRadius: 25 * fem,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Opacity(
-                            // iconlybulkprofileJBZ (6:3470)
-                            opacity: 0.5,
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 20.01 * fem, 1 * fem),
-                              width: 15.99 * fem,
-                              height: 20 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/iconly-bulk-message.png',
-                                width: 15.99 * fem,
-                                height: 20 * fem,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              style: SafeGoogleFont(
-                                'BentonSans Regular',
-                                fontSize: 14 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2575 * ffem / fem,
-                                letterSpacing: 0.5 * fem,
-                                color: Color(0xffffffff),
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder
-                                    .none, // Remove the border around the TextField
-                                contentPadding: EdgeInsets
-                                    .zero, // Remove any content padding
-                                isDense:
-                                    true, // Reduce the height of the TextField to match the original design
-                                hintText:
-                                    'Email', // Set the text you want to display (hint text)
-                                hintStyle: SafeGoogleFont(
-                                  // Set the style for the hint text
-                                  'BentonSans Regular',
-                                  fontSize: 14 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2575 * ffem / fem,
-                                  letterSpacing: 0.5 * fem,
-                                  color: Color(0xffffffff),
-                                ),
-                              ),
-                              controller:
-                                  emailController, // Use this controller to get or set the input value
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12 * fem,
-                    ),
-                    Container(
-                      // passwordformiY7 (6:3475)
-                      padding: EdgeInsets.fromLTRB(
-                          23.5 * fem, 19 * fem, 22 * fem, 17 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0x19f4f4f4)),
-                        color: Color(0x19ffffff),
-                        borderRadius: BorderRadius.circular(15 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x115a6cea),
-                            offset: Offset(12 * fem, 26 * fem),
-                            blurRadius: 25 * fem,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Opacity(
-                            // iconlybulklockbbu (6:3478)
-                            opacity: 0.5,
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 19.5 * fem, 1 * fem),
-                              width: 17 * fem,
-                              height: 20 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/iconly-bulk-lock-rVV.png',
+                    Positioned(
+                      //cuadro 2
+                      // passwordformvLo (6:3940)
+                      left: 0 * fem,
+                      top: 0 * fem,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(
+                            23.5 * fem, 19 * fem, 22 * fem, 17 * fem),
+                        width: 325 * fem,
+                        height: 57 * fem,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0x19f4f4f4)),
+                          color: Color(0x19ffffff),
+                          borderRadius: BorderRadius.circular(15 * fem),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Opacity(
+                              // iconlybulklockAF9 (6:3943)
+                              opacity: 0.5,
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 19.5 * fem, 1 * fem),
                                 width: 17 * fem,
                                 height: 20 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/iconly-bulk-profile-Pgj.png',
+                                  width: 17 * fem,
+                                  height: 20 * fem,
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              obscureText:
-                                  true, // This will make the TextField behave like a password input
-                              style: SafeGoogleFont(
-                                'BentonSans Regular',
-                                fontSize: 14 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2575 * ffem / fem,
-                                letterSpacing: 0.5 * fem,
-                                color: Color(0xffffffff),
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder
-                                    .none, // Remove the border around the TextField
-                                contentPadding: EdgeInsets
-                                    .zero, // Remove any content padding
-                                isDense:
-                                    true, // Reduce the height of the TextField to match the original design
-                                hintText:
-                                    'Password', // Set the text you want to display (hint text)
-                                hintStyle: SafeGoogleFont(
-                                  // Set the style for the hint text
-                                  'BentonSans Regular',
+                            Expanded(
+                              child: TextField(
+                                controller: usernameController,
+                                // Replace this text field with the first password field
+                                decoration: InputDecoration(
+                                  hintText: 'Username',
+                                  hintStyle: TextStyle(
+                                      color: Colors.white.withOpacity(0.5)),
+                                  border: InputBorder.none,
+                                ),
+                                style: TextStyle(
+                                  color: Colors.white,
                                   fontSize: 14 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.2575 * ffem / fem,
                                   letterSpacing: 0.5 * fem,
-                                  color: Color(0xffffffff),
                                 ),
                               ),
-                              controller:
-                                  passwordController, // Use this controller to get or set the input value
                             ),
-                          ),
-                          Container(
-                            // iconlybulkshow1Qj (6:3479)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 1 * fem),
-                            width: 20 * fem,
-                            height: 16 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/iconly-bulk-show-rAK.png',
-                              width: 20 * fem,
-                              height: 16 * fem,
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12 * fem,
+                    ),
+                    Positioned(
+                      //cuadro 2
+                      // passwordformvLo (6:3940)
+                      left: 0 * fem,
+                      top: 0 * fem,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(
+                            23.5 * fem, 19 * fem, 22 * fem, 17 * fem),
+                        width: 325 * fem,
+                        height: 57 * fem,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0x19f4f4f4)),
+                          color: Color(0x19ffffff),
+                          borderRadius: BorderRadius.circular(15 * fem),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Opacity(
+                              // iconlybulklockAF9 (6:3943)
+                              opacity: 0.5,
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 19.5 * fem, 1 * fem),
+                                width: 17 * fem,
+                                height: 20 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/iconly-bulk-message.png',
+                                  width: 17 * fem,
+                                  height: 20 * fem,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: TextField(
+                                controller: emailController,
+                                // Replace this text field with the first password field
+                                decoration: InputDecoration(
+                                  hintText: 'Email',
+                                  hintStyle: TextStyle(
+                                      color: Colors.white.withOpacity(0.5)),
+                                  border: InputBorder.none,
+                                ),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.2575 * ffem / fem,
+                                  letterSpacing: 0.5 * fem,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12 * fem,
+                    ),
+                    Positioned(
+                      //cuadro 2
+                      // passwordformvLo (6:3940)
+                      left: 0 * fem,
+                      top: 74 * fem,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(
+                            23.5 * fem, 19 * fem, 22 * fem, 17 * fem),
+                        width: 325 * fem,
+                        height: 57 * fem,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0x19f4f4f4)),
+                          color: Color(0x19ffffff),
+                          borderRadius: BorderRadius.circular(15 * fem),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Opacity(
+                              // iconlybulklockAF9 (6:3943)
+                              opacity: 0.5,
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 19.5 * fem, 1 * fem),
+                                width: 17 * fem,
+                                height: 20 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/iconly-bulk-lock-YRu.png',
+                                  width: 17 * fem,
+                                  height: 20 * fem,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: passwordController,
+                                // Replace this text field with the first password field
+                                obscureText:
+                                    true, // This will hide the entered text
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  hintStyle: TextStyle(
+                                      color: Colors.white.withOpacity(0.5)),
+                                  border: InputBorder.none,
+                                ),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.2575 * ffem / fem,
+                                  letterSpacing: 0.5 * fem,
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                // Toggle password visibility
+                              },
+                              child: Container(
+                                //iconlybulkshowmJo(6:3954)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                width: 20 * fem,
+                                height: 16 * fem,
+                                child: Image.asset(
+                                  "assets/page-1/images/iconly-bulk-show-Nbq.png",
+                                  width: 20 * fem,
+                                  height: 16 * fem,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

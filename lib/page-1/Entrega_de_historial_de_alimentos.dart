@@ -238,7 +238,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                             ),
                           ),
                           Text(
-                            'Porciones Totales',
+                            'Calorias consumidas',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,

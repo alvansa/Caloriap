@@ -8,29 +8,31 @@ import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/page-1/Seleccion_de_alimento.dart';
 import 'package:myapp/componente/Text_field.dart';
 
-class Registrar_consumo extends StatefulWidget {
+class Registrar_consumo_compuesto extends StatefulWidget {
   final String email_consumo;
   final int id_alimento_consumo;
 
-  const Registrar_consumo(
+  const Registrar_consumo_compuesto(
       {Key? key,
       required this.email_consumo,
       required this.id_alimento_consumo})
       : super(key: key);
 
   @override
-  State<Registrar_consumo> createState() => _Registrar_consumoState();
+  State<Registrar_consumo_compuesto> createState() =>
+      _Registrar_consumo_compuestoState();
 
-  Widget registrar_consumo() {
+  Widget reg_comp() {
     return Scaffold(
-      body: Registrar_consumo(
+      body: Registrar_consumo_compuesto(
           email_consumo: email_consumo,
           id_alimento_consumo: id_alimento_consumo),
     );
   }
 }
 
-class _Registrar_consumoState extends State<Registrar_consumo> {
+class _Registrar_consumo_compuestoState
+    extends State<Registrar_consumo_compuesto> {
   final porcionController = TextEditingController();
   final _dateController = TextEditingController();
 
@@ -232,11 +234,12 @@ class _Registrar_consumoState extends State<Registrar_consumo> {
                               // botonaceptarqFD (27:505)
                               onPressed: () async {
                                 print(widget.email_consumo);
-                                final result = await (reg_consumo1.ing_consumo(
-                                    widget.email_consumo.toString(),
-                                    _dateController.text,
-                                    widget.id_alimento_consumo,
-                                    porcionController.text));
+                                final result =
+                                    await (reg_consumo1.ing_consumo_compuesto(
+                                        widget.email_consumo.toString(),
+                                        _dateController.text,
+                                        widget.id_alimento_consumo,
+                                        porcionController.text));
                                 print(result);
                                 if (result == true) {
                                   showDialog(

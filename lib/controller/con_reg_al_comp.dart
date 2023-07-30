@@ -3,9 +3,9 @@ import '../model/model_alimento_compuesto.dart';
 
 class con_reg_al_comp {
   //Registas el nombre del alimento compuesto y obtienes una id
-  Future<int> reg_nombre(String nombre) async {
+  Future<int> reg_nombre(String nombre, String email) async {
     final alimento_compuesto = model_alimento_compuesto();
-    final id = alimento_compuesto.reg_al_comp_nombre(nombre);
+    final id = alimento_compuesto.reg_al_comp_nombre(nombre, email);
     print('Controller: id del alimento a ingresar $id');
     return id;
   }
@@ -13,7 +13,6 @@ class con_reg_al_comp {
   //Registras los alimentos que lo componen y sus porciones
   Future<bool> reg_datos(int id_al_comp, List alimentos, List porciones) async {
     final alimento_compuesto = model_alimento_compuesto();
-    final alimento = model_alimento();
 
     for (int i = 0; i < alimentos.length; i++) {
       await alimento_compuesto.reg_al_comp(
@@ -38,7 +37,7 @@ class con_reg_al_comp {
       datos_nutricionales.add(dato!);
     }
 
-    //print('datos nutricionales: $datos_nutricionales');
+    print('datos nutricionales: $datos_nutricionales');
     //print('porciones: $porciones');
 
     //sumar los datos nutriconales segun la porcion ingresada indice [2 al 8] el 9 es la porcion
@@ -47,7 +46,8 @@ class con_reg_al_comp {
       for (j = 2; j < 9; j++) {
         datos_nutricionales_sumados[j - 2] +=
             (datos_nutricionales[i][j] * porciones[i]) /
-                100; // cambiar 100 por la porcion del alimento
+                datos_nutricionales[i]
+                    [9]; // cambiar 100 por la porcion del alimento
       }
     }
 
