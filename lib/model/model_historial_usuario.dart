@@ -73,6 +73,21 @@ class HistorialUsuario {
     }
     return historial;
   }
+
+//funcion que muestra solo la suma de las porciones de los alimentos consumidos en un dia
+  Future<int> getSumPorcionesAlimentos(String email, String fecha) async {
+    final connetion = await conn();
+    final results = await connetion.query(
+        'SELECT SUM(historial.porcion) FROM historial, alimento WHERE alimento.id_al =historial.id_al and historial.email = @email and historial.fecha = @fecha',
+        substitutionValues: {'email': email, 'fecha': fecha});
+    await connetion.close();
+    if (results.isEmpty || results[0][0] == null) {
+      return 0;
+    }
+
+    return results[0][
+        0]; //retorna la suma de las porciones de los alimentos consumidos en un dia
+  }
 }
 /*
 void main() async {

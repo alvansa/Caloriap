@@ -31,6 +31,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
   controllerHistorialDeUsuario hist_alimentos = controllerHistorialDeUsuario();
 
   List<List<dynamic>> historial = [];
+  int totalPorciones = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -188,9 +189,11 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                           //Funcion para actualizar el historial al momento de apretar el boton
                           actualizar_lista(
                               _dateController.text, widget.emailUsuario);
+                          suma_porciones(
+                              _dateController.text, widget.emailUsuario);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff53e78b),
+                          backgroundColor: Color(0xff53e78b),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15 * fem),
                           ),
@@ -272,7 +275,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 10,
+                                      fontSize: 14,
                                     ),
                                   ),
                                 ),
@@ -283,7 +286,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 10,
+                                      fontSize: 14,
                                     ),
                                   ),
                                 ),
@@ -294,7 +297,7 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                                     textAlign: TextAlign.right,
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 10,
+                                      fontSize: 14,
                                     ),
                                   ),
                                 ),
@@ -302,6 +305,54 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
                             ),
                           );
                         },
+                      ),
+                      //Container que contiene un cuadro con diseño diferente a los anteriores con el total de calorias
+                      Container(
+                        margin: EdgeInsets.fromLTRB(
+                            15 * fem, 30 * fem, 15 * fem, 0 * fem),
+                        padding: EdgeInsets.all(5 * fem),
+                        decoration: BoxDecoration(
+                          color: Color(0x19ffffff),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                'Total',
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                totalPorciones.toString(),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                '',
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -321,6 +372,16 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
         await hist_alimentos.getHistorialUsuario(email, _dateController.text);
     setState(() {
       historial = historialData;
+    });
+  }
+
+  //Funcion que obtiene el total de calorias
+  //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
+  void suma_porciones(String date, String email) async {
+    int calorias = await hist_alimentos.getPorcionesConsumidas(
+        email, _dateController.text);
+    setState(() {
+      totalPorciones = calorias;
     });
   }
 }
