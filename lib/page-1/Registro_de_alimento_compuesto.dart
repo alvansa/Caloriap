@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/componente/Text_field.dart';
 import 'package:myapp/page-1/Agregar_alimentos_al_compuesto.dart';
-import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/controller/con_reg_al_comp.dart';
 
@@ -30,7 +27,6 @@ class _Registro_alimento_compuestoState
 
   void initState() {
     super.initState();
-    print('Datos que recibe registrar al_comp ${widget.datosUsuario}');
     nuevos_alimentos = Agregar_alimentos(email: widget.datosUsuario);
   }
 
@@ -165,7 +161,6 @@ class _Registro_alimento_compuestoState
                                         cargar_lista_alimentos(
                                             datos_recibidos[2]);
                                         datos_al_comp = datos_recibidos;
-                                        print(datos_al_comp);
 
                                         reg_al_comp.reg_datos(id_al_comp,
                                             datos_al_comp[0], datos_al_comp[1]);

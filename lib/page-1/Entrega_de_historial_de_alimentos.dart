@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/controller/con_historial_de_usuario.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/caloriapp.dart';
 
 class Historial_de_alimentos extends StatefulWidget {
   final List<dynamic>? email;
@@ -386,7 +382,6 @@ class _Historial_de_alimentos extends State<Historial_de_alimentos> {
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
   void mostrar_total(List<List> historial) {
     List total = hist_alimentos.porcion_calorias_total(historial);
-    print(total);
     setState(() {
       totalPorciones = total[0];
       totalCalorias = total[1];

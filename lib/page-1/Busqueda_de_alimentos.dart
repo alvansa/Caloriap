@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Seleccion_de_alimento.dart';
 import 'package:myapp/page-1/Seleccion_alimento_compuesto.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/controller/con_busqueda_alimento.dart';
 
 class Busqueda_de_alimentos extends StatefulWidget {
@@ -55,7 +51,8 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
   }
 
   void cargarDatos() {
-    actualizar_lista(widget.emailUsuario, '', '', null);
+    print('Email al cargar datos al inicio ${widget.emailUsuario}');
+    actualizar_lista('', '', widget.emailUsuario, null);
   }
 
   @override
@@ -490,16 +487,19 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
       String busqueda, String max, String email, int? id) async {
     List<List<dynamic>> BusquedaData_alimento = [];
     List<List<dynamic>> BusquedaData_alimento_compuesto = [];
+    //Si se selecciona el la busqueda por tipo
     if (_opcionSeleccionada == 'Tipo') {
       BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
           _busquedaController.text, max, email, id);
       BusquedaData_alimento_compuesto = [];
-    } else if (_opcionSeleccionada == 'Restriccion') {
+    } // Si se selecciona la busqueda por restriccion
+    else if (_opcionSeleccionada == 'Restriccion') {
       BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
           _busquedaController.text, max, email, id);
       BusquedaData_alimento_compuesto = await busqueda_alimentos
           .busqueda_alimentos_compuesto(_busquedaController.text, max, email);
-    } else {
+    } //Modo por defecto donde muestra todos los alimentos
+    else {
       BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
           _busquedaController.text, max, email, id);
       BusquedaData_alimento_compuesto = await busqueda_alimentos
@@ -510,6 +510,8 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
       Busqueda = [];
       Busqueda.addAll(BusquedaData_alimento);
       Busqueda.addAll(BusquedaData_alimento_compuesto);
+      //print('Busqueda de alimentos $BusquedaData_alimento');
+      print('email que se envia $email');
     });
   }
 

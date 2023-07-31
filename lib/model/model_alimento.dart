@@ -5,7 +5,7 @@ import 'package:myapp/model/connection.dart';
 
 class model_alimento {
   //aqui falta poner el email de usuario que lo ingreso
-  Future<void> reg_alimento(
+  Future<bool> reg_alimento(
       String nombre,
       double calorias,
       double proteinas,
@@ -25,8 +25,10 @@ class model_alimento {
             values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false,@email)''',
           substitutionValues: {'stringValue': nombre, 'email': email});
       await connection.close();
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
@@ -57,6 +59,32 @@ class model_alimento {
     }
   }
 
+  Future<List> id_alimento(
+      String nombre,
+      double calorias,
+      double proteinas,
+      double grasas_totales,
+      double hidratos_carbono,
+      double azucares,
+      double colesterol,
+      double sodio,
+      double porcion) async {
+    final connection = await conn();
+
+    try {
+      //id_al , nombre , calorias , carbohidratos , proteinas , grasas_totales , hidratos_carbono , azucares , colesterol , sodio
+      final result = await connection.query(
+          '''select id_al from alimento where nombre = @nombre AND calorias = $calorias AND porcion = $porcion AND azucares = $azucares AND sodio = $sodio AND grasa_total = $grasas_totales AND h_de_C = $hidratos_carbono AND colesterol = $colesterol AND proteina = $proteinas''',
+          substitutionValues: {'nombre': nombre});
+      await connection.close();
+      return result;
+    } catch (e) {
+      print(e);
+      List result = [];
+      return result;
+    }
+  }
+
   //Aqui falta verificar que el alimento o sea predeterminado o este asociado al usuario
   Future<List<dynamic>?> datos_alimento(int id) async {
     final connection = await conn();
@@ -72,12 +100,11 @@ class model_alimento {
   }
 
 //nombre, tipo, calorias , restriccion.
-//Falta ver como lo hacemos con los filtro de tipo y restriccion
   Future<List<List<dynamic>>> listar_alimentos(
       String nombre, double max_cal, String email, int? tipo) async {
     try {
       final connection = await conn();
-      print(tipo == null);
+      print('email de listar alimentos $email');
       if (tipo == null) {
         final result = await connection.query('''select * from alimento 
         where nombre like @nombre 
@@ -167,7 +194,7 @@ class model_alimento {
           h_de_c = @h_de_c, 
           colesterol = @colesterol, 
           porcion = @porcion 
-          where id_al = 15
+          where id_al = $id_al
           RETURNING *;''', substitutionValues: {
         'nom': nombre,
         'colesterol': colesterol,

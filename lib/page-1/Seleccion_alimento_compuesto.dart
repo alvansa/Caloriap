@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Registrar_consumo_compuesto.dart';
 import 'package:myapp/page-1/Actualizar_alimento.dart';
@@ -40,19 +38,18 @@ class _Seleccion_de_alimento_compState
   final sodioController = TextEditingController();
   final porcionController = TextEditingController();
 
-  bool predeterminado = false;
+  bool predeterminado = true;
 
   Actualizar_alimento? actualizar_alimento;
 
   void initState() {
     super.initState();
-    // actualizar_alimento = Actualizar_alimento(
-    //     alimento_id: widget.datos_alimento[0].toString(), datos: widget.email);
-    print(widget.datos_alimento);
     cargarDatos();
   }
 
   void cargarDatos() {
+    print('datos del alimentos: ${widget.datos_alimento}');
+    print('el alimento es predeterminado: ${widget.datos_alimento[10]}');
     if (widget.datos_alimento[10] == true) {
       predeterminado = false;
     }
@@ -280,8 +277,6 @@ class _Seleccion_de_alimento_compState
                             TextButton(
                               // botonaceptarqFD (27:505)
                               onPressed: () {
-                                print(widget.email![0]);
-                                print(widget.email![0][0]);
                                 //Llevar a registrar consumo con info de email y id_alimento
                                 MaterialPageRoute route = MaterialPageRoute(
                                     builder: (context) =>

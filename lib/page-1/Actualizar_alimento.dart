@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/componente/Text_field.dart';
-import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/page-1/Registro_de_alimento_compuesto.dart';

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/componente/Text_field.dart';
-import 'package:myapp/page-1/Registrar_consumo.dart';
 import 'package:myapp/page-1/Registro_de_alimento_compuesto.dart';
+import 'package:myapp/page-1/caloriapp.dart';
 import '../controller/con_reg_alimento.dart';
+import 'package:myapp/page-1/Registrar_consumo.dart';
 
 class Registrar_alimento extends StatefulWidget {
   final List<dynamic>? datosUsuario;
@@ -194,20 +195,38 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                           children: [
                             TextButton(
                               // botonaceptarqFD (27:505)
-                              onPressed: () {
-                                print(
-                                    'Datos que recibe registrar alimento ${widget.datosUsuario![0]}');
-                                alimento.ing_alimento(
-                                    nombreController.text,
-                                    caloriasController.text,
-                                    proteinasController.text,
-                                    grasasController.text,
-                                    carbohidratosController.text,
-                                    azucaresController.text,
-                                    colesterolController.text,
-                                    sodioController.text,
-                                    porcionController.text,
-                                    widget.datosUsuario![0][0]);
+                              onPressed: () async {
+                                final nuevo_alimento_id =
+                                    await alimento.ing_alimento(
+                                        nombreController.text,
+                                        caloriasController.text,
+                                        proteinasController.text,
+                                        grasasController.text,
+                                        carbohidratosController.text,
+                                        azucaresController.text,
+                                        colesterolController.text,
+                                        sodioController.text,
+                                        porcionController.text,
+                                        widget.datosUsuario![0][0]);
+                                if (nuevo_alimento_id != false) {
+                                  //mostrar pop up exitoso y mandar a caloriapp
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text("Exito"),
+                                          content: Text(
+                                              "Se ha registrado el alimento"),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                              child: Text("Aceptar"),
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                }
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.fromLTRB(
@@ -253,14 +272,42 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                             ),
                             TextButton(
                               // botonaceptarqFD (27:505)
-                              onPressed: () {
-                                //registar alimento
-                                //registrar consumo
-                                //pasar a la pagina de caloriapp principal
-                                //MaterialPageRoute route = MaterialPageRoute(
-                                //  builder: (context) => Registrar_consumo(),
-                                //);
-                                //Navigator.push(context, route);
+                              onPressed: () async {
+                                print(
+                                    'email del usuario: ${widget.datosUsuario![0][0]}');
+                                //Ingresa el nuevo alimento a la BD
+                                final nuevo_alimento_id =
+                                    await alimento.ing_alimento(
+                                        nombreController.text,
+                                        caloriasController.text,
+                                        proteinasController.text,
+                                        grasasController.text,
+                                        carbohidratosController.text,
+                                        azucaresController.text,
+                                        colesterolController.text,
+                                        sodioController.text,
+                                        porcionController.text,
+                                        widget.datosUsuario![0][0]);
+
+                                final id_alimento = await alimento.id_alimento(
+                                    nombreController.text,
+                                    caloriasController.text,
+                                    proteinasController.text,
+                                    grasasController.text,
+                                    carbohidratosController.text,
+                                    azucaresController.text,
+                                    colesterolController.text,
+                                    sodioController.text,
+                                    porcionController.text);
+                                if (true) {
+                                  //mandar a registrar consumo con el id del alimento
+                                  MaterialPageRoute route = MaterialPageRoute(
+                                      builder: (context) => Registrar_consumo(
+                                          email_consumo: widget.datosUsuario![0]
+                                              [0],
+                                          id_alimento_consumo: id_alimento));
+                                  Navigator.push(context, route);
+                                }
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.fromLTRB(
@@ -291,7 +338,7 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                                       constraints:
                                           BoxConstraints(maxWidth: 146 * fem),
                                       child: Text(
-                                        'Aceptar y registrar consumo',
+                                        'Registrar consumo',
                                         style: GoogleFonts.aBeeZee(
                                           fontSize: 16 * ffem,
                                           fontWeight: FontWeight.w400,

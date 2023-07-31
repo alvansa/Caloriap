@@ -29,12 +29,12 @@ class controllerHistorialDeUsuario {
     //obtener variables de la vista
     List total = [0, 0];
     int i = 0;
-    print('historial del controlador $historial');
+
     for (i = 0; i < historial.length; i++) {
       total[0] = total[0] + double.parse(historial[i][1]);
       total[1] = total[1] + double.parse(historial[i][2]);
     }
-    print('total del controlador $total');
+
     return total;
   }
 

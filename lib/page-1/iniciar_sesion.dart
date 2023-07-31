@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Auto_registro.dart';
 import 'package:myapp/page-1/caloriapp.dart';
@@ -234,7 +231,6 @@ class Iniciar_sesion extends StatelessWidget {
                     //login Future<List> login(String email, String password)
                     if (lista?.isNotEmpty ?? false) {
                       if (lista?[0][3] == 1) {
-                        print('usuario');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -242,7 +238,6 @@ class Iniciar_sesion extends StatelessWidget {
                                   datos: lista)), //Caloriapp el email y el tipo
                         );
                       } else {
-                        print('admin');
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/Registrar_consumo.dart';
-import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/caloriapp.dart';
 import 'package:myapp/page-1/Actualizar_alimento.dart';
 import 'package:myapp/componente/Text_field_vista.dart';
 
@@ -38,7 +34,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   final sodioController = TextEditingController();
   final porcionController = TextEditingController();
 
-  bool predeterminado = false;
+  bool predeterminado = true;
 
   Actualizar_alimento? actualizar_alimento;
 
@@ -46,11 +42,12 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
     super.initState();
     actualizar_alimento = Actualizar_alimento(
         alimento_id: widget.datos_alimento[0].toString(), datos: widget.email);
-    print(widget.email);
     cargarDatos();
   }
 
   void cargarDatos() {
+    print('datos del alimentos: ${widget.datos_alimento}');
+    print('el alimento es predeterminado: ${widget.datos_alimento[10]}');
     if (widget.datos_alimento[10] == true) {
       predeterminado = false;
     }
@@ -166,56 +163,47 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                           children: [
                             TextFieldVista(
                               hintText: 'Nombre',
-                              controller: TextEditingController(
-                                  text: nombreController.text),
+                              controller: nombreController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Calorias',
-                              controller: TextEditingController(
-                                  text: caloriasController.text),
+                              controller: caloriasController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Proteinas',
-                              controller: TextEditingController(
-                                  text: proteinasController.text),
+                              controller: proteinasController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Grasas totales',
-                              controller: TextEditingController(
-                                  text: grasasController.text),
+                              controller: grasasController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'H. de C. disp',
-                              controller: TextEditingController(
-                                  text: carbohidratosController.text),
+                              controller: carbohidratosController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Azucares',
-                              controller: TextEditingController(
-                                  text: azucaresController.text),
+                              controller: azucaresController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Colesterol',
-                              controller: TextEditingController(
-                                  text: colesterolController.text),
+                              controller: colesterolController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Sodio',
-                              controller: TextEditingController(
-                                  text: sodioController.text),
+                              controller: sodioController,
                               fem: fem,
                             ),
                             TextFieldVista(
                               hintText: 'Porcion',
-                              controller: TextEditingController(
-                                  text: porcionController.text),
+                              controller: porcionController,
                               fem: fem,
                             ),
                           ],
@@ -278,8 +266,6 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                             TextButton(
                               // botonaceptarqFD (27:505)
                               onPressed: () {
-                                print(widget.email![0]);
-                                print(widget.email![0][0]);
                                 //Llevar a registrar consumo con info de email y id_alimento
                                 MaterialPageRoute route = MaterialPageRoute(
                                     builder: (context) => Registrar_consumo(

@@ -9,11 +9,6 @@ class con_reg_consumo {
     HistorialUsuario reg_consumo1 =
         HistorialUsuario(email, fecha, id_alimento, porcion1);
 
-    print("email: " + email);
-    print("fecha: " + fecha);
-    print("id_alimento: " + id_alimento.toString());
-    print("porcion: " + porcion1.toString());
-
     await reg_consumo1.registrarConsumoAl(email, fecha, id_alimento, porcion1);
     return true;
   }
@@ -25,11 +20,6 @@ class con_reg_consumo {
 
     HistorialUsuario reg_consumo1 =
         HistorialUsuario(email, fecha, id_alimento_comp, porcion1);
-
-    print("email: " + email);
-    print("fecha: " + fecha);
-    print("id_alimento: " + id_alimento_comp.toString());
-    print("porcion: " + porcion1.toString());
 
     await reg_consumo1.registrarConsumoAlComp(
         email, fecha, id_alimento_comp, porcion1);

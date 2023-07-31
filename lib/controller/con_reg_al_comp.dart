@@ -6,7 +6,7 @@ class con_reg_al_comp {
   Future<int> reg_nombre(String nombre, String email) async {
     final alimento_compuesto = model_alimento_compuesto();
     final id = alimento_compuesto.reg_al_comp_nombre(nombre, email);
-    print('Controller: id del alimento a ingresar $id');
+
     return id;
   }
 
@@ -37,9 +37,6 @@ class con_reg_al_comp {
       datos_nutricionales.add(dato!);
     }
 
-    print('datos nutricionales: $datos_nutricionales');
-    //print('porciones: $porciones');
-
     //sumar los datos nutriconales segun la porcion ingresada indice [2 al 8] el 9 es la porcion
     var datos_nutricionales_sumados = List<double>.filled(8, 0);
     for (i = 0; i < datos_nutricionales.length; i++) {
@@ -55,7 +52,6 @@ class con_reg_al_comp {
       datos_nutricionales_sumados[7] += datos_nutricionales[i][9];
     }
 
-    print(datos_nutricionales_sumados);
     // Añadir los datos nutricionales del alimento compuesto
     return alimento_compuesto.reg_valor_nutricional(
         id_al_comp, datos_nutricionales_sumados);

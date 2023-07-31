@@ -9,7 +9,7 @@ class con_reg_alimento {
     return alimento;
   }
 
-  Future<void> ing_alimento(
+  Future<bool> ing_alimento(
       String nombre,
       String calorias,
       String proteinas,
@@ -40,7 +40,7 @@ class con_reg_alimento {
     if (sodio.isNotEmpty) sodio_int = double.parse(sodio);
     if (porcion.isNotEmpty) porcion_int = double.parse(porcion);
 
-    await reg_alimento1.reg_alimento(
+    final result = await reg_alimento1.reg_alimento(
         nombre,
         calorias_int,
         proteinas_int,
@@ -51,6 +51,7 @@ class con_reg_alimento {
         sodio_int,
         porcion_int,
         email);
+    return true;
   }
 
   Future<bool> ing_alimento_predeterminado(
@@ -93,5 +94,49 @@ class con_reg_alimento {
         colesterol_int,
         sodio_int,
         porcion_int);
+  }
+
+  Future<int> id_alimento(
+      String nombre,
+      String calorias,
+      String proteinas,
+      String grasas_totales,
+      String hidratos_carbono,
+      String azucares,
+      String colesterol,
+      String sodio,
+      String porcion) async {
+    model_alimento reg_alimento1 = model_alimento();
+    double calorias_int = 0;
+    double proteinas_int = 0;
+    double grasas_totales_int = 0;
+    double hidratos_carbono_int = 0;
+    double azucares_int = 0;
+    double colesterol_int = 0;
+    double sodio_int = 0;
+    double porcion_int = 0;
+    if (calorias.isNotEmpty) calorias_int = double.parse(calorias);
+    if (proteinas.isNotEmpty) proteinas_int = double.parse(proteinas);
+    if (grasas_totales.isNotEmpty)
+      grasas_totales_int = double.parse(grasas_totales);
+    if (hidratos_carbono.isNotEmpty)
+      hidratos_carbono_int = double.parse(hidratos_carbono);
+    if (azucares.isNotEmpty) azucares_int = double.parse(azucares);
+    if (colesterol.isNotEmpty) colesterol_int = double.parse(colesterol);
+    if (sodio.isNotEmpty) sodio_int = double.parse(sodio);
+    if (porcion.isNotEmpty) porcion_int = double.parse(porcion);
+    final result = await reg_alimento1.id_alimento(
+        nombre,
+        calorias_int,
+        proteinas_int,
+        grasas_totales_int,
+        hidratos_carbono_int,
+        azucares_int,
+        colesterol_int,
+        sodio_int,
+        porcion_int);
+    //transformar el result en un entero int
+    int id = result.first.first;
+    return id;
   }
 }

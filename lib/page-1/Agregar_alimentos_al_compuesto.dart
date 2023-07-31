@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/componente/pop_up_al_comp.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/controller/con_busqueda_alimento.dart';
@@ -312,7 +309,6 @@ class _Agregar_alimentos extends State<Agregar_alimentos> {
   void actualizar_lista(String email, String busqueda, String max) async {
     List<List<dynamic>>? BusquedaData = await busqueda_alimentos
         .busqueda_alimentos_tipo(_busquedaController.text, max, email, null);
-    //print(BusquedaData);
     setState(() {
       Busqueda = BusquedaData;
     });

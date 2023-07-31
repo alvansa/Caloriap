@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/Busqueda_de_alimentos.dart';
 import 'package:myapp/page-1/Entrega_de_historial_de_alimentos.dart';
