@@ -311,7 +311,7 @@ class _Agregar_alimentos extends State<Agregar_alimentos> {
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
   void actualizar_lista(String email, String busqueda, String max) async {
     List<List<dynamic>>? BusquedaData = await busqueda_alimentos
-        .busqueda_alimentos(_busquedaController.text, max, email);
+        .busqueda_alimentos_tipo(_busquedaController.text, max, email, null);
     //print(BusquedaData);
     setState(() {
       Busqueda = BusquedaData;

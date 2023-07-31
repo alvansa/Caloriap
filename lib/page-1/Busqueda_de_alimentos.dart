@@ -29,15 +29,25 @@ class Busqueda_de_alimentos extends StatefulWidget {
 
 class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
   final TextEditingController _busquedaController = TextEditingController();
+  final TextEditingController _caloriasController = TextEditingController();
 
   con_busqueda_alimento busqueda_alimentos = con_busqueda_alimento();
   Seleccion_de_alimento? seleccion;
   Seleccion_de_alimento_comp? seleccion_compuesto;
 
-  List<List<dynamic>>? Busqueda = [];
+  List<List<dynamic>> Busqueda = [];
 
-  List<List<dynamic>>? BusquedaData_alimento_compuesto = [];
-  List<List<dynamic>>? BusquedaData_alimento = [];
+  List<List<dynamic>> BusquedaData_alimento_compuesto = [];
+  List<List<dynamic>> BusquedaData_alimento = [];
+
+  List<String> _opciones = ['Tipo', 'Restriccion'];
+  String? _opcionSeleccionada = 'Seleccion';
+
+  List<String> _opcionesTipoRestriccion = [];
+  List<int> _IdTipoRestriccion = [];
+
+  String? _eleccion = 'Tipo';
+  String? _tipoElegida = 'Tipos';
 
   void initState() {
     super.initState();
@@ -45,9 +55,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
   }
 
   void cargarDatos() {
-    actualizar_lista(widget.emailUsuario, '', '');
-    // seleccion = Seleccion_de_alimento(
-    //     datos_alimento: Busqueda![0], email: widget.emailUsuario);
+    actualizar_lista(widget.emailUsuario, '', '', null);
   }
 
   @override
@@ -190,9 +198,19 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                           if (_busquedaController.text == '') {
                             _busquedaController.text = '';
                           }
+                          if (_caloriasController.text == '') {
+                            _caloriasController.text = '';
+                          }
+                          int indice_tipo_restriccion =
+                              _opcionesTipoRestriccion.indexOf(_eleccion!);
                           //Funcion para actualizar el Busqueda al momento de apretar el boton
-                          actualizar_lista(_busquedaController.text,
-                              widget.emailUsuario, '');
+                          actualizar_lista(
+                              _busquedaController.text,
+                              _caloriasController.text,
+                              widget.emailUsuario,
+                              indice_tipo_restriccion);
+
+                          // lista_id[index]
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xff53e78b),
@@ -216,15 +234,180 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                     ],
                   ),
                 ),
+                //Container de los filtros
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //Container de tipo de alimento
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 17, horizontal: 8),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: PopupMenuButton<String>(
+                          // Valor actualmente seleccionado
+                          initialValue: _opcionSeleccionada,
+                          onSelected: (String? nuevaOpcion) {
+                            setState(() {
+                              _opcionSeleccionada = nuevaOpcion;
+                              if (_opcionSeleccionada == 'Tipo') {
+                                CargarTipo();
+                                _eleccion = 'Tipo';
+                              } else {
+                                cargarRestriccion();
+                                _eleccion = 'Restriccion';
+                              }
+                            });
+                          },
+                          // Opciones del DropdownButton
+                          itemBuilder: (BuildContext context) {
+                            return _opciones.map((String opcion) {
+                              return PopupMenuItem<String>(
+                                value: opcion,
+                                child: Text(
+                                  opcion,
+                                  style: TextStyle(
+                                    fontFamily: 'ABeeZee',
+                                    fontSize: 16 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.3102272749 * ffem / fem,
+                                    color: Color(0xffffffff),
+                                  ),
+                                ),
+                              );
+                            }).toList();
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                10.0), // Ajusta el radio del borde para redondear la lista
+                          ),
+                          color: Color.fromARGB(226, 49, 44, 44),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              _opcionSeleccionada ?? '',
+                              style: TextStyle(
+                                fontFamily: 'ABeeZee',
+                                fontSize: 16 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.3102272749 * ffem / fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //Container de restriccion de alimento
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 17, horizontal: 8),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: PopupMenuButton<String>(
+                          // Valor actualmente seleccionado
+                          initialValue: _eleccion,
+                          onSelected: (String? nuevaOpcion) {
+                            setState(() {
+                              _eleccion = nuevaOpcion;
+                              int indice =
+                                  _opcionesTipoRestriccion.indexOf(_eleccion!);
+                            });
+                          },
+                          // Opciones del DropdownButton
+                          itemBuilder: (BuildContext context) {
+                            return _opcionesTipoRestriccion
+                                .map((String opcion) {
+                              return PopupMenuItem<String>(
+                                value: opcion,
+                                child: Text(
+                                  opcion,
+                                  style: TextStyle(
+                                    fontFamily: 'ABeeZee',
+                                    fontSize: 16 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.3102272749 * ffem / fem,
+                                    color: Color(0xffffffff),
+                                  ),
+                                ),
+                              );
+                            }).toList();
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                10.0), // Ajusta el radio del borde para redondear la lista
+                          ),
+                          color: Color.fromARGB(226, 49, 44, 44),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              _eleccion ?? '',
+                              style: TextStyle(
+                                fontFamily: 'ABeeZee',
+                                fontSize: 16 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.3102272749 * ffem / fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //Container de calorias max
+                      Container(
+                        width: 100 * fem,
+                        height: 50 * fem,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: TextField(
+                            controller: _caloriasController,
+                            style: TextStyle(
+                              fontFamily: 'News Cycle',
+                              fontSize: 15 * fem,
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 0.5 * fem,
+                              color: Color(0xffffffff),
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'Max kcal',
+                              hintStyle: TextStyle(
+                                fontFamily: 'News Cycle',
+                                fontSize: 15 * fem,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 0.5 * fem,
+                                color: Color(0x99ffffff),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0x19f4f4f4)),
+                                borderRadius: BorderRadius.circular(10 * fem),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Color(0x5a6cea)),
+                                borderRadius: BorderRadius.circular(15 * fem),
+                              ),
+                              filled: true,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
                 //Container de la lista
                 Expanded(
-                    child: Busqueda!.isNotEmpty == true
+                    child: Busqueda.isNotEmpty == true
                         ? ListView.builder(
-                            itemCount: Busqueda!.length,
+                            itemCount: Busqueda.length,
                             itemBuilder: (context, index) {
                               return Container(
                                 margin: EdgeInsets.fromLTRB(
-                                    10 * fem, 20 * fem, 15 * fem, 0 * fem),
+                                    10 * fem, 10 * fem, 15 * fem, 0 * fem),
                                 decoration: BoxDecoration(
                                   color: Color(
                                       0x19ffffff), // Cambia el color de fondo de cada elemento
@@ -234,8 +417,8 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     //Si el alimento es compuesto mandar a la pagina de seleccion de alimento compuesto
-                                    if (BusquedaData_alimento_compuesto!
-                                        .contains(Busqueda![index])) {
+                                    if (BusquedaData_alimento_compuesto
+                                        .contains(Busqueda[index])) {
                                       seleccion_compuesto =
                                           Seleccion_de_alimento_comp(
                                               datos_alimento: Busqueda![index],
@@ -276,7 +459,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                                         20 * fem), // Sin sombra
                                   ),
                                   child: Text(
-                                    Busqueda?[index][1],
+                                    Busqueda[index][1],
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -303,15 +486,67 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
 
   //Funcion que acutaliza la lista
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
-  void actualizar_lista(String email, String busqueda, String max) async {
-    BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos(
-        _busquedaController.text, max, email);
-    BusquedaData_alimento_compuesto = await busqueda_alimentos
-        .busqueda_alimentos_compuesto(_busquedaController.text, max, email);
-    //print(BusquedaData);
+  void actualizar_lista(
+      String busqueda, String max, String email, int? id) async {
+    List<List<dynamic>> BusquedaData_alimento = [];
+    List<List<dynamic>> BusquedaData_alimento_compuesto = [];
+    if (_opcionSeleccionada == 'Tipo') {
+      BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
+          _busquedaController.text, max, email, id);
+      BusquedaData_alimento_compuesto = [];
+    } else if (_opcionSeleccionada == 'Restriccion') {
+      BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
+          _busquedaController.text, max, email, id);
+      BusquedaData_alimento_compuesto = await busqueda_alimentos
+          .busqueda_alimentos_compuesto(_busquedaController.text, max, email);
+    } else {
+      BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
+          _busquedaController.text, max, email, id);
+      BusquedaData_alimento_compuesto = await busqueda_alimentos
+          .busqueda_alimentos_compuesto(_busquedaController.text, max, email);
+    }
+
     setState(() {
-      Busqueda = (BusquedaData_alimento ?? []) +
-          (BusquedaData_alimento_compuesto ?? []);
+      Busqueda = [];
+      Busqueda.addAll(BusquedaData_alimento);
+      Busqueda.addAll(BusquedaData_alimento_compuesto);
+    });
+  }
+
+  //Cargar la lista de restricciones
+  void cargarRestriccion() async {
+    List<dynamic> listarestriccion =
+        await busqueda_alimentos.pedir_filtros_restriccion();
+
+    List<int> id_rest = [];
+    List<String> rest = [];
+    //Arreglo para pedir los tipos a la base de datos
+
+    for (int i = 0; i < listarestriccion.length; i++) {
+      id_rest.add(listarestriccion[i][0]);
+      rest.add(listarestriccion[i][1].toString());
+    }
+
+    setState(() {
+      _opcionesTipoRestriccion = rest;
+      _IdTipoRestriccion = id_rest;
+    });
+  }
+
+  //Cargar la lista de tipos
+  void CargarTipo() async {
+    List<dynamic> listatipo = await busqueda_alimentos.pedir_filtros_tipo();
+
+    List<int> id_tipo = [];
+    List<String> tipo = [];
+
+    for (int i = 0; i < listatipo.length; i++) {
+      id_tipo.add(listatipo[i][0]);
+      tipo.add(listatipo[i][1].toString());
+    }
+    setState(() {
+      _opcionesTipoRestriccion = tipo;
+      _IdTipoRestriccion = id_tipo;
     });
   }
 }

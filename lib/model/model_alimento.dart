@@ -1,5 +1,4 @@
 // Path: lib\Funciones\view_Registrar_alimento.dart
-import 'package:flutter/foundation.dart';
 import 'package:myapp/model/connection.dart';
 
 //funcion que recoga los datos de alimento de la bd
@@ -75,20 +74,35 @@ class model_alimento {
 //nombre, tipo, calorias , restriccion.
 //Falta ver como lo hacemos con los filtro de tipo y restriccion
   Future<List<List<dynamic>>> listar_alimentos(
-      String nombre, double max_cal, String email) async {
+      String nombre, double max_cal, String email, int? tipo) async {
     try {
       final connection = await conn();
-
-      final result = await connection.query('''select * from alimento 
+      print(tipo == null);
+      if (tipo == null) {
+        final result = await connection.query('''select * from alimento 
         where nombre like @nombre 
         and calorias <= $max_cal
-        and (predeterminado = true or id_al in (select id_al from alimento where email = @email))    
+        and (predeterminado = true or id_al in (select id_al from alimento where email = @email)) 
         order by nombre asc
         ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
+        await connection.close();
 
-      await connection.close();
-      print(result);
-      return result;
+        return result;
+      } else {
+        tipo = tipo + 1;
+        final result = await connection.query('''select * from alimento 
+        where nombre like @nombre 
+        and calorias <= $max_cal
+        and (predeterminado = true or id_al in (select id_al from alimento where email = @email)) 
+        and (id_tipo in (select id_tipo from tipo_alimento where id_tipo = $tipo) )    
+        order by nombre asc
+        ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
+        await connection.close();
+
+        print(
+            'Resultado de la busqueda con parametros $nombre, $max_cal, $email, $tipo');
+        return result;
+      }
     } catch (e) {
       print('error en listar alimentos: $e');
       List<List> result = [];
@@ -96,8 +110,37 @@ class model_alimento {
     }
   }
 
-//Falta verificar que el alimento o sea predeterminado o este asociado al usuario
-//Hay que ver que un usuario no pueda cambiar informacion de un alimento predeterminado
+  Future<List<List<dynamic>>> listar_alimentos_restriccion(
+      String nombre, double max_cal, int restriccion, String email) async {
+    try {
+      final connection = await conn();
+
+      final result = await connection.query('''
+        select * from alimento 
+        where nombre like @nombre 
+        and calorias <= $max_cal
+        and (predeterminado = true or id_al in (select id_al 
+                                                from alimento
+                                                where email = @email)
+                                                )
+        and (id_al in (select id_restriccion
+                      from rest_al
+                      where id_restriccion = $restriccion)
+                      )
+        order by nombre desc
+        ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
+
+      await connection.close();
+
+      return result;
+    } catch (e) {
+      print('error en conectar a la base de datos: $e');
+      List<List> result = [];
+      return result;
+    }
+  }
+
+  //Funcion para actualizar un alimento
   Future<bool> actualizar_alimento(
       int id_al,
       String nombre,
@@ -147,34 +190,33 @@ class model_alimento {
   }
 
   //Teoricamente listo
-  Future<List<dynamic>?> pedir_filtro_tipo() async {
+  Future<List<dynamic>> pedir_filtro_tipo() async {
     final connection = await conn();
     try {
-      final result =
-          await connection.query('''select nombre tipo from tipo_alimento''');
-      final data =
-          result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
+      final result = await connection.query('''select * from tipo_alimento''');
+      // final data =
+      //     result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
       await connection.close();
-      return data;
+      return result;
     } catch (e) {
       print('error en conectar a la base de datos: $e');
-      return null;
+      List<dynamic> result = [];
+      return result;
     }
   }
 
 //Teoricamente listo
-  Future<List<dynamic>?> pedir_filtro_restriccion() async {
+  Future<List<dynamic>> pedir_filtro_restriccion() async {
     final connection = await conn();
     try {
-      final result =
-          await connection.query('''select nombre tipo from restriccion''');
-      final data =
-          result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
+      final result = await connection.query('''select * from restriccion''');
+
       await connection.close();
-      return data;
+      return result;
     } catch (e) {
       print('error en conectar a la base de datos: $e');
-      return null;
+      List<dynamic> result = [];
+      return result;
     }
   }
 }
