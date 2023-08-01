@@ -15,14 +15,15 @@ class model_alimento {
       double colesterol,
       double sodio,
       double porcion,
+      int tipo,
       String email) async {
     final connection = await conn();
 
     try {
       //id_al , nombre , calorias , carbohidratos , proteinas , grasas_totales , hidratos_carbono , azucares , colesterol , sodio
       await connection.query(
-          '''insert into alimento (nombre, calorias,azucares,proteina,sodio,grasa_total, h_de_C,colesterol,porcion,predeterminado,email)
-            values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false,@email)''',
+          '''insert into alimento (nombre, calorias,azucares,proteina,sodio,grasa_total, h_de_C,colesterol,porcion,predeterminado, id_tipo, email)
+            values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false, $tipo,@email)''',
           substitutionValues: {'stringValue': nombre, 'email': email});
       await connection.close();
       return true;
@@ -89,8 +90,8 @@ class model_alimento {
   Future<List<dynamic>?> datos_alimento(int id) async {
     final connection = await conn();
 
-    final result =
-        await connection.query('select * from alimento where id_al = $id');
+    final result = await connection.query(
+        'select * from alimento,tipo_alimento where id_al = $id AND alimento.id_tipo = tipo_alimento.id_tipo');
 
     final data = result.isNotEmpty ? result.expand((row) => row).toList() : [];
 
@@ -101,28 +102,34 @@ class model_alimento {
 
 //nombre, tipo, calorias , restriccion.
   Future<List<List<dynamic>>> listar_alimentos(
-      String nombre, double max_cal, String email, int? tipo) async {
+      String nombre, double max_cal, String email, int tipo) async {
     try {
       final connection = await conn();
       print('email de listar alimentos $email');
-      if (tipo == null) {
-        final result = await connection.query('''select * from alimento 
-        where nombre like @nombre 
+      if (tipo == -1) {
+        final result =
+            await connection.query('''select * from alimento,tipo_alimento 
+        where alimento.nombre like @nombre 
+        and alimento.id_tipo = tipo_alimento.id_tipo
         and calorias <= $max_cal
         and (predeterminado = true or id_al in (select id_al from alimento where email = @email)) 
-        order by nombre asc
+        order by alimento.nombre asc
         ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
         await connection.close();
 
         return result;
       } else {
+        print(
+            'datos que recibe listar alimentos $nombre, $max_cal, $email, $tipo');
         tipo = tipo + 1;
-        final result = await connection.query('''select * from alimento 
-        where nombre like @nombre 
+        final result =
+            await connection.query('''select * from alimento,tipo_alimento
+        where alimento.nombre like @nombre 
+        and alimento.id_tipo = tipo_alimento.id_tipo
         and calorias <= $max_cal
         and (predeterminado = true or id_al in (select id_al from alimento where email = @email)) 
-        and (id_tipo in (select id_tipo from tipo_alimento where id_tipo = $tipo) )    
-        order by nombre asc
+        and (tipo_alimento.id_tipo in (select id_tipo from tipo_alimento where id_tipo = $tipo) )    
+        order by alimento.nombre asc
         ''', substitutionValues: {'nombre': '%$nombre%', 'email': email});
         await connection.close();
 
@@ -178,6 +185,7 @@ class model_alimento {
       double azucares,
       double colesterol,
       double sodio,
+      int tipo,
       double porcion) async {
     final connection = await conn();
 
@@ -192,7 +200,8 @@ class model_alimento {
           sodio = @sodio, 
           grasa_total = @grasa_total, 
           h_de_c = @h_de_c, 
-          colesterol = @colesterol, 
+          colesterol = @colesterol,
+          id_tipo = $tipo, 
           porcion = @porcion 
           where id_al = $id_al
           RETURNING *;''', substitutionValues: {
@@ -221,8 +230,7 @@ class model_alimento {
     final connection = await conn();
     try {
       final result = await connection.query('''select * from tipo_alimento''');
-      // final data =
-      //     result.isNotEmpty ? result.map((row) => row.toList()).toList() : null;
+
       await connection.close();
       return result;
     } catch (e) {

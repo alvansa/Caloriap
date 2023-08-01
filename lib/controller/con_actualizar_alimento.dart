@@ -19,6 +19,7 @@ class con_actualizar_alimento {
       String azucares,
       String colesterol,
       String sodio,
+      int tipo,
       String porcion) async {
     final alimento = model_alimento();
     final id_al_int = int.parse(id_al);
@@ -49,6 +50,7 @@ class con_actualizar_alimento {
         azucares_int,
         colesterol_int,
         sodio_int,
+        tipo,
         porcion_int);
 
     return act_alimento;
@@ -58,5 +60,11 @@ class con_actualizar_alimento {
     final alimento = model_alimento();
     List<dynamic>? datos = await alimento.datos_alimento(id_al);
     return datos ?? []; // Si datos es nulo, devuelve una lista vacía.
+  }
+
+  Future<List<dynamic>> con_tipos_alimento() async {
+    model_alimento alimento1 = model_alimento();
+    Future<List<dynamic>> tipos_alimento = alimento1.pedir_filtro_tipo();
+    return tipos_alimento;
   }
 }

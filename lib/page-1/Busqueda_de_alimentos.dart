@@ -35,24 +35,22 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
 
   List<List<dynamic>> BusquedaData_alimento_compuesto = [];
   List<List<dynamic>> BusquedaData_alimento = [];
+  int _indiceTipo = -1;
 
-  List<String> _opciones = ['Tipo', 'Restriccion'];
-  String? _opcionSeleccionada = 'Seleccion';
+  List<String> _opcionesTipo = [];
+  String? _eleccionTipo = 'Tipo';
 
-  List<String> _opcionesTipoRestriccion = [];
-  List<int> _IdTipoRestriccion = [];
-
-  String? _eleccion = 'Tipo';
-  String? _tipoElegida = 'Tipos';
+  List<int> _idTipo = [];
 
   void initState() {
     super.initState();
     cargarDatos();
+    CargarTipo();
   }
 
   void cargarDatos() {
     print('Email al cargar datos al inicio ${widget.emailUsuario}');
-    actualizar_lista('', '', widget.emailUsuario, null);
+    actualizar_lista('', '', widget.emailUsuario, -1);
   }
 
   @override
@@ -198,14 +196,14 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                           if (_caloriasController.text == '') {
                             _caloriasController.text = '';
                           }
-                          int indice_tipo_restriccion =
-                              _opcionesTipoRestriccion.indexOf(_eleccion!);
+                          _indiceTipo = _opcionesTipo.indexOf(_eleccionTipo!);
+
                           //Funcion para actualizar el Busqueda al momento de apretar el boton
                           actualizar_lista(
                               _busquedaController.text,
                               _caloriasController.text,
                               widget.emailUsuario,
-                              indice_tipo_restriccion);
+                              _indiceTipo);
 
                           // lista_id[index]
                         },
@@ -247,79 +245,17 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                         ),
                         child: PopupMenuButton<String>(
                           // Valor actualmente seleccionado
-                          initialValue: _opcionSeleccionada,
+                          initialValue: _eleccionTipo,
                           onSelected: (String? nuevaOpcion) {
                             setState(() {
-                              _opcionSeleccionada = nuevaOpcion;
-                              if (_opcionSeleccionada == 'Tipo') {
-                                CargarTipo();
-                                _eleccion = 'Tipo';
-                              } else {
-                                cargarRestriccion();
-                                _eleccion = 'Restriccion';
-                              }
-                            });
-                          },
-                          // Opciones del DropdownButton
-                          itemBuilder: (BuildContext context) {
-                            return _opciones.map((String opcion) {
-                              return PopupMenuItem<String>(
-                                value: opcion,
-                                child: Text(
-                                  opcion,
-                                  style: TextStyle(
-                                    fontFamily: 'ABeeZee',
-                                    fontSize: 16 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.3102272749 * ffem / fem,
-                                    color: Color(0xffffffff),
-                                  ),
-                                ),
-                              );
-                            }).toList();
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                10.0), // Ajusta el radio del borde para redondear la lista
-                          ),
-                          color: Color.fromARGB(226, 49, 44, 44),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              _opcionSeleccionada ?? '',
-                              style: TextStyle(
-                                fontFamily: 'ABeeZee',
-                                fontSize: 16 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.3102272749 * ffem / fem,
-                                color: Color(0xffffffff),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      //Container de restriccion de alimento
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 17, horizontal: 8),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: PopupMenuButton<String>(
-                          // Valor actualmente seleccionado
-                          initialValue: _eleccion,
-                          onSelected: (String? nuevaOpcion) {
-                            setState(() {
-                              _eleccion = nuevaOpcion;
+                              _eleccionTipo = nuevaOpcion;
                               int indice =
-                                  _opcionesTipoRestriccion.indexOf(_eleccion!);
+                                  _opcionesTipo.indexOf(_eleccionTipo!);
                             });
                           },
                           // Opciones del DropdownButton
                           itemBuilder: (BuildContext context) {
-                            return _opcionesTipoRestriccion
-                                .map((String opcion) {
+                            return _opcionesTipo.map((String opcion) {
                               return PopupMenuItem<String>(
                                 value: opcion,
                                 child: Text(
@@ -343,7 +279,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                           child: Container(
                             alignment: Alignment.center,
                             child: Text(
-                              _eleccion ?? '',
+                              _eleccionTipo ?? '',
                               style: TextStyle(
                                 fontFamily: 'ABeeZee',
                                 fontSize: 16 * ffem,
@@ -484,21 +420,17 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
   //Funcion que acutaliza la lista
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
   void actualizar_lista(
-      String busqueda, String max, String email, int? id) async {
+      String busqueda, String max, String email, int id) async {
     List<List<dynamic>> BusquedaData_alimento = [];
     List<List<dynamic>> BusquedaData_alimento_compuesto = [];
     //Si se selecciona el la busqueda por tipo
-    if (_opcionSeleccionada == 'Tipo') {
+
+    if (_indiceTipo != -1) {
+      print('indice tipo $_indiceTipo');
       BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
           _busquedaController.text, max, email, id);
       BusquedaData_alimento_compuesto = [];
     } // Si se selecciona la busqueda por restriccion
-    else if (_opcionSeleccionada == 'Restriccion') {
-      BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
-          _busquedaController.text, max, email, id);
-      BusquedaData_alimento_compuesto = await busqueda_alimentos
-          .busqueda_alimentos_compuesto(_busquedaController.text, max, email);
-    } //Modo por defecto donde muestra todos los alimentos
     else {
       BusquedaData_alimento = await busqueda_alimentos.busqueda_alimentos_tipo(
           _busquedaController.text, max, email, id);
@@ -511,27 +443,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
       Busqueda.addAll(BusquedaData_alimento);
       Busqueda.addAll(BusquedaData_alimento_compuesto);
       //print('Busqueda de alimentos $BusquedaData_alimento');
-      print('email que se envia $email');
-    });
-  }
-
-  //Cargar la lista de restricciones
-  void cargarRestriccion() async {
-    List<dynamic> listarestriccion =
-        await busqueda_alimentos.pedir_filtros_restriccion();
-
-    List<int> id_rest = [];
-    List<String> rest = [];
-    //Arreglo para pedir los tipos a la base de datos
-
-    for (int i = 0; i < listarestriccion.length; i++) {
-      id_rest.add(listarestriccion[i][0]);
-      rest.add(listarestriccion[i][1].toString());
-    }
-
-    setState(() {
-      _opcionesTipoRestriccion = rest;
-      _IdTipoRestriccion = id_rest;
+      print('Busqueda de alimentos simples $BusquedaData_alimento');
     });
   }
 
@@ -547,8 +459,8 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
       tipo.add(listatipo[i][1].toString());
     }
     setState(() {
-      _opcionesTipoRestriccion = tipo;
-      _IdTipoRestriccion = id_tipo;
+      _opcionesTipo = tipo;
+      _idTipo = id_tipo;
     });
   }
 }

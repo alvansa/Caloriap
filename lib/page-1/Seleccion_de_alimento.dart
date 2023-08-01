@@ -33,6 +33,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
   final colesterolController = TextEditingController();
   final sodioController = TextEditingController();
   final porcionController = TextEditingController();
+  final tipoController = TextEditingController();
 
   bool predeterminado = true;
 
@@ -47,7 +48,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
 
   void cargarDatos() {
     print('datos del alimentos: ${widget.datos_alimento}');
-    print('el alimento es predeterminado: ${widget.datos_alimento[10]}');
+    //print('el alimento es predeterminado: ${widget.datos_alimento[10]}');
     if (widget.datos_alimento[10] == true) {
       predeterminado = false;
     }
@@ -63,6 +64,7 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
     carbohidratosController.text = widget.datos_alimento[7].toString();
     colesterolController.text = widget.datos_alimento[8].toString();
     porcionController.text = widget.datos_alimento[9].toString();
+    tipoController.text = widget.datos_alimento[14].toString();
   }
 
   @override
@@ -206,6 +208,10 @@ class _Seleccion_de_alimentoState extends State<Seleccion_de_alimento> {
                               controller: porcionController,
                               fem: fem,
                             ),
+                            TextFieldVista(
+                                hintText: 'Tipo',
+                                controller: tipoController,
+                                fem: fem)
                           ],
                         ),
                       ),

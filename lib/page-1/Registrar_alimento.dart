@@ -30,6 +30,9 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
   final colesterolController = TextEditingController();
   final sodioController = TextEditingController();
   final porcionController = TextEditingController();
+  final tipoAlimentoController = TextEditingController();
+  String tipoAlimento = '';
+  List<dynamic> selectedType = [];
 
   con_reg_alimento alimento = con_reg_alimento();
 
@@ -180,6 +183,56 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                               controller: porcionController,
                               fem: fem,
                             ),
+                            TextField(
+                              // autotextfield1 (5HrPqz6taktLcSckF5D1DHH)
+                              controller: tipoAlimentoController,
+                              obscureText: false,
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                hintText: 'Tipo de alimento',
+                                hintStyle: GoogleFonts.newsCycle(
+                                  fontSize: 15 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.3102272034 * ffem / fem,
+                                  color: Color(0xff8e8e8e),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15 * fem),
+                                  borderSide: BorderSide(
+                                    color: Color(0xff8e8e8e),
+                                    width: 1.5 * fem,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15 * fem),
+                                  borderSide: BorderSide(
+                                    color: Color(0xff8e8e8e),
+                                    width: 1.5 * fem,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xff0c0c0c),
+                                contentPadding: EdgeInsets.fromLTRB(
+                                    20 * fem, 15 * fem, 20 * fem, 15 * fem),
+                              ),
+                              style: GoogleFonts.newsCycle(
+                                fontSize: 15 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.3102272034 * ffem / fem,
+                                color: Color(0xffffffff),
+                              ),
+                              onTap: () async {
+                                selectedType = await _showTipoAlimento(context);
+                                if (selectedType != null) {
+                                  setState(() {
+                                    tipoAlimento = selectedType[
+                                        1]; // Update the selected type
+                                  });
+                                  tipoAlimentoController.text =
+                                      tipoAlimento; // Update the text field
+                                }
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -207,6 +260,7 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                                         colesterolController.text,
                                         sodioController.text,
                                         porcionController.text,
+                                        selectedType[0],
                                         widget.datosUsuario![0][0]);
                                 if (nuevo_alimento_id != false) {
                                   //mostrar pop up exitoso y mandar a caloriapp
@@ -287,6 +341,7 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
                                         colesterolController.text,
                                         sodioController.text,
                                         porcionController.text,
+                                        selectedType[0],
                                         widget.datosUsuario![0][0]);
 
                                 final id_alimento = await alimento.id_alimento(
@@ -421,6 +476,38 @@ class _Registrar_alimentoState extends State<Registrar_alimento> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<List<dynamic>> _showTipoAlimento(BuildContext context) async {
+    List<dynamic> types = [];
+    con_reg_alimento alimento = con_reg_alimento();
+
+    types = await alimento.con_tipos_alimento();
+
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Type'),
+          content: Container(
+            width: double.minPositive,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: types.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(types[index][1]),
+                  onTap: () {
+                    Navigator.pop(
+                        context, types[index]); // Return selected type
+                  },
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

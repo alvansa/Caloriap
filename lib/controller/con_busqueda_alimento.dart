@@ -4,7 +4,7 @@ import '../model/model_alimento.dart';
 
 class con_busqueda_alimento {
   Future<List<List<dynamic>>> busqueda_alimentos_tipo(
-      String nombre, String max_calorias, String email, int? id) async {
+      String nombre, String max_calorias, String email, int id) async {
     model_alimento alimento1 = model_alimento();
     double max_calorias_float;
     if (max_calorias.isEmpty) {

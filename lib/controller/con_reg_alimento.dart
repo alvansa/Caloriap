@@ -1,6 +1,12 @@
 import '../model/model_alimento.dart';
 
 class con_reg_alimento {
+  Future<List<dynamic>> con_tipos_alimento() async {
+    model_alimento alimento1 = model_alimento();
+    Future<List<dynamic>> tipos_alimento = alimento1.pedir_filtro_tipo();
+    return tipos_alimento;
+  }
+
   Future<List<dynamic>?> con_datos_alimento(String id) async {
     model_alimento alimento1 = model_alimento();
     int id_int = id.isNotEmpty ? int.parse(id) : 0;
@@ -19,6 +25,7 @@ class con_reg_alimento {
       String colesterol,
       String sodio,
       String porcion,
+      int tipo,
       String email) async {
     model_alimento reg_alimento1 = model_alimento();
     double calorias_int = 0;
@@ -40,7 +47,7 @@ class con_reg_alimento {
     if (sodio.isNotEmpty) sodio_int = double.parse(sodio);
     if (porcion.isNotEmpty) porcion_int = double.parse(porcion);
 
-    final result = await reg_alimento1.reg_alimento(
+    return reg_alimento1.reg_alimento(
         nombre,
         calorias_int,
         proteinas_int,
@@ -50,8 +57,8 @@ class con_reg_alimento {
         colesterol_int,
         sodio_int,
         porcion_int,
+        tipo,
         email);
-    return true;
   }
 
   Future<bool> ing_alimento_predeterminado(

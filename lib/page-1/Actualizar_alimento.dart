@@ -41,6 +41,9 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
   final sodioController = TextEditingController();
   final porcionController = TextEditingController();
 
+  final tipoAlimentoController = TextEditingController();
+  String tipoAlimento = '';
+  List<dynamic> selectedType = [];
   @override
   void initState() {
     super.initState();
@@ -190,6 +193,58 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                             hintText: 'Porcion (g)',
                             controller: porcionController,
                             fem: fem),
+                        TextField(
+                          // autotextfield1 (5HrPqz6taktLcSckF5D1DHH)
+                          controller: tipoAlimentoController,
+                          obscureText: false,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: 'Tipo de alimento',
+                            hintStyle: SafeGoogleFont(
+                              'newsCycle',
+                              fontSize: 15 * ffem,
+                              fontWeight: FontWeight.w400,
+                              height: 1.3102272034 * ffem / fem,
+                              color: Color(0xff8e8e8e),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15 * fem),
+                              borderSide: BorderSide(
+                                color: Color(0xff8e8e8e),
+                                width: 1.5 * fem,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15 * fem),
+                              borderSide: BorderSide(
+                                color: Color(0xff8e8e8e),
+                                width: 1.5 * fem,
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xff0c0c0c),
+                            contentPadding: EdgeInsets.fromLTRB(
+                                20 * fem, 15 * fem, 20 * fem, 15 * fem),
+                          ),
+                          style: SafeGoogleFont(
+                            'newsCycle',
+                            fontSize: 15 * ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.3102272034 * ffem / fem,
+                            color: Color(0xffffffff),
+                          ),
+                          onTap: () async {
+                            selectedType = await _showTipoAlimento(context);
+                            if (selectedType != null) {
+                              setState(() {
+                                tipoAlimento =
+                                    selectedType[1]; // Update the selected type
+                              });
+                              tipoAlimentoController.text =
+                                  tipoAlimento; // Update the text field
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -217,6 +272,7 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
                               azucaresController.text,
                               colesterolController.text,
                               sodioController.text,
+                              selectedType[0],
                               porcionController.text,
                             );
                             if (result == true) {
@@ -289,6 +345,38 @@ class _Actualizar_alimentoState extends State<Actualizar_alimento> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<List<dynamic>> _showTipoAlimento(BuildContext context) async {
+    List<dynamic> types = [];
+    con_actualizar_alimento alimento = con_actualizar_alimento();
+
+    types = await alimento.con_tipos_alimento();
+
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Type'),
+          content: Container(
+            width: double.minPositive,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: types.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(types[index][1]),
+                  onTap: () {
+                    Navigator.pop(
+                        context, types[index]); // Return selected type
+                  },
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
