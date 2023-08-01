@@ -349,12 +349,15 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    print(BusquedaData_alimento_compuesto
+                                        .contains(Busqueda[index]));
                                     //Si el alimento es compuesto mandar a la pagina de seleccion de alimento compuesto
                                     if (BusquedaData_alimento_compuesto
                                         .contains(Busqueda[index])) {
+                                      print('a la seleccion de compuesto');
                                       seleccion_compuesto =
                                           Seleccion_de_alimento_comp(
-                                              datos_alimento: Busqueda![index],
+                                              datos_alimento: Busqueda[index],
                                               email: widget.email);
 
                                       Navigator.push(
@@ -367,6 +370,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
                                       );
                                       //Sino mandar a la seleccion de alimento simple
                                     } else {
+                                      print('a la seleccion de simple');
                                       setState(() {
                                         seleccion = Seleccion_de_alimento(
                                             datos_alimento: Busqueda![index],
@@ -421,8 +425,8 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
   //Recibe el email de usuario y la fecha, el email se obtiene de la clase Caloriapp
   void actualizar_lista(
       String busqueda, String max, String email, int id) async {
-    List<List<dynamic>> BusquedaData_alimento = [];
-    List<List<dynamic>> BusquedaData_alimento_compuesto = [];
+    // List<List<dynamic>> BusquedaData_alimento = [];
+    // List<List<dynamic>> BusquedaData_alimento_compuesto = [];
     //Si se selecciona el la busqueda por tipo
 
     if (_indiceTipo != -1) {
@@ -443,7 +447,7 @@ class _Busqueda_de_alimentos extends State<Busqueda_de_alimentos> {
       Busqueda.addAll(BusquedaData_alimento);
       Busqueda.addAll(BusquedaData_alimento_compuesto);
       //print('Busqueda de alimentos $BusquedaData_alimento');
-      print('Busqueda de alimentos simples $BusquedaData_alimento');
+      print('Busqueda de alimentos simples $BusquedaData_alimento_compuesto');
     });
   }
 

@@ -149,7 +149,9 @@ class _admin_CaloriapState extends State<admin_Caloriapp> {
               child: TextButton(
                 onPressed: () {
                   MaterialPageRoute route = MaterialPageRoute(
-                      builder: (context) => h_de_alimentos!.historial());
+                      builder: (context) => Historial_de_alimentos(
+                            email: widget.datos,
+                          ));
                   Navigator.push(context, route);
                 },
                 style: TextButton.styleFrom(

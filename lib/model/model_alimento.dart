@@ -4,7 +4,7 @@ import 'package:myapp/model/connection.dart';
 //funcion que recoga los datos de alimento de la bd
 
 class model_alimento {
-  //aqui falta poner el email de usuario que lo ingreso
+  //Funcion para registrar un alimento
   Future<bool> reg_alimento(
       String nombre,
       double calorias,
@@ -20,7 +20,6 @@ class model_alimento {
     final connection = await conn();
 
     try {
-      //id_al , nombre , calorias , carbohidratos , proteinas , grasas_totales , hidratos_carbono , azucares , colesterol , sodio
       await connection.query(
           '''insert into alimento (nombre, calorias,azucares,proteina,sodio,grasa_total, h_de_C,colesterol,porcion,predeterminado, id_tipo, email)
             values (@stringValue, $calorias, $azucares,$proteinas, $sodio, $grasas_totales, $hidratos_carbono,  $colesterol,$porcion,false, $tipo,@email)''',
@@ -255,19 +254,3 @@ class model_alimento {
     }
   }
 }
-
-
-/*metodos model alimento
-  reg_alimento   ✓✓
-  reg_alimento_predeterminado ✓✓
-  pedir_filtros_tipo 
-  pedir_filtros_restriccion
-  listar_alimentos 
-  datos_alimento ✓✓ 
-  actualizar_alimento ✓✓
-  get_lista_alimentos
-
-
-
-
-*/
